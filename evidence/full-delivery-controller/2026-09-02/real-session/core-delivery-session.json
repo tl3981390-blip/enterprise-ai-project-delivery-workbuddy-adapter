@@ -50,7 +50,7 @@
       "verification_method": "file"
     }
   ],
-  "completion_status": "NOT_VERIFIED",
+  "completion_status": "NOT_COMPLETE",
   "contract_revision": 1,
   "contract_runtime_items": {
     "CANONICAL_EVIDENCE_LEDGER": "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入 Canonical Evidence Ledger",
@@ -115,11 +115,73 @@
       "source": "WORKBUDDY_HOST:PostToolUse",
       "status": "PASS",
       "timestamp": "2026-09-02T13:38:30.502922+00:00"
+    },
+    {
+      "event_id": "stop-1788356421",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+          "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+          "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T13:40:21.754632+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "am-b91743e8-1-pause",
+      "event_type": "USER_PAUSE",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T13:40:51.885825+00:00",
+      "type": "USER_PAUSE_APPLIED"
     }
   ],
   "harness_session_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
   "harness_type": "workbuddy",
-  "open_blockers": [],
+  "open_blockers": [
+    {
+      "ac_id": "SESSION_PERSISTENCE",
+      "artifact_hash": null,
+      "blocker_id": "82308400-54b9-46b4-818e-b68b6d24034a",
+      "created_at": "2026-09-02T13:40:21.755473+00:00",
+      "runtime_item": "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": null
+    },
+    {
+      "ac_id": "STOP_COMPLETION_GATE",
+      "artifact_hash": null,
+      "blocker_id": "587a1d28-f568-42aa-a7e2-48729305562f",
+      "created_at": "2026-09-02T13:40:21.755483+00:00",
+      "runtime_item": "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": null
+    },
+    {
+      "ac_id": "HUMAN_AUTHORITY_CHANNEL",
+      "artifact_hash": null,
+      "blocker_id": "1efba1e9-c630-478a-ba11-0c9568c46c69",
+      "created_at": "2026-09-02T13:40:21.755488+00:00",
+      "runtime_item": "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": null
+    }
+  ],
   "original_user_request": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。",
   "owner_decisions": [],
   "recovery_history": [],
@@ -334,6 +396,23 @@
       "registry": {},
       "upstream": {}
     },
+    "completion_gate": {
+      "failed": [],
+      "invalidated_evidence": [],
+      "missing": [
+        "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+        "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+        "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+        "证明 Final Complete 的 Evidence:test_result",
+        "证明 Final Complete 的 Evidence:acceptance_signoff",
+        "证明 Final Complete 的 Evidence:evidence_bundle"
+      ],
+      "open_corrections": [],
+      "open_failures": [],
+      "pass": false,
+      "pending_external_validation": [],
+      "planning_open": false
+    },
     "complexity": {
       "dominant_factors": [],
       "factors": [],
@@ -440,6 +519,34 @@
           "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
         },
         "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T13:40:21.755407+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+            "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+            "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T13:40:51.950804+00:00",
+        "details": {
+          "suspension_id": "d97e4476-e330-4cdc-939f-1e489311e3e9"
+        },
+        "type": "SUSPENDED"
       }
     ],
     "evidence_ledger": [
@@ -474,7 +581,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -509,7 +616,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -544,7 +651,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -579,7 +686,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -614,7 +721,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -649,7 +756,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 8,
+        "valid_for_revision": 10,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       }
@@ -928,10 +1035,10 @@
       "require_regression_evidence": true,
       "strategy": "root_cause_then_revalidate"
     },
-    "revision": 8,
+    "revision": 10,
     "schema_version": "3.0",
     "session_id": "bbe8f055-0263-44fd-92b6-fc740fde27b1",
-    "status": "EXECUTING",
+    "status": "SUSPENDED",
     "strategy_consumption": {
       "CAPABILITY_SELECTION": "mature_compatible_authorized_first",
       "EXECUTION_ORDER": "dependency_and_risk_aware",
@@ -940,7 +1047,285 @@
       "RECOVERY": "root_cause_then_revalidate",
       "UNDERSTANDING": "ask_only_consequential_unknowns"
     },
-    "suspensions": [],
+    "suspensions": [
+      {
+        "authority_ref": {
+          "conversation_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+          "harness": "workbuddy",
+          "message_id": "am-b91743e8-1-pause",
+          "origin": "USER"
+        },
+        "candidate_id": "bbe8f055-0263-44fd-92b6-fc740fde27b1",
+        "checkpoint_identity": {
+          "contract_hash": "?? .codebuddy/\n?? .workbuddy/\n?? evidence/",
+          "evidence_anchor": "latest-pass-ledger",
+          "git_head": "728de7f3b321c7426bd350ad0451789e828db518",
+          "runtime_identity": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+          "worktree_identity": "C:/Users/34718/WorkBuddy/Demos/wbfdc-demo-full-delivery-controller"
+        },
+        "created_at": "2026-09-02T13:40:51.950792+00:00",
+        "current_work": null,
+        "evidence_ids": [
+          "workbuddy:ptu-call_00_hdTFXj3jh2QZyJqzGRpl4173:63ba15ef-d54e-494a-802f-531e67df6d9a",
+          "workbuddy:ptu-call_00_ET_Ov8gDf87l3QlhdZ9DZ4X9717:082bdd73-3d86-4516-986c-2fc8eb763406",
+          "workbuddy:ptu-call_00_ET_wZXr8oQUmvo9Z1mYr41r3589:1956f20b-6e07-4a26-85cf-a5115688a90c",
+          "workbuddy:ptu-call_00_L92H95vEWyHv0Gccp8Y82581:9c848d8a-f949-47f5-93cd-75bfabe53439",
+          "workbuddy:ptu-call_00_ET_TyORscu4eK2zIeSddZby9613:47f4f1e0-bddb-490e-ad7a-b6699505247a"
+        ],
+        "facts": {
+          "_extended_facts": [
+            "user_real_goal"
+          ],
+          "acceptance_requirements": {
+            "history": [
+              {
+                "at": "2026-09-02T13:36:50.161941+00:00",
+                "event_id": "ba4f84e6-0925-42ce-89dd-0e76d46bc080",
+                "evidence": "initial_observation",
+                "fact": "acceptance_requirements",
+                "source": "PROJECT_EVIDENCE",
+                "state": "ACTIVE",
+                "value": [
+                  "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+                  "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入 Canonical Evidence Ledger",
+                  "用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+                  "Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+                  "第二新会话验证状态持久化、Replay 防护与 Session 隔离"
+                ]
+              }
+            ],
+            "provenance": "PROJECT_EVIDENCE",
+            "source_fact": "acceptance_requirements",
+            "state": "OBSERVED",
+            "value": [
+              "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+              "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入 Canonical Evidence Ledger",
+              "用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+              "Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+              "第二新会话验证状态持久化、Replay 防护与 Session 隔离"
+            ]
+          },
+          "agent_autonomy_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "approval_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "assumptions": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "compliance": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "data": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "deployment_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "distribution_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "enterprise_policy_present": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "environments": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "existing_database": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "explicit_constraints": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "external_systems": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "external_tool_permission_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "goal": {
+            "canonical_mapping": "user_real_goal->goal",
+            "history": [
+              {
+                "at": "2026-09-02T13:36:50.161932+00:00",
+                "event_id": "eec724e0-768a-48af-9914-d6f44ad1975b",
+                "evidence": "initial_goal",
+                "fact": "user_real_goal",
+                "source": "USER_EXPLICIT",
+                "state": "ACTIVE",
+                "value": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+              }
+            ],
+            "provenance": "USER_EXPLICIT",
+            "source_fact": "user_real_goal",
+            "state": "DECLARED",
+            "value": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+          },
+          "interface_types": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "interfaces": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "knowledge_source_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "license_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "migration_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "permissions": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "persistence": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "recovery_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "required_capabilities": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "retrieval_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "roles": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "rollback_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "runtime": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "security_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "tool_execution_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "unknowns": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "user_journeys": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "user_real_goal": {
+            "extended": true,
+            "history": [
+              {
+                "at": "2026-09-02T13:36:50.161932+00:00",
+                "event_id": "eec724e0-768a-48af-9914-d6f44ad1975b",
+                "evidence": "initial_goal",
+                "fact": "user_real_goal",
+                "source": "USER_EXPLICIT",
+                "state": "ACTIVE",
+                "value": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+              }
+            ],
+            "provenance": "USER_EXPLICIT",
+            "source_fact": "user_real_goal",
+            "state": "DECLARED",
+            "value": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+          },
+          "users": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "workflow": {
+            "state": "UNKNOWN",
+            "value": null
+          }
+        },
+        "failures": [],
+        "initiator": "USER",
+        "next_legal_action": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。",
+        "plan": {
+          "authority": "AI_GENERATED_HUMAN_OWNED",
+          "checks": [],
+          "not_applicable": [],
+          "planning_strategy_applied": "minimal_real_work_units",
+          "schema": [
+            "name",
+            "goal",
+            "work",
+            "output",
+            "entry_condition",
+            "done_condition",
+            "acceptance",
+            "failure_handling",
+            "evidence"
+          ],
+          "stage_count": 1,
+          "stages": [
+            {
+              "acceptance": "按已确认目标验证实际结果",
+              "assumptions": [],
+              "capabilities": [],
+              "class": "STAGE",
+              "critical_dependency": false,
+              "dependencies": [],
+              "done_condition": "验收通过",
+              "entry_condition": "上一工作项完成",
+              "evidence": [
+                "test_result"
+              ],
+              "failure_cost": null,
+              "failure_handling": "冻结证据进入恢复",
+              "goal": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。",
+              "name": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。",
+              "output": [],
+              "provenance": "PROJECT_FACT",
+              "risk": 0,
+              "risk_score": 0,
+              "work": [
+                "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+              ]
+            }
+          ],
+          "strategy_guidance": "minimal_real_work_units",
+          "tasks": []
+        },
+        "reason": "user:暂停交付",
+        "revision": 9,
+        "session_id": "bbe8f055-0263-44fd-92b6-fc740fde27b1",
+        "suspension_id": "d97e4476-e330-4cdc-939f-1e489311e3e9",
+        "verified_state": {}
+      }
+    ],
     "understanding": {
       "adaptive_strategy": {
         "capability_preference": "mature_compatible_authorized_first",
@@ -1048,7 +1433,7 @@
       "understanding_id": "dab2d63c-bea5-4455-92c2-ce162eb987da",
       "updated_at": "2026-09-02T13:36:50.161973+00:00"
     },
-    "updated_at": "2026-09-02T13:38:30.503934+00:00",
+    "updated_at": "2026-09-02T13:40:51.950809+00:00",
     "verified_state": {}
   }
 }

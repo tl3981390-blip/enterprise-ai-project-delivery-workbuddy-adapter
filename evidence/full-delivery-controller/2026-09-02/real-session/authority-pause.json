@@ -1,0 +1,51 @@
+{
+  "title": "真实 PAUSE（暂停交付）进入 Core Human Authority — 验收记录",
+  "captured_at": "2026-09-02T21:41:54.808683",
+  "host_session": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+  "user_prompt": "暂停交付",
+  "userpromptsubmit_audit": {
+    "at": "2026-09-02T13:40:51.952979+00:00",
+    "outcome": {
+      "decision": "core_applied",
+      "event_id": "am-b91743e8-1-pause",
+      "kind": "PAUSE"
+    }
+  },
+  "core_effect": {
+    "runtime_status": "SUSPENDED",
+    "suspension": [
+      {
+        "suspension_id": "d97e4476-e330-4cdc-939f-1e489311e3e9",
+        "initiator": "USER",
+        "reason": "user:暂停交付",
+        "authority_ref": {
+          "conversation_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+          "harness": "workbuddy",
+          "message_id": "am-b91743e8-1-pause",
+          "origin": "USER"
+        },
+        "created_at": "2026-09-02T13:40:51.950792+00:00"
+      }
+    ],
+    "session_event": [
+      {
+        "event_type": "USER_PAUSE",
+        "event_id": "am-b91743e8-1-pause",
+        "timestamp": "2026-09-02T13:40:51.885825+00:00"
+      }
+    ]
+  },
+  "real_stop_gate_before_pause": {
+    "at": "2026-09-02T13:40:21.758767+00:00",
+    "decision": "gate_blocks_completion",
+    "pass": false,
+    "missing": [
+      "HUMAN_AUTHORITY",
+      "STOP_GATE",
+      "SESSION_PERSISTENCE",
+      "final test_result",
+      "final acceptance_signoff",
+      "final evidence_bundle"
+    ]
+  }
+}
