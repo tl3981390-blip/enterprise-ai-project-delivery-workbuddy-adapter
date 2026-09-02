@@ -1,5 +1,5 @@
 {
-  "description": "Adapter-owned mapping from REAL PostToolUse tool events to Core acceptance work units. Written by the delivery orchestrator on the Adapter branch; the bridge only records a receipt when a real host event matches a registered unit. Nothing is self-declared PASS.",
+  "description": "Adapter-owned mapping from REAL PostToolUse tool events to Core acceptance work units.",
   "units": [
     {
       "work_id": "__STAGE_0__",

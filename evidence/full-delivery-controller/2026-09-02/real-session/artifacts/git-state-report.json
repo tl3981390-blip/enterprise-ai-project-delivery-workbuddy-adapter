@@ -1,8 +1,1 @@
-{
-  "verdict": "PASS",
-  "git_head": "728de7f3b321c7426bd350ad0451789e828db518",
-  "head_log": "728de7f feat(cli): --region override for region_filter (req change)",
-  "porcelain_lines": 1,
-  "porcelain": "?? .codebuddy/",
-  "captured_at": "2026-09-02T21:22:00.478225"
-}
+{"verdict":"PASS","git_head":"728de7f3b321c7426bd350ad0451789e828db518","captured_at":"2026-09-02T21:36:43"}

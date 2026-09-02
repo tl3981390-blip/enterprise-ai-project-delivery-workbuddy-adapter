@@ -1,0 +1,144 @@
+{
+  "adapter_session": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+  "captured_at": "2026-09-02T21:38:22.929274",
+  "note": "REAL WorkBuddy host events only.",
+  "total_real_host_posttooluse_events": 10,
+  "events": [
+    {
+      "at": "2026-09-02T13:36:35.135710+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_Fk8vaTTpLwdub7IESJ1x0945",
+      "generation_id": "6c87c437aba345d7969b84b3e3d0b2d0",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_delivery_session"
+      }
+    },
+    {
+      "at": "2026-09-02T13:36:44.063005+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_C1rZYyG7OsVWUZ32w2uP2982",
+      "generation_id": "3363f3b2c29e4644938a03595a4406e4",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_delivery_session"
+      }
+    },
+    {
+      "at": "2026-09-02T13:36:50.283044+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_2Mw3Q723deJUWH5zOFga5704",
+      "generation_id": "c779ab33cefa48fbb84ae402a95ec260",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    },
+    {
+      "at": "2026-09-02T13:37:02.456017+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_I8POj0Wyuy02RjGJGLQT4117",
+      "generation_id": "bc99239d50fe44bda31dfd7e1faf2579",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "REAL_HOST_EVENT_BRIDGE",
+        "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:37:20.635826+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_hdTFXj3jh2QZyJqzGRpl4173",
+      "generation_id": "278de79df4b2416c99510d4b10c65e7d",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "REAL_HOST_EVENT_BRIDGE",
+        "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:37:34.407954+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_Ov8gDf87l3QlhdZ9DZ4X9717",
+      "generation_id": "8913ce0068b84c9c921af19dfc38554b",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "CANONICAL_EVIDENCE_LEDGER",
+        "artifact": ".codebuddy/bridge/artifacts/canonical-pytest.log",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:37:44.973072+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_PAMtOpqVy0jgngYrIHX07018",
+      "generation_id": "46446f19aa2947339ba5111ca19613ae",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    },
+    {
+      "at": "2026-09-02T13:37:56.692261+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_v9qiT4Ox3DLTSYd2dEXL4804",
+      "generation_id": "ad4673cc34fd41b881402aa6244a40db",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:03.752769+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_wZXr8oQUmvo9Z1mYr41r3589",
+      "generation_id": "795f19ba0abc48e989339bbcc931c550",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "REAL_HOST_EVENT_BRIDGE",
+        "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:12.403510+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_c2Tq5lYFLIZf6QgDSAUS6363",
+      "generation_id": "ffa46d24ca0f4185b986d22914eadac4",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    }
+  ]
+}
