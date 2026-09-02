@@ -22,6 +22,12 @@ python tools/run_blackbox.py all
 ```
 
 (assertions are idempotent per run directory; partial phases: `m|h|i|o`).
+Independent read-only re-verification of this evidence folder (recomputes every
+claim from the raw state/audit/artifacts — never trusts stored assertion strings):
+
+```
+python tools/verify_evidence.py evidence/auto-blackbox/run-20260902T170022Z
+```
 
 ## Evidence files in this folder
 
