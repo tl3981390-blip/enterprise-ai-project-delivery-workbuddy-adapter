@@ -20,7 +20,10 @@ Implementation map (`workbuddy-full-delivery-controller`):
 - Canonical Evidence — `src/harness_receipts.py` (HARNESS_EXECUTION receipts only from
   PostToolUse-shaped real tool results; event-level replay rejected; ledger completion gate).
 - Human Authority — `src/human_authority.py` (adapter_message_id only from a real
-  UserPromptSubmit payload; exact user controls; persisted, replay-safe).
+  UserPromptSubmit payload; governed two-stage Proposal/confirmation: CANCEL,
+  CORRECTION and AMBIGUOUS readings open a Proposal and need a real confirmation
+  on the next real message; CLEAR PAUSE/RESUME may apply directly; persisted,
+  replay/cross-session/stale safe).
 - Scope cleanup — `src/scope_control.py` (per-invocation temp context + audit).
 - `hooks/hooks.json` declares candidate hooks but stays INERT (enabled:false) — nothing is
   registered globally, no WorkBuddy settings are modified.

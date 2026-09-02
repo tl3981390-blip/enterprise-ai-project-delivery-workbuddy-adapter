@@ -1,0 +1,159 @@
+{
+  "work_unit": "git 状态检查 回归",
+  "decision": "git-state-change-regression",
+  "reason": "best text overlap=1 among 1 eligible candidate(s); minimal-sufficient selection (deterministic)",
+  "ranked": [
+    {
+      "identity": "git-state-change-regression",
+      "version": null,
+      "verified_callable": true,
+      "overlap": 1
+    }
+  ],
+  "exclusions": [
+    {
+      "identity": "enterprise-ai-project-delivery",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "node-sea-exe-packaging",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "owner-first-delivery-discipline",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "rescue-field-layering",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "rescue-release-closure",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "video-shotcraft",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "wechat-cover",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "buddy-image-processing",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "3D模型与视频特效",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "expert-manager",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "geo-map-compliance-guard",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "资料库",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "marketplace-skill-installer",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "recommend-connectors",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "recommend-experts",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "发布为应用",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "skill-creator",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docs-routing",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-local-office-edit",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "wb-finance-skill",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "agent-browser",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "find-skills",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "frontend-design",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docs-sheet-generation",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docs-sheetagent",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tabbit",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docs",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-saas-docs",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docx",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-pptx",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "weixinpay-feedback",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "weixinpay-pay",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "weixinpay-register",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "pdf",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "pdfkit-py",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "playwright-cli",
+      "reason": "not_verified_callable_in_this_session"
+    }
+  ]
+}

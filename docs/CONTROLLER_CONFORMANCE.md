@@ -24,7 +24,10 @@ The adapter may report full `CONTROLLER_CONNECTED` only when WorkBuddy itself su
 
 ## Current status
 
-`CONTROLLER_NOT_CONNECTED` (full-control claim) until a real host run feeds live
-UserPromptSubmit/PostToolUse payloads through the implemented handlers. Everything that can
-be proven without host firing is proven: 34 automated tests green, plus real end-to-end
-evidence in `evidence/full-delivery-controller/2026-09-02/`.
+`CONTROLLER_CONNECTED` for the project-scoped real run: real WorkBuddy CLI
+sessions fed live UserPromptSubmit/PostToolUse/Stop payloads through the
+implemented bridge (see `evidence/auto-blackbox/run-20260902T170022Z`,
+23/23 assertions PASS; canonical suite 46 passed).  `hooks/hooks.json` remains
+inert; real activation is project-scoped via
+`<project>/.codebuddy/settings.local.json`.  Nothing is registered globally and
+WorkBuddy global settings are unmodified (SHA verified in the run evidence).

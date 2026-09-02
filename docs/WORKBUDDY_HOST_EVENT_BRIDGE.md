@@ -23,7 +23,7 @@
   installed v3.0.6), host-session audit trail, path resolution, signed event
   construction, stdin/ASCII-safe output helpers.
 - `hooks/bridge/bridge.py` — dispatch entry points:
-  - `userpromptsubmit`  -> Human Authority (exact control phrases only)
+  - `userpromptsubmit`  -> Human Authority (verbatim capture only; intent is the model's job)
   - `posttooluse`       -> registered work-unit receipts -> Core evidence ledger
   - `stop`              -> Core completion gate (observe by default; enforce opt-in)
   - `bootstrap`         -> create the delivery session from the real project goal
@@ -44,7 +44,13 @@
 
 ## Honest status
 
-Only real host events are PASS.  Human-Authority controls (暂停交付/继续交付/
-记录纠正：…/取消交付) and Stop-gate deny/allow and second-session persistence
-require the user's real subsequent inputs; the bridge is live and waiting for
-them.  Nothing here claims those events happened before they do.
+Real host events are the only PASS source.  The 2026-09-02 **automatic**
+black-box run (`evidence/auto-blackbox/run-20260902T170022Z`, 23/23 assertions)
+drove real WorkBuddy CLI sessions through these project hooks and verified:
+PostToolUse → bridge → formal Core v3.0.6 Canonical Evidence Ledger receipts;
+Human-Authority pause/resume/correction/cancel over a governed two-stage
+Proposal/confirmation channel (ambiguity, stale/replay/cross-session and forged
+declarations all refused); Stop gate deny (missing evidence) then allow (after
+the final-verification bundle); second-session isolation/persistence/replay;
+scope cleanup.  Global WorkBuddy settings SHA unchanged before/after.  See
+`evidence/auto-blackbox/README.md`.

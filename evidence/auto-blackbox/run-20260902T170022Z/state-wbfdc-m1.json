@@ -1,0 +1,1089 @@
+{
+  "acceptance_bindings": {
+    "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger": [
+      "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e"
+    ],
+    "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression": [
+      "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c"
+    ],
+    "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime": [
+      "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58"
+    ],
+    "证明 Final Complete 的 Evidence:acceptance_signoff": [
+      "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8"
+    ],
+    "证明 Final Complete 的 Evidence:evidence_bundle": [
+      "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8"
+    ],
+    "证明 Final Complete 的 Evidence:test_result": [
+      "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8"
+    ]
+  },
+  "adapter_schema_version": 1,
+  "canonical_contract": [
+    {
+      "ac_id": "REAL_HOST_EVENT_BRIDGE",
+      "description": "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "CANONICAL_EVIDENCE_LEDGER",
+      "description": "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "HARNESS_SKILL_SELECTION",
+      "description": "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    }
+  ],
+  "completion_status": "VERIFIED_DELIVERY_COMPLETE",
+  "contract_revision": 1,
+  "contract_runtime_items": {
+    "CANONICAL_EVIDENCE_LEDGER": "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+    "HARNESS_SKILL_SELECTION": "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+    "REAL_HOST_EVENT_BRIDGE": "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+  },
+  "conversation_id": "wbfdc-m1",
+  "delivery_session_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+  "events": [
+    {
+      "event_id": "bootstrap-goal-1",
+      "event_type": "UserPromptSubmit",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:00:23.996158+00:00"
+    },
+    {
+      "event_id": "stop-1788368451",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:00:51.974857+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "ptu-call_00_WgJZGJdZr95IjiVBnB8F9801",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58",
+      "source": "WORKBUDDY_HOST:PostToolUse",
+      "status": "PASS",
+      "timestamp": "2026-09-02T17:01:04.104080+00:00"
+    },
+    {
+      "event_id": "ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e",
+      "source": "WORKBUDDY_HOST:PostToolUse",
+      "status": "PASS",
+      "timestamp": "2026-09-02T17:01:07.145179+00:00"
+    },
+    {
+      "event_id": "stop-1788368469",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:01:09.836574+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "ptu-call_00_tMaiOshtj47GMJEO5nsa8147",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c",
+      "source": "WORKBUDDY_HOST:PostToolUse",
+      "status": "PASS",
+      "timestamp": "2026-09-02T17:02:45.706118+00:00"
+    },
+    {
+      "event_id": "final-verification-接管本目录的验收交付：请先按 CLAUDE.md",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8",
+      "source": "WORKBUDDY_HOST:PostToolUse",
+      "status": "PASS",
+      "timestamp": "2026-09-02T17:02:45.753686+00:00"
+    },
+    {
+      "event_id": "stop-1788368573",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": true,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:02:53.019248+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    }
+  ],
+  "harness_session_id": "wbfdc-m1",
+  "harness_type": "workbuddy",
+  "open_blockers": [
+    {
+      "ac_id": "HARNESS_SKILL_SELECTION",
+      "artifact_hash": null,
+      "blocker_id": "310bab26-5ff5-4d56-9373-6cee4705f92c",
+      "closed_at": "2026-09-02T17:02:53.020445+00:00",
+      "created_at": "2026-09-02T17:00:51.975792+00:00",
+      "runtime_item": "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "CANONICAL_EVIDENCE_LEDGER",
+      "artifact_hash": null,
+      "blocker_id": "f0d2964a-17e3-4699-a2c0-e032c5a3c3f9",
+      "closed_at": "2026-09-02T17:01:09.837742+00:00",
+      "created_at": "2026-09-02T17:00:51.975800+00:00",
+      "runtime_item": "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "REAL_HOST_EVENT_BRIDGE",
+      "artifact_hash": null,
+      "blocker_id": "c20bff45-246d-4039-9fbc-dd4e633bb98c",
+      "closed_at": "2026-09-02T17:01:09.837744+00:00",
+      "created_at": "2026-09-02T17:00:51.975805+00:00",
+      "runtime_item": "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    }
+  ],
+  "original_user_request": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+  "owner_decisions": [],
+  "recovery_history": [],
+  "runtime": {
+    "acceptance": {
+      "_metadata": {
+        "complexity": {
+          "rationale": "LOW: ",
+          "risk_level": "LOW"
+        }
+      },
+      "业务验收": [
+        "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+        "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+        "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+      ],
+      "证明 Final Complete 的 Evidence": [
+        "test_result",
+        "acceptance_signoff",
+        "evidence_bundle"
+      ]
+    },
+    "adaptive_strategy": {
+      "capability_preference": "mature_compatible_authorized_first",
+      "execution_order_preference": "dependency_and_risk_aware",
+      "interaction_strategy": "concise_evidence_backed_updates",
+      "planning_strategy": "minimal_real_work_units",
+      "question_strategy": "ask_only_consequential_unknowns",
+      "recovery_strategy": "root_cause_then_revalidate"
+    },
+    "approved_plan_baseline": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+          "name": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "candidate_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+    "capability_invocations": [],
+    "capability_needs": {
+      "capabilities": {
+        "agent": {
+          "blocking_unknowns": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['agent_autonomy_requirement', 'tool_execution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ]
+        },
+        "browser_acceptance": {
+          "blocking_unknowns": [
+            "interface_types"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['interface_types']",
+          "required": "unknown",
+          "required_facts": [
+            "interface_types"
+          ]
+        },
+        "database": {
+          "blocking_unknowns": [
+            "persistence",
+            "existing_database"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['persistence', 'existing_database']",
+          "required": "unknown",
+          "required_facts": [
+            "persistence",
+            "existing_database"
+          ]
+        },
+        "deployment": {
+          "blocking_unknowns": [
+            "deployment_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['deployment_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "deployment_requirement"
+          ]
+        },
+        "enterprise_governance": {
+          "blocking_unknowns": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['enterprise_policy_present', 'approval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ]
+        },
+        "license_compliance": {
+          "blocking_unknowns": [
+            "license_requirement",
+            "distribution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['license_requirement', 'distribution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "license_requirement",
+            "distribution_requirement"
+          ]
+        },
+        "multi_role_approval": {
+          "blocking_unknowns": [
+            "approval_requirement",
+            "roles"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['approval_requirement', 'roles']",
+          "required": "unknown",
+          "required_facts": [
+            "approval_requirement",
+            "roles"
+          ]
+        },
+        "rag": {
+          "blocking_unknowns": [
+            "retrieval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['retrieval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "retrieval_requirement"
+          ]
+        },
+        "tool_permissions": {
+          "blocking_unknowns": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['external_tool_permission_requirement', 'permissions']",
+          "required": "unknown",
+          "required_facts": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ]
+        },
+        "upgrade_rollback": {
+          "blocking_unknowns": [
+            "migration_requirements",
+            "rollback_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['migration_requirements', 'rollback_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "migration_requirements",
+            "rollback_requirement"
+          ]
+        }
+      }
+    },
+    "capability_resolutions": {},
+    "capability_sources": {
+      "harness": {},
+      "registry": {},
+      "upstream": {}
+    },
+    "completion_gate": {
+      "failed": [],
+      "invalidated_evidence": [],
+      "missing": [],
+      "open_corrections": [],
+      "open_failures": [],
+      "pass": true,
+      "pending_external_validation": [],
+      "planning_open": false
+    },
+    "complexity": {
+      "dominant_factors": [],
+      "factors": [],
+      "rationale": "LOW: ",
+      "risk_level": "LOW",
+      "score": 0
+    },
+    "confirmed_requirement_baseline": {
+      "acceptance_requirements": [
+        "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+        "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+        "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+      ],
+      "goal": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+      "user_real_goal": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+    },
+    "correction_ledger": [],
+    "created_at": "2026-09-02T17:00:23.996497+00:00",
+    "current_work": null,
+    "events": [
+      {
+        "at": "2026-09-02T17:00:23.996538+00:00",
+        "details": {
+          "fact_events": 2,
+          "understanding_id": "6694ca92-66c2-4967-a2c1-cd913dfb66ac"
+        },
+        "type": "UNDERSTANDING_BOUND_TO_FACT_MODEL"
+      },
+      {
+        "at": "2026-09-02T17:00:23.996716+00:00",
+        "details": {
+          "approval_source": {
+            "conversation_id": "wbfdc-m1",
+            "harness": "workbuddy",
+            "message_id": "bootstrap-goal-1",
+            "origin": "USER"
+          },
+          "approved_revision": 2,
+          "intent_record": {
+            "consequential_ambiguity": false,
+            "context_refs": [
+              "plan_revision:1",
+              "plan_scope:9e0db64b-ad54-4c44-ab4a-d19238fc7fce"
+            ],
+            "intent": "DIRECTIVE"
+          },
+          "status": "REVIEWED_APPROVED",
+          "waiver_scope": null
+        },
+        "type": "PLAN_APPROVED"
+      },
+      {
+        "at": "2026-09-02T17:00:51.975761+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:01:04.105026+00:00",
+        "details": {
+          "evidence_id": "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58",
+          "receipt_id": "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58",
+          "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:01:07.146184+00:00",
+        "details": {
+          "evidence_id": "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e",
+          "receipt_id": "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e",
+          "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:01:09.837723+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:02:45.707298+00:00",
+        "details": {
+          "evidence_id": "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c",
+          "receipt_id": "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c",
+          "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:02:45.754774+00:00",
+        "details": {
+          "evidence_id": "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8",
+          "receipt_id": "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8",
+          "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:02:53.020427+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": true,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "COMPLETION_VERIFIED"
+      }
+    ],
+    "evidence_ledger": [
+      {
+        "acceptance_items": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "9f3336553f8a6fbfe8aeed8aff5d98b29ae6c630c068100088a04e575e8ccc3d",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "2c70f83ec16f6f6cba7cb028411ca870e38b7614008096be1744b4546da18d1c",
+          "artifact_path": "C:\\Users\\34718\\AppData\\Local\\Temp\\wbfdc-bb-20260902T170022Z\\.codebuddy\\bridge\\artifacts\\git-state-report.json",
+          "verification_result": {
+            "verdict": "PASS"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+        "content_hash": "9f3336553f8a6fbfe8aeed8aff5d98b29ae6c630c068100088a04e575e8ccc3d",
+        "dependencies": [],
+        "evidence_id": "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58",
+        "execution_id": "ptu-call_00_WgJZGJdZr95IjiVBnB8F9801",
+        "observed_at": "2026-09-02T17:01:04.104080+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy:ptu-call_00_WgJZGJdZr95IjiVBnB8F9801:8fca7f04-370f-4ba2-b838-b05d4ca2ed58",
+        "session_revision": 3,
+        "source_ref": "workbuddy://ptu-call_00_WgJZGJdZr95IjiVBnB8F9801",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      },
+      {
+        "acceptance_items": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "d43f238a5d97d35d7ae6fd1530e6ce086c8a1ad625d3dcd82f957c15fbd918af",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "d112a81cb1093392fd4c5570151ac1c407f63b53086a2a4e0d25d67b2efefe76",
+          "artifact_path": "C:\\Users\\34718\\AppData\\Local\\Temp\\wbfdc-bb-20260902T170022Z\\.codebuddy\\bridge\\artifacts\\canonical-pytest.log",
+          "verification_result": {
+            "tail": "46 passed in 0.78s"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+        "content_hash": "d43f238a5d97d35d7ae6fd1530e6ce086c8a1ad625d3dcd82f957c15fbd918af",
+        "dependencies": [],
+        "evidence_id": "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e",
+        "execution_id": "ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145",
+        "observed_at": "2026-09-02T17:01:07.145179+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy:ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145:04c18f36-2423-472f-8725-cf61f6ed1c2e",
+        "session_revision": 4,
+        "source_ref": "workbuddy://ptu-call_00_z6kNURx7Ti6vsdriCaPQ2145",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      },
+      {
+        "acceptance_items": [
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "58c68c5881fadf630ae055f914ee972b267b51e999f3729d08afdfb6d7e38f8a",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "d43cc80be3866e620a53cbcb8e1d97a5224a6bec2b3b4f286d1b4caba2e9df43",
+          "artifact_path": "C:\\Users\\34718\\AppData\\Local\\Temp\\wbfdc-bb-20260902T170022Z\\.codebuddy\\bridge\\artifacts\\git-state-skill-report.json",
+          "verification_result": {
+            "verdict": "PASS"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+        "content_hash": "58c68c5881fadf630ae055f914ee972b267b51e999f3729d08afdfb6d7e38f8a",
+        "dependencies": [],
+        "evidence_id": "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c",
+        "execution_id": "ptu-call_00_tMaiOshtj47GMJEO5nsa8147",
+        "observed_at": "2026-09-02T17:02:45.706118+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy:ptu-call_00_tMaiOshtj47GMJEO5nsa8147:1e14e60b-8884-4782-a3f9-00f020e75a1c",
+        "session_revision": 6,
+        "source_ref": "workbuddy://ptu-call_00_tMaiOshtj47GMJEO5nsa8147",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      },
+      {
+        "acceptance_items": [
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "81e9acb297cffe2c617c9da3563ecd3423cdf1a2de8628cb2de7afa0f1c4969e",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "bundle_kind": "FINAL_VERIFICATION_BUNDLE",
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+        "content_hash": "81e9acb297cffe2c617c9da3563ecd3423cdf1a2de8628cb2de7afa0f1c4969e",
+        "dependencies": [],
+        "evidence_id": "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8",
+        "execution_id": "final-verification-接管本目录的验收交付：请先按 CLAUDE.md",
+        "observed_at": "2026-09-02T17:02:45.753686+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy:final-verification-接管本目录的验收交付：请先按 CLAUDE.md:882bc613-fdfa-4285-b72e-c0f2ce701da8",
+        "session_revision": 7,
+        "source_ref": "workbuddy://final-verification-接管本目录的验收交付：请先按 CLAUDE.md",
+        "status": "PASS",
+        "tool_or_capability": "controller_final_verification_bundle",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      }
+    ],
+    "execution_context": {
+      "project": null,
+      "task": null,
+      "workspace": null
+    },
+    "facts": {
+      "_extended_facts": [
+        "user_real_goal"
+      ],
+      "acceptance_requirements": {
+        "history": [
+          {
+            "at": "2026-09-02T17:00:23.996361+00:00",
+            "event_id": "c7b1b7e2-49e4-4ac0-9f0c-c19f6c5624b8",
+            "evidence": "initial_observation",
+            "fact": "acceptance_requirements",
+            "source": "PROJECT_EVIDENCE",
+            "state": "ACTIVE",
+            "value": [
+              "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+              "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+              "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+            ]
+          }
+        ],
+        "provenance": "PROJECT_EVIDENCE",
+        "source_fact": "acceptance_requirements",
+        "state": "OBSERVED",
+        "value": [
+          "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+        ]
+      },
+      "agent_autonomy_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "approval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "assumptions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "compliance": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "data": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "deployment_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "distribution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "enterprise_policy_present": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "environments": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "existing_database": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "explicit_constraints": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_systems": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_tool_permission_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "goal": {
+        "canonical_mapping": "user_real_goal->goal",
+        "history": [
+          {
+            "at": "2026-09-02T17:00:23.996353+00:00",
+            "event_id": "93c29d24-33bb-4383-bf19-b09fc14e9b7f",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      },
+      "interface_types": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "interfaces": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "knowledge_source_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "license_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "migration_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "permissions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "persistence": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "recovery_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "required_capabilities": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "retrieval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "roles": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "rollback_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "runtime": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "security_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "tool_execution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "unknowns": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_journeys": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_real_goal": {
+        "extended": true,
+        "history": [
+          {
+            "at": "2026-09-02T17:00:23.996353+00:00",
+            "event_id": "93c29d24-33bb-4383-bf19-b09fc14e9b7f",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+      },
+      "users": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "workflow": {
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "failures": [],
+    "plan": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+          "name": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "plan_review": {
+      "approval_source": {
+        "conversation_id": "wbfdc-m1",
+        "harness": "workbuddy",
+        "message_id": "bootstrap-goal-1",
+        "origin": "USER"
+      },
+      "approved_revision": 2,
+      "intent_record": {
+        "consequential_ambiguity": false,
+        "context_refs": [
+          "plan_revision:1",
+          "plan_scope:9e0db64b-ad54-4c44-ab4a-d19238fc7fce"
+        ],
+        "intent": "DIRECTIVE"
+      },
+      "status": "REVIEWED_APPROVED",
+      "waiver_scope": null
+    },
+    "recovery_policy": {
+      "max_attempts_per_failure": 3,
+      "require_regression_evidence": true,
+      "strategy": "root_cause_then_revalidate"
+    },
+    "revision": 9,
+    "schema_version": "3.0",
+    "session_id": "9e0db64b-ad54-4c44-ab4a-d19238fc7fce",
+    "status": "COMPLETED",
+    "strategy_consumption": {
+      "CAPABILITY_SELECTION": "mature_compatible_authorized_first",
+      "EXECUTION_ORDER": "dependency_and_risk_aware",
+      "INTERACTION": "concise_evidence_backed_updates",
+      "PLANNING": "minimal_real_work_units",
+      "RECOVERY": "root_cause_then_revalidate",
+      "UNDERSTANDING": "ask_only_consequential_unknowns"
+    },
+    "suspensions": [],
+    "understanding": {
+      "adaptive_strategy": {
+        "capability_preference": "mature_compatible_authorized_first",
+        "execution_order_preference": "dependency_and_risk_aware",
+        "interaction_strategy": "concise_evidence_backed_updates",
+        "planning_strategy": "minimal_real_work_units",
+        "question_strategy": "ask_only_consequential_unknowns",
+        "recovery_strategy": "root_cause_then_revalidate"
+      },
+      "asked_questions": [],
+      "blocking_unknowns": [],
+      "created_at": "2026-09-02T17:00:23.996343+00:00",
+      "discovery_actions": [],
+      "fact_events": [
+        {
+          "at": "2026-09-02T17:00:23.996353+00:00",
+          "event_id": "93c29d24-33bb-4383-bf19-b09fc14e9b7f",
+          "evidence": "initial_goal",
+          "fact": "user_real_goal",
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        },
+        {
+          "at": "2026-09-02T17:00:23.996361+00:00",
+          "event_id": "c7b1b7e2-49e4-4ac0-9f0c-c19f6c5624b8",
+          "evidence": "initial_observation",
+          "fact": "acceptance_requirements",
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+          ]
+        }
+      ],
+      "facts": {
+        "acceptance_requirements": {
+          "evidence": "initial_observation",
+          "history": [
+            {
+              "at": "2026-09-02T17:00:23.996361+00:00",
+              "event_id": "c7b1b7e2-49e4-4ac0-9f0c-c19f6c5624b8",
+              "evidence": "initial_observation",
+              "fact": "acceptance_requirements",
+              "source": "PROJECT_EVIDENCE",
+              "state": "ACTIVE",
+              "value": [
+                "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+                "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+                "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+              ]
+            }
+          ],
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+          ]
+        },
+        "user_real_goal": {
+          "evidence": "initial_goal",
+          "history": [
+            {
+              "at": "2026-09-02T17:00:23.996353+00:00",
+              "event_id": "93c29d24-33bb-4383-bf19-b09fc14e9b7f",
+              "evidence": "initial_goal",
+              "fact": "user_real_goal",
+              "source": "USER_EXPLICIT",
+              "state": "ACTIVE",
+              "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+            }
+          ],
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。"
+        }
+      },
+      "gate_pass": true,
+      "mode": "NEW_PROJECT",
+      "question_strategy_applied": "ask_only_consequential_unknowns",
+      "questions": [],
+      "raw_goal": "接管本目录的验收交付：请先按 CLAUDE.md 理解项目与受控规则，用 Read 工具读 CLAUDE.md 和 run-*.sh 的头部；然后只建立交付会话并简要说明规则，不要执行任何验证脚本、不要跑任何 Bash 命令。",
+      "required_dimensions": [],
+      "status": "UNDERSTANDING_SUFFICIENT",
+      "sufficiency": {
+        "acceptance_clarity": true,
+        "contradiction_check": true,
+        "decision_sufficiency": true,
+        "goal_fidelity": true,
+        "permission_boundary": true,
+        "provenance_integrity": true,
+        "scope_clarity": true,
+        "unknown_coverage": true
+      },
+      "understanding_id": "6694ca92-66c2-4967-a2c1-cd913dfb66ac",
+      "updated_at": "2026-09-02T17:00:23.996395+00:00"
+    },
+    "updated_at": "2026-09-02T17:02:53.020435+00:00",
+    "verified_state": {}
+  }
+}

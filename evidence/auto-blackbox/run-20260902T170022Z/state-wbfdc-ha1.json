@@ -1,0 +1,1711 @@
+{
+  "acceptance_bindings": {
+    "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime": [
+      "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5"
+    ]
+  },
+  "adapter_schema_version": 1,
+  "canonical_contract": [
+    {
+      "ac_id": "REAL_HOST_EVENT_BRIDGE",
+      "description": "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "CANONICAL_EVIDENCE_LEDGER",
+      "description": "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "HARNESS_SKILL_SELECTION",
+      "description": "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    }
+  ],
+  "completion_status": "NOT_COMPLETE",
+  "contract_revision": 1,
+  "contract_runtime_items": {
+    "CANONICAL_EVIDENCE_LEDGER": "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+    "HARNESS_SKILL_SELECTION": "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+    "REAL_HOST_EVENT_BRIDGE": "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+  },
+  "conversation_id": "wbfdc-ha1",
+  "delivery_session_id": "c11d190f-bb60-419e-8db6-40481df09170",
+  "events": [
+    {
+      "event_id": "bootstrap-goal-1",
+      "event_type": "UserPromptSubmit",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:02:56.337967+00:00"
+    },
+    {
+      "event_id": "stop-1788368610",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:03:30.384459+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "ptu-call_00_yy6ixURpeonbHjb5Ww482457",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5",
+      "source": "WORKBUDDY_HOST:PostToolUse",
+      "status": "PASS",
+      "timestamp": "2026-09-02T17:03:40.292079+00:00"
+    },
+    {
+      "event_id": "stop-1788368621",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:03:41.934076+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368658",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:04:18.486023+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368674",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:04:34.062699+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368681",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:04:41.160270+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368696",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:04:56.780546+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368710",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:05:10.877434+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "am-e3a83f1925f270bb9878b13454658a73-8",
+      "event_type": "USER_PAUSE",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:05:22.327354+00:00",
+      "type": "USER_PAUSE_APPLIED"
+    },
+    {
+      "event_id": "am-3ba1da57b91142d409ddf9e3194c882f-11",
+      "event_type": "USER_RESUME",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:06:46.376547+00:00",
+      "type": "USER_RESUME_APPLIED"
+    },
+    {
+      "event_id": "stop-1788368808",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:06:48.838935+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368824",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:07:04.355339+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "am-ae13bf061de2aa1fc126a121b0add7ec-13",
+      "event_type": "USER_CORRECTION",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:07:17.669103+00:00",
+      "type": "USER_CORRECTION_APPLIED"
+    },
+    {
+      "event_id": "stop-1788368840",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [
+          "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+        ],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:07:20.253782+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368855",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [
+          "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+        ],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:07:35.793974+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "stop-1788368870",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [
+          "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+        ],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T17:07:50.770684+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "am-4f67d7dea4dce98ae89a5f647155d685-16",
+      "event_type": "USER_CANCEL",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T17:08:02.847771+00:00",
+      "type": "USER_CANCEL_APPLIED"
+    }
+  ],
+  "harness_session_id": "wbfdc-ha1",
+  "harness_type": "workbuddy",
+  "open_blockers": [
+    {
+      "ac_id": "REAL_HOST_EVENT_BRIDGE",
+      "artifact_hash": null,
+      "blocker_id": "416c566b-813e-4ea3-a47e-4c5f0b262cf6",
+      "closed_at": "2026-09-02T17:03:41.935093+00:00",
+      "created_at": "2026-09-02T17:03:30.385371+00:00",
+      "runtime_item": "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "CANONICAL_EVIDENCE_LEDGER",
+      "artifact_hash": null,
+      "blocker_id": "d933c9ca-3b22-4667-9657-b4a43144dc57",
+      "created_at": "2026-09-02T17:03:30.385380+00:00",
+      "runtime_item": "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": null
+    },
+    {
+      "ac_id": "HARNESS_SKILL_SELECTION",
+      "artifact_hash": null,
+      "blocker_id": "3b0206f7-4d53-426f-96a0-cc343b108278",
+      "created_at": "2026-09-02T17:03:30.385385+00:00",
+      "runtime_item": "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": null
+    },
+    {
+      "ac_id": "REAL_HOST_EVENT_BRIDGE",
+      "artifact_hash": "a07752f7c5d82b9171d4649796b1faa269241a14f69ff1c381aaa496f5abcc54",
+      "blocker_id": "9113fe7a-0d21-4d06-bb5e-ed64bd0e592b",
+      "created_at": "2026-09-02T17:07:20.255149+00:00",
+      "runtime_item": "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "OPEN",
+      "verification_result": {
+        "verdict": "PASS"
+      }
+    }
+  ],
+  "original_user_request": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+  "owner_decisions": [],
+  "recovery_history": [],
+  "runtime": {
+    "acceptance": {
+      "_metadata": {
+        "complexity": {
+          "rationale": "LOW: ",
+          "risk_level": "LOW"
+        }
+      },
+      "业务验收": [
+        "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+        "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+        "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+      ],
+      "证明 Final Complete 的 Evidence": [
+        "test_result",
+        "acceptance_signoff",
+        "evidence_bundle"
+      ]
+    },
+    "adaptive_strategy": {
+      "capability_preference": "mature_compatible_authorized_first",
+      "execution_order_preference": "dependency_and_risk_aware",
+      "interaction_strategy": "concise_evidence_backed_updates",
+      "planning_strategy": "minimal_real_work_units",
+      "question_strategy": "ask_only_consequential_unknowns",
+      "recovery_strategy": "root_cause_then_revalidate"
+    },
+    "approved_plan_baseline": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+          "name": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "candidate_id": "c11d190f-bb60-419e-8db6-40481df09170",
+    "capability_invocations": [],
+    "capability_needs": {
+      "capabilities": {
+        "agent": {
+          "blocking_unknowns": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['agent_autonomy_requirement', 'tool_execution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ]
+        },
+        "browser_acceptance": {
+          "blocking_unknowns": [
+            "interface_types"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['interface_types']",
+          "required": "unknown",
+          "required_facts": [
+            "interface_types"
+          ]
+        },
+        "database": {
+          "blocking_unknowns": [
+            "persistence",
+            "existing_database"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['persistence', 'existing_database']",
+          "required": "unknown",
+          "required_facts": [
+            "persistence",
+            "existing_database"
+          ]
+        },
+        "deployment": {
+          "blocking_unknowns": [
+            "deployment_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['deployment_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "deployment_requirement"
+          ]
+        },
+        "enterprise_governance": {
+          "blocking_unknowns": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['enterprise_policy_present', 'approval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ]
+        },
+        "license_compliance": {
+          "blocking_unknowns": [
+            "license_requirement",
+            "distribution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['license_requirement', 'distribution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "license_requirement",
+            "distribution_requirement"
+          ]
+        },
+        "multi_role_approval": {
+          "blocking_unknowns": [
+            "approval_requirement",
+            "roles"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['approval_requirement', 'roles']",
+          "required": "unknown",
+          "required_facts": [
+            "approval_requirement",
+            "roles"
+          ]
+        },
+        "rag": {
+          "blocking_unknowns": [
+            "retrieval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['retrieval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "retrieval_requirement"
+          ]
+        },
+        "tool_permissions": {
+          "blocking_unknowns": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['external_tool_permission_requirement', 'permissions']",
+          "required": "unknown",
+          "required_facts": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ]
+        },
+        "upgrade_rollback": {
+          "blocking_unknowns": [
+            "migration_requirements",
+            "rollback_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['migration_requirements', 'rollback_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "migration_requirements",
+            "rollback_requirement"
+          ]
+        }
+      }
+    },
+    "capability_resolutions": {},
+    "capability_sources": {
+      "harness": {},
+      "registry": {},
+      "upstream": {}
+    },
+    "completion_gate": {
+      "failed": [],
+      "invalidated_evidence": [],
+      "missing": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+        "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+        "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+        "证明 Final Complete 的 Evidence:test_result",
+        "证明 Final Complete 的 Evidence:acceptance_signoff",
+        "证明 Final Complete 的 Evidence:evidence_bundle"
+      ],
+      "open_corrections": [
+        "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+      ],
+      "open_failures": [],
+      "pass": false,
+      "pending_external_validation": [],
+      "planning_open": false
+    },
+    "complexity": {
+      "dominant_factors": [],
+      "factors": [],
+      "rationale": "LOW: ",
+      "risk_level": "LOW",
+      "score": 0
+    },
+    "confirmed_requirement_baseline": {
+      "acceptance_requirements": [
+        "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+        "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+        "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+      ],
+      "goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+      "user_real_goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+    },
+    "correction_ledger": [
+      {
+        "correction_id": "cee2091b-3920-4f3f-96c2-71ee322e65e6",
+        "description": "方案不太对，范围需要收窄",
+        "fingerprint": "62ab1cda5253ebf38a9530a0993819a24cc07d277e6cedf8d96ec75030f794ed",
+        "recorded_at": "2026-09-02T17:07:17.670783+00:00",
+        "recurrence_of": null,
+        "related_checks": [
+          "user-stated requirement"
+        ],
+        "root_cause_class": "USER_REPORTED",
+        "status": "OPEN",
+        "user_origin_ref": {
+          "conversation_id": "wbfdc-ha1",
+          "harness": "workbuddy",
+          "message_id": "am-ae13bf061de2aa1fc126a121b0add7ec-13",
+          "origin": "USER"
+        },
+        "violated_requirements": [
+          "方案不太对，范围需要收窄"
+        ]
+      }
+    ],
+    "created_at": "2026-09-02T17:02:56.338449+00:00",
+    "current_work": null,
+    "events": [
+      {
+        "at": "2026-09-02T17:02:56.338513+00:00",
+        "details": {
+          "fact_events": 2,
+          "understanding_id": "d14606de-f83d-4bd6-be6e-83995ba31c47"
+        },
+        "type": "UNDERSTANDING_BOUND_TO_FACT_MODEL"
+      },
+      {
+        "at": "2026-09-02T17:02:56.338785+00:00",
+        "details": {
+          "approval_source": {
+            "conversation_id": "wbfdc-ha1",
+            "harness": "workbuddy",
+            "message_id": "bootstrap-goal-1",
+            "origin": "USER"
+          },
+          "approved_revision": 2,
+          "intent_record": {
+            "consequential_ambiguity": false,
+            "context_refs": [
+              "plan_revision:1",
+              "plan_scope:c11d190f-bb60-419e-8db6-40481df09170"
+            ],
+            "intent": "DIRECTIVE"
+          },
+          "status": "REVIEWED_APPROVED",
+          "waiver_scope": null
+        },
+        "type": "PLAN_APPROVED"
+      },
+      {
+        "at": "2026-09-02T17:03:30.385343+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:03:40.293930+00:00",
+        "details": {
+          "evidence_id": "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5",
+          "receipt_id": "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5",
+          "work_id": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:03:41.935074+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:04:18.487097+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:04:34.063756+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:04:41.161887+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:04:56.782434+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:05:10.878506+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:05:22.370466+00:00",
+        "details": {
+          "suspension_id": "b243d851-fc23-4b39-ac7c-2384e6d92fa1"
+        },
+        "type": "SUSPENDED"
+      },
+      {
+        "at": "2026-09-02T17:06:46.416333+00:00",
+        "details": {
+          "suspension_id": "b243d851-fc23-4b39-ac7c-2384e6d92fa1"
+        },
+        "type": "RESUMED_VERIFIED"
+      },
+      {
+        "at": "2026-09-02T17:06:48.840286+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:07:04.357296+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:07:17.670794+00:00",
+        "details": {
+          "correction_id": "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+        },
+        "type": "USER_CORRECTION_RECORDED"
+      },
+      {
+        "at": "2026-09-02T17:07:20.255111+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [
+            "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+          ],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:07:35.795690+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [
+            "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+          ],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:07:50.773090+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "业务验收:Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [
+            "cee2091b-3920-4f3f-96c2-71ee322e65e6"
+          ],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T17:08:02.848915+00:00",
+        "details": {
+          "user_origin_ref": {
+            "conversation_id": "wbfdc-ha1",
+            "harness": "workbuddy",
+            "message_id": "am-4f67d7dea4dce98ae89a5f647155d685-16",
+            "origin": "USER"
+          }
+        },
+        "type": "DELIVERY_CANCELLED_BY_USER"
+      }
+    ],
+    "evidence_ledger": [
+      {
+        "acceptance_items": [
+          "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "9f3336553f8a6fbfe8aeed8aff5d98b29ae6c630c068100088a04e575e8ccc3d",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "a07752f7c5d82b9171d4649796b1faa269241a14f69ff1c381aaa496f5abcc54",
+          "artifact_path": "C:\\Users\\34718\\AppData\\Local\\Temp\\wbfdc-bb-20260902T170022Z\\.codebuddy\\bridge\\artifacts\\git-state-report.json",
+          "verification_result": {
+            "verdict": "PASS"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "c11d190f-bb60-419e-8db6-40481df09170",
+        "content_hash": "9f3336553f8a6fbfe8aeed8aff5d98b29ae6c630c068100088a04e575e8ccc3d",
+        "dependencies": [],
+        "evidence_id": "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5",
+        "execution_id": "ptu-call_00_yy6ixURpeonbHjb5Ww482457",
+        "observed_at": "2026-09-02T17:03:40.292079+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5",
+        "session_revision": 3,
+        "source_ref": "workbuddy://ptu-call_00_yy6ixURpeonbHjb5Ww482457",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 14,
+        "validation_status": "CURRENT",
+        "work_id": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+      }
+    ],
+    "execution_context": {
+      "project": null,
+      "task": null,
+      "workspace": null
+    },
+    "facts": {
+      "_extended_facts": [
+        "user_real_goal"
+      ],
+      "acceptance_requirements": {
+        "history": [
+          {
+            "at": "2026-09-02T17:02:56.338256+00:00",
+            "event_id": "cfef4746-06da-4074-a31e-b0bfee5e09bb",
+            "evidence": "initial_observation",
+            "fact": "acceptance_requirements",
+            "source": "PROJECT_EVIDENCE",
+            "state": "ACTIVE",
+            "value": [
+              "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+              "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+              "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+            ]
+          }
+        ],
+        "provenance": "PROJECT_EVIDENCE",
+        "source_fact": "acceptance_requirements",
+        "state": "OBSERVED",
+        "value": [
+          "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+          "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+          "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+        ]
+      },
+      "agent_autonomy_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "approval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "assumptions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "compliance": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "data": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "deployment_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "distribution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "enterprise_policy_present": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "environments": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "existing_database": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "explicit_constraints": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_systems": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_tool_permission_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "goal": {
+        "canonical_mapping": "user_real_goal->goal",
+        "history": [
+          {
+            "at": "2026-09-02T17:02:56.338247+00:00",
+            "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+      },
+      "interface_types": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "interfaces": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "knowledge_source_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "license_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "migration_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "permissions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "persistence": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "recovery_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "required_capabilities": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "retrieval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "roles": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "rollback_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "runtime": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "security_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "tool_execution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "unknowns": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_journeys": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_real_goal": {
+        "extended": true,
+        "history": [
+          {
+            "at": "2026-09-02T17:02:56.338247+00:00",
+            "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+      },
+      "users": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "workflow": {
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "failures": [],
+    "plan": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+          "name": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "plan_review": {
+      "approval_source": {
+        "conversation_id": "wbfdc-ha1",
+        "harness": "workbuddy",
+        "message_id": "bootstrap-goal-1",
+        "origin": "USER"
+      },
+      "approved_revision": 2,
+      "intent_record": {
+        "consequential_ambiguity": false,
+        "context_refs": [
+          "plan_revision:1",
+          "plan_scope:c11d190f-bb60-419e-8db6-40481df09170"
+        ],
+        "intent": "DIRECTIVE"
+      },
+      "status": "REVIEWED_APPROVED",
+      "waiver_scope": null
+    },
+    "recovery_policy": {
+      "max_attempts_per_failure": 3,
+      "require_regression_evidence": true,
+      "strategy": "root_cause_then_revalidate"
+    },
+    "revision": 19,
+    "schema_version": "3.0",
+    "session_id": "c11d190f-bb60-419e-8db6-40481df09170",
+    "status": "CANCELLED",
+    "strategy_consumption": {
+      "CAPABILITY_SELECTION": "mature_compatible_authorized_first",
+      "EXECUTION_ORDER": "dependency_and_risk_aware",
+      "INTERACTION": "concise_evidence_backed_updates",
+      "PLANNING": "minimal_real_work_units",
+      "RECOVERY": "root_cause_then_revalidate",
+      "UNDERSTANDING": "ask_only_consequential_unknowns"
+    },
+    "suspensions": [
+      {
+        "authority_ref": {
+          "conversation_id": "wbfdc-ha1",
+          "harness": "workbuddy",
+          "message_id": "am-e3a83f1925f270bb9878b13454658a73-8",
+          "origin": "USER"
+        },
+        "candidate_id": "c11d190f-bb60-419e-8db6-40481df09170",
+        "checkpoint_identity": {
+          "contract_hash": "",
+          "evidence_anchor": "latest-pass-ledger",
+          "git_head": "b5d45a9b572a09d2a0984670f8979796ed55f7fd",
+          "runtime_identity": "wbfdc-ha1",
+          "worktree_identity": "C:/Users/34718/AppData/Local/Temp/wbfdc-bb-20260902T170022Z"
+        },
+        "created_at": "2026-09-02T17:05:22.370455+00:00",
+        "current_work": null,
+        "evidence_ids": [
+          "workbuddy:ptu-call_00_yy6ixURpeonbHjb5Ww482457:5c7a13fb-5ca5-4d49-aaff-6831027e27f5"
+        ],
+        "facts": {
+          "_extended_facts": [
+            "user_real_goal"
+          ],
+          "acceptance_requirements": {
+            "history": [
+              {
+                "at": "2026-09-02T17:02:56.338256+00:00",
+                "event_id": "cfef4746-06da-4074-a31e-b0bfee5e09bb",
+                "evidence": "initial_observation",
+                "fact": "acceptance_requirements",
+                "source": "PROJECT_EVIDENCE",
+                "state": "ACTIVE",
+                "value": [
+                  "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+                  "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+                  "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+                ]
+              }
+            ],
+            "provenance": "PROJECT_EVIDENCE",
+            "source_fact": "acceptance_requirements",
+            "state": "OBSERVED",
+            "value": [
+              "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+              "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+              "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+            ]
+          },
+          "agent_autonomy_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "approval_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "assumptions": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "compliance": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "data": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "deployment_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "distribution_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "enterprise_policy_present": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "environments": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "existing_database": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "explicit_constraints": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "external_systems": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "external_tool_permission_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "goal": {
+            "canonical_mapping": "user_real_goal->goal",
+            "history": [
+              {
+                "at": "2026-09-02T17:02:56.338247+00:00",
+                "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+                "evidence": "initial_goal",
+                "fact": "user_real_goal",
+                "source": "USER_EXPLICIT",
+                "state": "ACTIVE",
+                "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+              }
+            ],
+            "provenance": "USER_EXPLICIT",
+            "source_fact": "user_real_goal",
+            "state": "DECLARED",
+            "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          },
+          "interface_types": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "interfaces": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "knowledge_source_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "license_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "migration_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "permissions": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "persistence": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "recovery_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "required_capabilities": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "retrieval_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "roles": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "rollback_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "runtime": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "security_requirements": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "tool_execution_requirement": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "unknowns": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "user_journeys": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "user_real_goal": {
+            "extended": true,
+            "history": [
+              {
+                "at": "2026-09-02T17:02:56.338247+00:00",
+                "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+                "evidence": "initial_goal",
+                "fact": "user_real_goal",
+                "source": "USER_EXPLICIT",
+                "state": "ACTIVE",
+                "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+              }
+            ],
+            "provenance": "USER_EXPLICIT",
+            "source_fact": "user_real_goal",
+            "state": "DECLARED",
+            "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+          },
+          "users": {
+            "state": "UNKNOWN",
+            "value": null
+          },
+          "workflow": {
+            "state": "UNKNOWN",
+            "value": null
+          }
+        },
+        "failures": [],
+        "initiator": "USER",
+        "next_legal_action": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+        "plan": {
+          "authority": "AI_GENERATED_HUMAN_OWNED",
+          "checks": [],
+          "not_applicable": [],
+          "planning_strategy_applied": "minimal_real_work_units",
+          "schema": [
+            "name",
+            "goal",
+            "work",
+            "output",
+            "entry_condition",
+            "done_condition",
+            "acceptance",
+            "failure_handling",
+            "evidence"
+          ],
+          "stage_count": 1,
+          "stages": [
+            {
+              "acceptance": "按已确认目标验证实际结果",
+              "assumptions": [],
+              "capabilities": [],
+              "class": "STAGE",
+              "critical_dependency": false,
+              "dependencies": [],
+              "done_condition": "验收通过",
+              "entry_condition": "上一工作项完成",
+              "evidence": [
+                "test_result"
+              ],
+              "failure_cost": null,
+              "failure_handling": "冻结证据进入恢复",
+              "goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+              "name": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+              "output": [],
+              "provenance": "PROJECT_FACT",
+              "risk": 0,
+              "risk_score": 0,
+              "work": [
+                "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+              ]
+            }
+          ],
+          "strategy_guidance": "minimal_real_work_units",
+          "tasks": []
+        },
+        "reason": "model interpretation of real user message am-e3a83f1925f270bb9878b13454658a73-8: confirms proposal prop-8d74a973c52c8362 (proposed from am-6a631c5d1b21fd7ccf737caea59d9eb7-7): 用户确认暂停",
+        "revision": 10,
+        "session_id": "c11d190f-bb60-419e-8db6-40481df09170",
+        "suspension_id": "b243d851-fc23-4b39-ac7c-2384e6d92fa1",
+        "verified_state": {}
+      }
+    ],
+    "understanding": {
+      "adaptive_strategy": {
+        "capability_preference": "mature_compatible_authorized_first",
+        "execution_order_preference": "dependency_and_risk_aware",
+        "interaction_strategy": "concise_evidence_backed_updates",
+        "planning_strategy": "minimal_real_work_units",
+        "question_strategy": "ask_only_consequential_unknowns",
+        "recovery_strategy": "root_cause_then_revalidate"
+      },
+      "asked_questions": [],
+      "blocking_unknowns": [],
+      "created_at": "2026-09-02T17:02:56.338234+00:00",
+      "discovery_actions": [],
+      "fact_events": [
+        {
+          "at": "2026-09-02T17:02:56.338247+00:00",
+          "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+          "evidence": "initial_goal",
+          "fact": "user_real_goal",
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+        },
+        {
+          "at": "2026-09-02T17:02:56.338256+00:00",
+          "event_id": "cfef4746-06da-4074-a31e-b0bfee5e09bb",
+          "evidence": "initial_observation",
+          "fact": "acceptance_requirements",
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+          ]
+        }
+      ],
+      "facts": {
+        "acceptance_requirements": {
+          "evidence": "initial_observation",
+          "history": [
+            {
+              "at": "2026-09-02T17:02:56.338256+00:00",
+              "event_id": "cfef4746-06da-4074-a31e-b0bfee5e09bb",
+              "evidence": "initial_observation",
+              "fact": "acceptance_requirements",
+              "source": "PROJECT_EVIDENCE",
+              "state": "ACTIVE",
+              "value": [
+                "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+                "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+                "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+              ]
+            }
+          ],
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime",
+            "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
+            "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression"
+          ]
+        },
+        "user_real_goal": {
+          "evidence": "initial_goal",
+          "history": [
+            {
+              "at": "2026-09-02T17:02:56.338247+00:00",
+              "event_id": "75230e70-c039-4697-bbe1-2f3828ee7ebb",
+              "evidence": "initial_goal",
+              "fact": "user_real_goal",
+              "source": "USER_EXPLICIT",
+              "state": "ACTIVE",
+              "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+            }
+          ],
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。"
+        }
+      },
+      "gate_pass": true,
+      "mode": "NEW_PROJECT",
+      "question_strategy_applied": "ask_only_consequential_unknowns",
+      "questions": [],
+      "raw_goal": "（权威验收会话）按 CLAUDE.md 先建立会话并读规则；不要执行任何验证脚本。",
+      "required_dimensions": [],
+      "status": "UNDERSTANDING_SUFFICIENT",
+      "sufficiency": {
+        "acceptance_clarity": true,
+        "contradiction_check": true,
+        "decision_sufficiency": true,
+        "goal_fidelity": true,
+        "permission_boundary": true,
+        "provenance_integrity": true,
+        "scope_clarity": true,
+        "unknown_coverage": true
+      },
+      "understanding_id": "d14606de-f83d-4bd6-be6e-83995ba31c47",
+      "updated_at": "2026-09-02T17:02:56.338304+00:00"
+    },
+    "updated_at": "2026-09-02T17:08:02.848920+00:00",
+    "verified_state": {}
+  }
+}
