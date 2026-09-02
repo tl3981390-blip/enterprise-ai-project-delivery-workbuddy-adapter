@@ -1,0 +1,38 @@
+{
+  "title": "真实 RESUME（继续交付）进入 Core Human Authority + Bridge Stop-bug 修复记录",
+  "captured_at": "2026-09-02T21:46:43.281997",
+  "bug_found": {
+    "description": "cmd_stop ran before_completion while delivery SUSPENDED; claim_completion overwrote SUSPENDED->NOT_COMPLETE, breaking later USER_RESUME (session_not_suspended)",
+    "evidence": {
+      "stop_at": "2026-09-02T13:42:20.254587+00:00",
+      "status_after_stop": "NOT_COMPLETE"
+    }
+  },
+  "fix_applied": {
+    "cmd_stop": "gate_skipped_delivery_suspended when runtime.status==SUSPENDED and suspensions exist",
+    "status_repair": "SUSPENDED restored via Core persist_state (suspension d97e4476 retained)",
+    "prompt_store": "forget() added; failed real control is retryable"
+  },
+  "real_resume_event": {
+    "first_at": "2026-09-02T13:43:40.242328+00:00",
+    "first_outcome": "core_rejected session_not_suspended",
+    "replayed_at": "2026-09-02T13:46:26.072813+00:00",
+    "final_outcome": {
+      "decision": "core_applied",
+      "event_id": "am-b91743e8-2-resume",
+      "kind": "RESUME"
+    },
+    "note": "replay source = the SAME real UserPromptSubmit captured at 13:43:40 (retry after bug fix); no fabricated authority"
+  },
+  "core_after": {
+    "runtime_status": "EXECUTING",
+    "session_event": [
+      {
+        "event_type": "USER_RESUME",
+        "event_id": "am-b91743e8-2-resume",
+        "type": "USER_RESUME_APPLIED",
+        "timestamp": "2026-09-02T13:46:26.029561+00:00"
+      }
+    ]
+  }
+}

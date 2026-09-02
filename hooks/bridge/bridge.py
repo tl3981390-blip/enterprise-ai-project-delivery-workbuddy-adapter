@@ -148,8 +148,17 @@ def cmd_userpromptsubmit() -> dict:
                 root_cause_class="USER_REPORTED",
                 related_checks=["user-stated requirement"])
     except Exception as exc:  # noqa: BLE001
+        # A user control that Core rejected (e.g. stale state) must stay
+        # retryable: roll back the prompt-store seq so the same real user
+        # message can be re-delivered after state recovery.  This never
+        # fabricates authority; it only makes a genuine failed control retriable.
+        try:
+            store.forget(sid, canonical_prompt_hash(prompt))
+        except Exception:  # noqa: BLE001
+            pass
         bridge.append_audit(payload, "userpromptsubmit",
                             {"decision": "core_rejected", "kind": kind,
+                             "retryable": True,
                              "error": f"{type(exc).__name__}: {str(exc)[:200]}"})
         return {"continue": True}
 
@@ -236,6 +245,27 @@ def cmd_stop() -> dict:
         return {"continue": True}
     controller = _controller(payload)
     event = _signed_event(payload, "Stop", f"stop-{int(datetime.now(timezone.utc).timestamp())}")
+
+    # A USER pause is authoritative: while the delivery is suspended the Stop
+    # event must NOT run the completion gate, because claim_completion would
+    # overwrite the SUSPENDED state and make the later USER_RESUME fail with
+    # session_not_suspended.  The pause checkpoint stays untouched.
+    try:
+        state = controller.restore_state()
+        runtime_status = state.get("runtime", {}).get("status")
+        has_open_user_pause = bool(state.get("runtime", {}).get("suspensions"))
+    except Exception as exc:  # noqa: BLE001
+        runtime_status, has_open_user_pause = None, False
+        bridge.append_audit(payload, "stop",
+                            {"decision": "state_read_error",
+                             "error": f"{type(exc).__name__}: {exc}"})
+    if has_open_user_pause and runtime_status == "SUSPENDED":
+        bridge.append_audit(payload, "stop", {
+            "decision": "gate_skipped_delivery_suspended",
+            "reason": "user pause is authoritative; completion gate must not run while suspended"})
+        return {"continue": True, "decision": "continue",
+                "reason": "delivery suspended by user; completion gate skipped"}
+
     try:
         gate = controller.before_completion(event)
     except Exception as exc:  # noqa: BLE001

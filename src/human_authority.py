@@ -124,6 +124,21 @@ class PromptStore:
         self._save(data)
         return entry["seq"], True
 
+    def forget(self, session_id: str, prompt_hash: str) -> None:
+        """Remove one recorded prompt so a FAILED real control can be retried.
+
+        Only the bridge calls this right after Core rejected a genuine user
+        control (e.g. stale state machine).  It never creates authority; it only
+        makes an already-real failed instruction retryable after recovery.
+        """
+        data = self._load()
+        entry = data.get(session_id, {"seq": 0, "used": []})
+        if prompt_hash in entry["used"]:
+            entry["used"] = [h for h in entry["used"] if h != prompt_hash]
+            entry["seq"] = max(entry["seq"] - 1, 0)
+            data[session_id] = entry
+            self._save(data)
+
 
 def originate_user_prompt(payload: dict[str, Any], store: PromptStore) -> AdapterUserOrigin:
     """The ONLY factory for a Harness-asserted User Origin.
