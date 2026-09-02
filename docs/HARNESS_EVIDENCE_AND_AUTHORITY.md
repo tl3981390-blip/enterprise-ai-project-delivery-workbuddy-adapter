@@ -30,17 +30,25 @@ Hard rules, enforced in code:
 
 - Only `origin == "UserPromptSubmit"` with a host `session_id` and raw `prompt` may assert
   user origin. Model text, tool output, Stop and PostToolUse can never.
-- Control commands are exact-match only: 暂停交付 / 继续交付 / 取消交付 / `记录纠正：…`.
-  Vague phrasing and inferred intent never change state.
+- Intent recognition is the MODEL's job (no phrase table).  The bridge governs the model:
+  a declaration must reference a REAL captured message with the recomputed
+  `adapter_message_id`, the newest capture of the session that owns the newest capture
+  overall.  CANCEL, CORRECTION and any AMBIGUOUS reading open a Proposal
+  (`proposals.json`); the Core is only touched after the immediately-following REAL
+  message confirms the Proposal (same kind, CLEAR, once).  Only CLEAR PAUSE/RESUME apply
+  directly.  Vague phrasing and inferred intent never change state by themselves.
 - Persistent `PromptStore` gives monotonic sequence numbers across restarts and rejects
-  prompt replay (`ReplayRejected`); other-session origins are rejected at the state layer.
+  prompt replay (`ReplayRejected`); other-session origins are rejected at the state layer
+  and stale/cross-session declarations at the bridge layer.
 
 ## Status on the WorkBuddy host
 
-- Receipt path and user-origin derivation are **unit-tested (34 tests green) and exercised
-  on real captured outputs** in `evidence/2026-09-02/evidence-ledger.json` +
-  `scope-audit.jsonl`.
-- Live host firing of `UserPromptSubmit` / `PostToolUse` cannot be triggered from inside a
-  session; the hooks file is a **candidate, inert by default** and nothing is registered
-  globally or in WorkBuddy settings. Live hook conformance remains
-  `PENDING_EXTERNAL_VALIDATION` until a real host run supplies hook payloads.
+- Receipt path and user-origin derivation are unit-tested (46 tests green) and exercised
+  on real captures in `evidence/full-delivery-controller/2026-09-02/` and
+  `evidence/auto-blackbox/run-20260902T170022Z/`.
+- Real host firing is verified by the automatic black-box run: official project-scoped
+  command hooks (`<project>/.codebuddy/settings.local.json`) executed the bridge for real
+  WorkBuddy CLI sessions — UserPromptSubmit/PostToolUse/Stop events entered the formal
+  Core v3.0.6 (23/23 assertions PASS; see `evidence/auto-blackbox/README.md`).
+  `hooks/hooks.json` stays inert by design; nothing is registered globally and WorkBuddy
+  global settings are unmodified.

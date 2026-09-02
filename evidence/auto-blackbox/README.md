@@ -79,7 +79,27 @@ Phase O: `scope-cleanup` real ScopeControl opened/closed twice, contexts removed
 | PostToolUse (last registered) | `final_verification` `bundle_recorded` | `record_final_verification` | evidence `workbuddy:final-verification-…` PASS binds the 3 “证明 Final Complete 的 Evidence” items |
 | Stop (turn end) | `stop` `gate_allows_completion` | `before_completion`→`claim_completion` | completion_status `VERIFIED_DELIVERY_COMPLETE`, gate pass True |
 
-## Global configuration integrity
+## Full-scenario mapping (auto black-box scenario, items 1–15)
+
+| # | scenario item | machine evidence |
+| --- | --- | --- |
+| 1 | 正常项目目标 | `m1-goal` real first UserPromptSubmit → bootstrap |
+| 2 | 理解现有项目 | `m1` reads CLAUDE.md + run scripts (transcript), `m2/m3` re-reads (function calls in transcripts/) |
+| 3 | 真实可见 Work Unit | Core runtime plan/stage visible in `state-wbfdc-m1.json` (`runtime.plan`, one stage named after the goal) |
+| 4 | 自动选当前 Harness 可见 Skill | `artifacts/available-skills-snapshot.json` (source=`skill_tool_available_skills`) + `artifacts/router.decision.json` (decision=`git-state-change-regression`, 36 excluded with machine reasons) |
+| 5 | 真实调用该 Skill | real Skill-tool invocation in `transcripts/wbfdc-m1--m3-skill.json` + real `artifacts/git-state-skill-report.json` + receipt `workbuddy:ptu-call_00_tMaiO…` PASS |
+| 6 | 修复真实缺陷 | verified by the canonical regression receipt (`ptu-call_00_z6kNU…`, 46 passed) for the real defects fixed on this branch (final-verification event type, Stop terminal-state overwrite, bash path quoting); earlier real defect-fix demo evidence in `evidence/full-delivery-controller/2026-09-02/artifacts/` (wu2-pytest.log, git log afaa8a3 on the demo project) |
+| 7 | 需求变化只重规划受影响部分 | real requirement change with regression evidence in demo project git (`728de7f feat(cli) --region override`) + `wu4-pytest.log`; Core contract/baseline invariants asserted in `h11` (`contract_revision` untouched until a legal confirmation) |
+| 8 | 失败注入→定位根因→安全恢复→重验 | 真实 demo 失败注入/恢复/重验工件（`evidence/full-delivery-controller/2026-09-02/artifacts/wu5-*.log`）+ 对应 real-host 事件；Core “FAIL receipt 不能通过 gate、只有当前 PASS binding 才算”的防伪语义由 canonical 套件（46 passed，harness_receipts/evidence tests）与 M 会话的 gate 决策共同覆盖 |
+| 9 | 含糊控制语→Proposal 且状态不变 | `h3`/`h6` (`proposal_created_state_unchanged`, no suspension) |
+| 10 | 自动化真实确认→Core 迁移 | `h7` confirm-pause → SUSPENDED (`USER_PAUSE_APPLIED am-e3a83f…-8`) |
+| 11 | 模型伪造控制→真实拒绝 | `h2` (forged message + Stop channel), `h8` (self-resume), `h13` (replay confirm), `i1` (cross-session) |
+| 12 | 真实 Evidence 进 Core | M ledger: 4 PASS receipts incl. final-verification bundle binding the 3 “证明 Final Complete 的 Evidence” items |
+| 13 | Stop Gate 先拦截后放行 | `m1` deny (`gate_blocks_completion`) → `m3` allow (`VERIFIED_DELIVERY_COMPLETE`) |
+| 14 | scope cleanup | `scope-audit.jsonl` (2 open/close, contexts removed) |
+| 15 | 第二隔离会话持久化/隔离/replay | `i1`/`i2`/`i3` (cross-session rejected, replay rejected seq frozen, M stays VERIFIED, no own state) |
+
+
 
 - `~/.workbuddy/settings.json` SHA-256 before `656a132c…` = after `656a132c…` (unchanged; no hooks added globally; hookify not enabled).
 - No modification to the installed Core (`~/.workbuddy/skills/enterprise-ai-project-delivery`); the bridge only imports its runtime. The isolated-project hooks run python with `-B` so no bytecode is written into the Core scripts.
