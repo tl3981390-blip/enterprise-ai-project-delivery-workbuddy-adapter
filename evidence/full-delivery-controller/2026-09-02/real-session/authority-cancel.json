@@ -1,0 +1,44 @@
+{
+  "title": "真实 CANCEL（取消交付）进入 Core Human Authority — 验收记录",
+  "captured_at": "2026-09-02T21:49:27.990782",
+  "user_prompt": "取消交付",
+  "userpromptsubmit_audit": {
+    "at": "2026-09-02T13:49:07.855416+00:00",
+    "outcome": {
+      "decision": "core_applied",
+      "event_id": "am-b91743e8-3-cancel",
+      "kind": "CANCEL"
+    }
+  },
+  "core_effect": {
+    "runtime_status": "CANCELLED",
+    "session_event": [
+      {
+        "event_type": "USER_CANCEL",
+        "event_id": "am-b91743e8-3-cancel",
+        "type": "USER_CANCEL_APPLIED",
+        "timestamp": "2026-09-02T13:49:07.852241+00:00"
+      }
+    ]
+  },
+  "full_human_authority_chain": [
+    {
+      "event_type": "USER_PAUSE",
+      "event_id": "am-b91743e8-1-pause",
+      "type": "USER_PAUSE_APPLIED",
+      "timestamp": "2026-09-02T13:40:51.885825+00:00"
+    },
+    {
+      "event_type": "USER_RESUME",
+      "event_id": "am-b91743e8-2-resume",
+      "type": "USER_RESUME_APPLIED",
+      "timestamp": "2026-09-02T13:46:26.029561+00:00"
+    },
+    {
+      "event_type": "USER_CANCEL",
+      "event_id": "am-b91743e8-3-cancel",
+      "type": "USER_CANCEL_APPLIED",
+      "timestamp": "2026-09-02T13:49:07.852241+00:00"
+    }
+  ]
+}

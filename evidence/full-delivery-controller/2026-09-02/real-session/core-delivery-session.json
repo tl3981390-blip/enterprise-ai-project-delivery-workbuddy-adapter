@@ -177,6 +177,37 @@
       "source": "WORKBUDDY_HOST:UserPromptSubmit",
       "timestamp": "2026-09-02T13:46:26.029561+00:00",
       "type": "USER_RESUME_APPLIED"
+    },
+    {
+      "event_id": "stop-1788356926",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+          "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+          "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_HOST:Stop",
+      "timestamp": "2026-09-02T13:48:46.214713+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "am-b91743e8-3-cancel",
+      "event_type": "USER_CANCEL",
+      "source": "WORKBUDDY_HOST:UserPromptSubmit",
+      "timestamp": "2026-09-02T13:49:07.852241+00:00",
+      "type": "USER_CANCEL_APPLIED"
     }
   ],
   "harness_session_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
@@ -442,7 +473,7 @@
       "open_failures": [],
       "pass": false,
       "pending_external_validation": [],
-      "planning_open": true
+      "planning_open": false
     },
     "complexity": {
       "dominant_factors": [],
@@ -606,6 +637,39 @@
           "suspension_id": "d97e4476-e330-4cdc-939f-1e489311e3e9"
         },
         "type": "RESUMED_VERIFIED"
+      },
+      {
+        "at": "2026-09-02T13:48:46.216250+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:用户暂停/继续/纠正/取消经真实 UserPromptSubmit 进入 Core Human Authority",
+            "业务验收:Stop 事件调用 completion gate：缺 Evidence 拒绝、Evidence 齐才放行",
+            "业务验收:第二新会话验证状态持久化、Replay 防护与 Session 隔离",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T13:49:07.853476+00:00",
+        "details": {
+          "user_origin_ref": {
+            "conversation_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+            "harness": "workbuddy",
+            "message_id": "am-b91743e8-3-cancel",
+            "origin": "USER"
+          }
+        },
+        "type": "DELIVERY_CANCELLED_BY_USER"
       }
     ],
     "evidence_ledger": [
@@ -640,7 +704,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -675,7 +739,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -710,7 +774,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -745,7 +809,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -780,7 +844,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       },
@@ -815,7 +879,7 @@
         "status": "PASS",
         "tool_or_capability": "artifact_verifier",
         "type": "TEST_RESULT",
-        "valid_for_revision": 12,
+        "valid_for_revision": 13,
         "validation_status": "CURRENT",
         "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
       }
@@ -1094,10 +1158,10 @@
       "require_regression_evidence": true,
       "strategy": "root_cause_then_revalidate"
     },
-    "revision": 12,
+    "revision": 14,
     "schema_version": "3.0",
     "session_id": "bbe8f055-0263-44fd-92b6-fc740fde27b1",
-    "status": "EXECUTING",
+    "status": "CANCELLED",
     "strategy_consumption": {
       "CAPABILITY_SELECTION": "mature_compatible_authorized_first",
       "EXECUTION_ORDER": "dependency_and_risk_aware",
@@ -1492,7 +1556,7 @@
       "understanding_id": "dab2d63c-bea5-4455-92c2-ce162eb987da",
       "updated_at": "2026-09-02T13:36:50.161973+00:00"
     },
-    "updated_at": "2026-09-02T13:46:26.070800+00:00",
+    "updated_at": "2026-09-02T13:49:07.853483+00:00",
     "verified_state": {}
   }
 }
