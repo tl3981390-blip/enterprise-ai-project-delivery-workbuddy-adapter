@@ -1,0 +1,8 @@
+{
+  "description": "Candidate only. Do not register globally until WorkBuddy controller conformance is proven.",
+  "hooks": {
+    "SessionStart": [],
+    "PostToolUse": [],
+    "Stop": []
+  }
+}
