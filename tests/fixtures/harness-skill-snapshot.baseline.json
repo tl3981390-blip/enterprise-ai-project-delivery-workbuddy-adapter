@@ -1,0 +1,24 @@
+{
+  "harness": "workbuddy",
+  "session_id": "2026-09-02-19-52-14",
+  "captured_at": "2026-09-02T20:13:00+0800",
+  "source": "skill_tool_available_skills",
+  "note": "Transcribed from the current WorkBuddy session Skill tool available_skills surface. NOT a disk scan, NOT a mock registry. permission=unknown / verified_callable=false until the session really loads the skill.",
+  "skills": [
+    {"identity": "enterprise-ai-project-delivery", "description": "通过自然语言接手并可靠交付复杂项目：理解真实目标和现状，使用或生成可由人类修改的动态计划，组合成熟能力，执行、恢复并用真实证据验收。适用于新建、续建、按既有计划推进或条件变化中的软件、AI、数据、自动化及其他多步骤项目。", "available": true, "permission": "granted", "verified_callable": true, "version": "3.0.6"},
+    {"identity": "git-state-change-regression", "description": "git-state-change-regression", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "node-sea-exe-packaging", "description": "node-sea-exe-packaging", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "owner-first-delivery-discipline", "description": "专属交付纪律总纲：AI 可信交付管控类产品的全链路权威约束、Canonical State 单点真相、漂移检测与治理、改动爆炸半径控制、测试可信度、交付即安装。", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "rescue-field-layering", "description": "Audit and fix PRODUCT_MODEL_LAYERING_DEFECT in layered products: owner semantic layer / system compiler layer / machine verification layer.", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "rescue-release-closure", "description": "Close a release for a Rescue Action-like Windows desktop product (FastAPI + React + PyInstaller).", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "video-shotcraft", "description": "Create cinematic product videos from shot recipe cards, a validated template, and code/audio assets (Remotion).", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "wechat-cover", "description": "公众号爆款封面 AI 设计工具：分析爆款视觉规律并生成公众号封面设计方案。", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "frontend-design", "description": "Create distinctive, production-grade frontend interfaces with high design quality.", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "agent-browser", "description": "Browser automation: open pages, take screenshots, extract page content, click elements.", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "playwright-cli", "description": "Automates browser interactions for web testing, form filling, screenshots, and data extraction.", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "pdf", "description": "Read, extract, combine, merge, split and process PDF files.", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "wb-finance-skill", "description": "金融/投资/股票/基金/ETF/板块/指数/宏观/外汇/大宗商品/财报/估值/持仓/交易/量化/选股/期权/衍生品/投行建模/技术指标/行情等金融场景总入口。", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "tencent-docx", "description": "生成与美化 Word 文档 (docx)。", "available": true, "permission": "unknown", "verified_callable": false, "version": null},
+    {"identity": "tencent-pptx", "description": "创建专业的 PowerPoint 演示文稿 (pptx)。", "available": true, "permission": "unknown", "verified_callable": false, "version": null}
+  ]
+}

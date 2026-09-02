@@ -1,7 +1,13 @@
 {
-  "description": "Candidate only. Do not register globally until WorkBuddy controller conformance is proven.",
+  "description": "Candidate project-scoped hooks for the WorkBuddy full-delivery-controller branch. Deliberately INERT: arrays are empty. Nothing is registered globally and nothing activates unless an explicit project contract enables the adapter. Handler entry points (implemented in this repo, real code): PostToolUse -> harness_receipts.receipt_from_posttooluse; UserPromptSubmit -> human_authority.originate_user_prompt.",
+  "project_contract": {
+    "adapter": "enterprise-ai-project-delivery-workbuddy-adapter",
+    "enabled": false,
+    "note": "must equal {adapter: ..., enabled: true} exactly for any project-level activation"
+  },
   "hooks": {
     "SessionStart": [],
+    "UserPromptSubmit": [],
     "PostToolUse": [],
     "Stop": []
   }

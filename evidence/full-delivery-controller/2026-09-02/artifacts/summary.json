@@ -1,0 +1,14 @@
+{
+  "total_revenue": 2450.0,
+  "order_count": 4,
+  "region_breakdown": {
+    "East": 600.0,
+    "West": 300.0,
+    "North": 500.0,
+    "South": 1050.0
+  },
+  "product_breakdown": {
+    "Gadget": 1950.0,
+    "Widget": 500.0
+  }
+}

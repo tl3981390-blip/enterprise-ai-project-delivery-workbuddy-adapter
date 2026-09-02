@@ -1,0 +1,24 @@
+{
+  "work_unit": "WU-3 Git 状态安全检查",
+  "selected_skill": "git-state-change-regression",
+  "selected_by": "workbuddy-capability-router (real code run on real session snapshot)",
+  "checks": {
+    "pre_commit_head": "59f9f7fce0215107d73247ddfd04bde93e5196e2",
+    "pre_commit_porcelain": [
+      " M src/salesstats/analysis.py"
+    ],
+    "post_commit_head": "afaa8a3619a4b96720eaf9709099a3e644e4bad5",
+    "changed_files_between_heads": [
+      "src/salesstats/analysis.py"
+    ],
+    "changed_files_intended": [
+      "src/salesstats/analysis.py"
+    ],
+    "unintended_changes_present": false,
+    "pollution_dirs": 0,
+    "full_pytest": "14 passed in 0.22s"
+  },
+  "verdict": "PASS",
+  "protocol_source": "git-state-change-regression (real Skill tool load this session): full-suite validation + governance-vs-code commit distinction; no governance dir (.rescue) present in demo, code-only commit",
+  "captured_at": "2026-09-02T20:27:51+0800"
+}

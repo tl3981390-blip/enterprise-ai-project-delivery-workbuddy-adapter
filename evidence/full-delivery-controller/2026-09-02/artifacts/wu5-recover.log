@@ -1,0 +1,2 @@
+recovered: config\config.json restored from config\config.default.json
+corrupt copy preserved at: config\corrupt\config.json.corrupt-20260902T202812

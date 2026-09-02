@@ -1,0 +1,2 @@
+ERROR: config invalid JSON at config\config.json: Expecting property name enclosed in double quotes: line 3 column 1 (char 35)
+HINT: run with --recover to restore config from canonical default

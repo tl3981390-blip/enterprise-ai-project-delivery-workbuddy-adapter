@@ -1,0 +1,71 @@
+{
+  "work_unit": "对当前改动执行 Git 状态安全检查：确认改动范围、未提交变更与回归影响",
+  "decision": "git-state-change-regression",
+  "reason": "best text overlap=1 among 1 eligible candidate(s); minimal-sufficient selection (deterministic)",
+  "ranked": [
+    {
+      "identity": "git-state-change-regression",
+      "version": null,
+      "verified_callable": true,
+      "overlap": 1
+    }
+  ],
+  "exclusions": [
+    {
+      "identity": "enterprise-ai-project-delivery",
+      "reason": "task_mismatch_no_text_overlap"
+    },
+    {
+      "identity": "node-sea-exe-packaging",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "owner-first-delivery-discipline",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "rescue-field-layering",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "rescue-release-closure",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "video-shotcraft",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "wechat-cover",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "frontend-design",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "agent-browser",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "playwright-cli",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "pdf",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "wb-finance-skill",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-docx",
+      "reason": "not_verified_callable_in_this_session"
+    },
+    {
+      "identity": "tencent-pptx",
+      "reason": "not_verified_callable_in_this_session"
+    }
+  ]
+}
