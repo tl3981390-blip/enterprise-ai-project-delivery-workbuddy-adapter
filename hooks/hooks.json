@@ -1,5 +1,5 @@
 {
-  "description": "Candidate only. Do not register globally until WorkBuddy controller conformance is proven.",
+  "description": "Candidate manifest for the enterprise-ai-project-delivery WorkBuddy adapter. NEVER register this plugin-level file globally: the bridge must remain fully inert until a project root opts in via .workbuddy/delivery-contract.json and the owner registers per-project hook entries (see docs/REGISTRATION.md). Empty arrays mean nothing is enabled from this manifest.",
   "hooks": {
     "SessionStart": [],
     "PostToolUse": [],
