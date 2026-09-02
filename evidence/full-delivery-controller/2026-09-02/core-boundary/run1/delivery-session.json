@@ -1,0 +1,1138 @@
+{
+  "acceptance_bindings": {
+    "业务验收:Git 状态安全检查通过": [
+      "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880"
+    ],
+    "业务验收:失败恢复与最终回归通过": [
+      "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c"
+    ],
+    "业务验收:缺陷修复后测试通过": [
+      "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03"
+    ],
+    "业务验收:需求变化回归通过": [
+      "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18"
+    ],
+    "证明 Final Complete 的 Evidence:acceptance_signoff": [
+      "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74"
+    ],
+    "证明 Final Complete 的 Evidence:evidence_bundle": [
+      "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74"
+    ],
+    "证明 Final Complete 的 Evidence:test_result": [
+      "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74"
+    ]
+  },
+  "adapter_schema_version": 1,
+  "canonical_contract": [
+    {
+      "ac_id": "FIX_SUITE",
+      "description": "缺陷修复后测试通过",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "GIT_CHECK",
+      "description": "Git 状态安全检查通过",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "REQ_SUITE",
+      "description": "需求变化回归通过",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    },
+    {
+      "ac_id": "RECOVERY_SUITE",
+      "description": "失败恢复与最终回归通过",
+      "required_evidence": "controller artifact verifier",
+      "source_revision": 1,
+      "status": "OPEN",
+      "verification_method": "file"
+    }
+  ],
+  "completion_status": "VERIFIED_DELIVERY_COMPLETE",
+  "contract_revision": 1,
+  "contract_runtime_items": {
+    "FIX_SUITE": "业务验收:缺陷修复后测试通过",
+    "GIT_CHECK": "业务验收:Git 状态安全检查通过",
+    "RECOVERY_SUITE": "业务验收:失败恢复与最终回归通过",
+    "REQ_SUITE": "业务验收:需求变化回归通过"
+  },
+  "conversation_id": "blackbox-conv-1",
+  "delivery_session_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+  "events": [
+    {
+      "event_id": "start",
+      "event_type": "UserPromptSubmit",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "timestamp": "2026-09-02T12:40:24.942340+00:00"
+    },
+    {
+      "event_id": "completion-before-evidence",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [
+          "业务验收:缺陷修复后测试通过",
+          "业务验收:Git 状态安全检查通过",
+          "业务验收:需求变化回归通过",
+          "业务验收:失败恢复与最终回归通过",
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": false,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "timestamp": "2026-09-02T12:40:24.944451+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "verify-FIX_SUITE",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "status": "PASS",
+      "timestamp": "2026-09-02T12:40:24.951420+00:00"
+    },
+    {
+      "event_id": "verify-GIT_CHECK",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "status": "PASS",
+      "timestamp": "2026-09-02T12:40:24.959221+00:00"
+    },
+    {
+      "event_id": "verify-REQ_SUITE",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "status": "PASS",
+      "timestamp": "2026-09-02T12:40:24.965771+00:00"
+    },
+    {
+      "event_id": "verify-RECOVERY_SUITE",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "status": "PASS",
+      "timestamp": "2026-09-02T12:40:24.973887+00:00"
+    },
+    {
+      "event_id": "final-bundle",
+      "event_type": "ArtifactVerified",
+      "evidence_id": "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "status": "PASS",
+      "timestamp": "2026-09-02T12:40:24.981109+00:00"
+    },
+    {
+      "event_id": "completion-after-evidence",
+      "event_type": "Stop",
+      "gate": {
+        "failed": [],
+        "invalidated_evidence": [],
+        "missing": [],
+        "open_corrections": [],
+        "open_failures": [],
+        "pass": true,
+        "pending_external_validation": [],
+        "planning_open": false
+      },
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "timestamp": "2026-09-02T12:40:24.988036+00:00",
+      "type": "COMPLETION_INTERCEPTED"
+    },
+    {
+      "event_id": "resume",
+      "event_type": "ThreadResume",
+      "source": "WORKBUDDY_ADAPTER_BRIDGE",
+      "timestamp": "2026-09-02T12:40:24.995042+00:00"
+    }
+  ],
+  "harness_session_id": "2026-09-02-19-52-14",
+  "harness_type": "workbuddy-adapter-bridge",
+  "open_blockers": [
+    {
+      "ac_id": "FIX_SUITE",
+      "artifact_hash": null,
+      "blocker_id": "cb821f2c-6c88-4537-8bdd-da9a1014ea67",
+      "closed_at": "2026-09-02T12:40:24.993754+00:00",
+      "created_at": "2026-09-02T12:40:24.950362+00:00",
+      "runtime_item": "业务验收:缺陷修复后测试通过",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "RECOVERY_SUITE",
+      "artifact_hash": null,
+      "blocker_id": "81569e39-b080-4bfd-9d7a-1a7f17e763fb",
+      "closed_at": "2026-09-02T12:40:24.993756+00:00",
+      "created_at": "2026-09-02T12:40:24.950369+00:00",
+      "runtime_item": "业务验收:失败恢复与最终回归通过",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "GIT_CHECK",
+      "artifact_hash": null,
+      "blocker_id": "e320dae7-221e-4a3a-bb10-352b9ab1e5c4",
+      "closed_at": "2026-09-02T12:40:24.993757+00:00",
+      "created_at": "2026-09-02T12:40:24.950374+00:00",
+      "runtime_item": "业务验收:Git 状态安全检查通过",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    },
+    {
+      "ac_id": "REQ_SUITE",
+      "artifact_hash": null,
+      "blocker_id": "4ce3e380-d9ee-4d67-a0d4-8594907c29af",
+      "closed_at": "2026-09-02T12:40:24.993758+00:00",
+      "created_at": "2026-09-02T12:40:24.950378+00:00",
+      "runtime_item": "业务验收:需求变化回归通过",
+      "source": "MECHANICAL_VERIFICATION",
+      "status": "CLOSED_REVALIDATED",
+      "verification_result": null
+    }
+  ],
+  "original_user_request": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+  "owner_decisions": [],
+  "recovery_history": [],
+  "runtime": {
+    "acceptance": {
+      "_metadata": {
+        "complexity": {
+          "rationale": "LOW: ",
+          "risk_level": "LOW"
+        }
+      },
+      "业务验收": [
+        "缺陷修复后测试通过",
+        "Git 状态安全检查通过",
+        "需求变化回归通过",
+        "失败恢复与最终回归通过"
+      ],
+      "证明 Final Complete 的 Evidence": [
+        "test_result",
+        "acceptance_signoff",
+        "evidence_bundle"
+      ]
+    },
+    "adaptive_strategy": {
+      "capability_preference": "mature_compatible_authorized_first",
+      "execution_order_preference": "dependency_and_risk_aware",
+      "interaction_strategy": "concise_evidence_backed_updates",
+      "planning_strategy": "minimal_real_work_units",
+      "question_strategy": "ask_only_consequential_unknowns",
+      "recovery_strategy": "root_cause_then_revalidate"
+    },
+    "approved_plan_baseline": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+          "name": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+    "capability_invocations": [],
+    "capability_needs": {
+      "capabilities": {
+        "agent": {
+          "blocking_unknowns": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['agent_autonomy_requirement', 'tool_execution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "agent_autonomy_requirement",
+            "tool_execution_requirement"
+          ]
+        },
+        "browser_acceptance": {
+          "blocking_unknowns": [
+            "interface_types"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['interface_types']",
+          "required": "unknown",
+          "required_facts": [
+            "interface_types"
+          ]
+        },
+        "database": {
+          "blocking_unknowns": [
+            "persistence",
+            "existing_database"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['persistence', 'existing_database']",
+          "required": "unknown",
+          "required_facts": [
+            "persistence",
+            "existing_database"
+          ]
+        },
+        "deployment": {
+          "blocking_unknowns": [
+            "deployment_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['deployment_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "deployment_requirement"
+          ]
+        },
+        "enterprise_governance": {
+          "blocking_unknowns": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['enterprise_policy_present', 'approval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "enterprise_policy_present",
+            "approval_requirement"
+          ]
+        },
+        "license_compliance": {
+          "blocking_unknowns": [
+            "license_requirement",
+            "distribution_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['license_requirement', 'distribution_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "license_requirement",
+            "distribution_requirement"
+          ]
+        },
+        "multi_role_approval": {
+          "blocking_unknowns": [
+            "approval_requirement",
+            "roles"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['approval_requirement', 'roles']",
+          "required": "unknown",
+          "required_facts": [
+            "approval_requirement",
+            "roles"
+          ]
+        },
+        "rag": {
+          "blocking_unknowns": [
+            "retrieval_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['retrieval_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "retrieval_requirement"
+          ]
+        },
+        "tool_permissions": {
+          "blocking_unknowns": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['external_tool_permission_requirement', 'permissions']",
+          "required": "unknown",
+          "required_facts": [
+            "external_tool_permission_requirement",
+            "permissions"
+          ]
+        },
+        "upgrade_rollback": {
+          "blocking_unknowns": [
+            "migration_requirements",
+            "rollback_requirement"
+          ],
+          "evidence_source": "fact_model",
+          "reason": "驱动事实 UNKNOWN: ['migration_requirements', 'rollback_requirement']",
+          "required": "unknown",
+          "required_facts": [
+            "migration_requirements",
+            "rollback_requirement"
+          ]
+        }
+      }
+    },
+    "capability_resolutions": {},
+    "capability_sources": {
+      "harness": {},
+      "registry": {},
+      "upstream": {}
+    },
+    "completion_gate": {
+      "failed": [],
+      "invalidated_evidence": [],
+      "missing": [],
+      "open_corrections": [],
+      "open_failures": [],
+      "pass": true,
+      "pending_external_validation": [],
+      "planning_open": false
+    },
+    "complexity": {
+      "dominant_factors": [],
+      "factors": [],
+      "rationale": "LOW: ",
+      "risk_level": "LOW",
+      "score": 0
+    },
+    "confirmed_requirement_baseline": {
+      "acceptance_requirements": [
+        "缺陷修复后测试通过",
+        "Git 状态安全检查通过",
+        "需求变化回归通过",
+        "失败恢复与最终回归通过"
+      ],
+      "goal": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+      "user_real_goal": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+    },
+    "correction_ledger": [],
+    "created_at": "2026-09-02T12:40:24.942915+00:00",
+    "current_work": null,
+    "events": [
+      {
+        "at": "2026-09-02T12:40:24.942973+00:00",
+        "details": {
+          "fact_events": 2,
+          "understanding_id": "187e4fbb-d927-4cc2-80b5-80dfb551bffe"
+        },
+        "type": "UNDERSTANDING_BOUND_TO_FACT_MODEL"
+      },
+      {
+        "at": "2026-09-02T12:40:24.943370+00:00",
+        "details": {
+          "approval_source": {
+            "conversation_id": "blackbox-conv-1",
+            "harness": "workbuddy-adapter-bridge",
+            "message_id": "start",
+            "origin": "USER"
+          },
+          "approved_revision": 2,
+          "intent_record": {
+            "consequential_ambiguity": false,
+            "context_refs": [
+              "plan_revision:1",
+              "plan_scope:05a5bf45-5d6a-4259-b725-09cc3917901d"
+            ],
+            "intent": "DIRECTIVE"
+          },
+          "status": "REVIEWED_APPROVED",
+          "waiver_scope": null
+        },
+        "type": "PLAN_APPROVED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.950330+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [
+            "业务验收:缺陷修复后测试通过",
+            "业务验收:Git 状态安全检查通过",
+            "业务验收:需求变化回归通过",
+            "业务验收:失败恢复与最终回归通过",
+            "证明 Final Complete 的 Evidence:test_result",
+            "证明 Final Complete 的 Evidence:acceptance_signoff",
+            "证明 Final Complete 的 Evidence:evidence_bundle"
+          ],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": false,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "FAKE_PASS_BLOCKED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.958133+00:00",
+        "details": {
+          "evidence_id": "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03",
+          "receipt_id": "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03",
+          "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.964728+00:00",
+        "details": {
+          "evidence_id": "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880",
+          "receipt_id": "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880",
+          "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.972725+00:00",
+        "details": {
+          "evidence_id": "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18",
+          "receipt_id": "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18",
+          "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.979966+00:00",
+        "details": {
+          "evidence_id": "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c",
+          "receipt_id": "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c",
+          "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.986905+00:00",
+        "details": {
+          "evidence_id": "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74",
+          "receipt_id": "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74",
+          "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        "type": "EVIDENCE_RECORDED"
+      },
+      {
+        "at": "2026-09-02T12:40:24.993734+00:00",
+        "details": {
+          "failed": [],
+          "invalidated_evidence": [],
+          "missing": [],
+          "open_corrections": [],
+          "open_failures": [],
+          "pass": true,
+          "pending_external_validation": [],
+          "planning_open": false
+        },
+        "type": "COMPLETION_VERIFIED"
+      }
+    ],
+    "evidence_ledger": [
+      {
+        "acceptance_items": [
+          "业务验收:缺陷修复后测试通过"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "fbca4ea0cfd3aeb08a551184652e5650967ba56af10958668b9ef8a107d0263f",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "adb5a95c4f8d2c2d96a15b6ac67b81b5c0f8423c18ca3d66bd95aba26906387e",
+          "artifact_path": "C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\evidence\\full-delivery-controller\\2026-09-02\\artifacts\\wu2-pytest.log",
+          "verification_result": {
+            "tail": "14 passed in 0.23s"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+        "content_hash": "fbca4ea0cfd3aeb08a551184652e5650967ba56af10958668b9ef8a107d0263f",
+        "dependencies": [],
+        "evidence_id": "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03",
+        "execution_id": "verify-FIX_SUITE",
+        "observed_at": "2026-09-02T12:40:24.951420+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy-adapter-bridge:verify-FIX_SUITE:ba2bf326-b1c8-4219-b960-dcde5a203b03",
+        "session_revision": 3,
+        "source_ref": "workbuddy-adapter-bridge://verify-FIX_SUITE",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      {
+        "acceptance_items": [
+          "业务验收:Git 状态安全检查通过"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "d957297eb460e74256579b0e91ae733d636e38eb1fef85dc6bb737205afb7b99",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "1b2b8be5814f76fbd508073c9b22256a5f0968114d98a0fc65c41ea995412af0",
+          "artifact_path": "C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\evidence\\full-delivery-controller\\2026-09-02\\artifacts\\git-state-report.json",
+          "verification_result": {
+            "verdict": "PASS"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+        "content_hash": "d957297eb460e74256579b0e91ae733d636e38eb1fef85dc6bb737205afb7b99",
+        "dependencies": [],
+        "evidence_id": "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880",
+        "execution_id": "verify-GIT_CHECK",
+        "observed_at": "2026-09-02T12:40:24.959221+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy-adapter-bridge:verify-GIT_CHECK:5b92cf39-34b8-4c96-a5dc-bbec21879880",
+        "session_revision": 4,
+        "source_ref": "workbuddy-adapter-bridge://verify-GIT_CHECK",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      {
+        "acceptance_items": [
+          "业务验收:需求变化回归通过"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "49476bfe74fdfc63032a35c9eb906001afd7bf586d6df8b51c88ebbe81a44c65",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "e5eed6a266a2845e8f2194d670c5ae9283d7cb85ea4389e8fec06ffab48dc877",
+          "artifact_path": "C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\evidence\\full-delivery-controller\\2026-09-02\\artifacts\\wu4-pytest.log",
+          "verification_result": {
+            "tail": "17 passed in 0.23s"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+        "content_hash": "49476bfe74fdfc63032a35c9eb906001afd7bf586d6df8b51c88ebbe81a44c65",
+        "dependencies": [],
+        "evidence_id": "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18",
+        "execution_id": "verify-REQ_SUITE",
+        "observed_at": "2026-09-02T12:40:24.965771+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy-adapter-bridge:verify-REQ_SUITE:08b30305-511d-4ff9-9058-7978165f0f18",
+        "session_revision": 5,
+        "source_ref": "workbuddy-adapter-bridge://verify-REQ_SUITE",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      {
+        "acceptance_items": [
+          "业务验收:失败恢复与最终回归通过"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "360e5c2f12fbc18cd404dc468aeaf50a3b8cb16d56257c1153605f3c0bd60db8",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "artifact_hash": "6b4112d432371fdaee1054fadc5d17ea642684ecbdbcde14edf1a983eb6e8df8",
+          "artifact_path": "C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\evidence\\full-delivery-controller\\2026-09-02\\artifacts\\final-pytest.log",
+          "verification_result": {
+            "tail": "17 passed in 0.21s"
+          },
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+        "content_hash": "360e5c2f12fbc18cd404dc468aeaf50a3b8cb16d56257c1153605f3c0bd60db8",
+        "dependencies": [],
+        "evidence_id": "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c",
+        "execution_id": "verify-RECOVERY_SUITE",
+        "observed_at": "2026-09-02T12:40:24.973887+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy-adapter-bridge:verify-RECOVERY_SUITE:8e85ab74-bbcb-4636-8dbe-5bd187a9046c",
+        "session_revision": 6,
+        "source_ref": "workbuddy-adapter-bridge://verify-RECOVERY_SUITE",
+        "status": "PASS",
+        "tool_or_capability": "artifact_verifier",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      {
+        "acceptance_items": [
+          "证明 Final Complete 的 Evidence:test_result",
+          "证明 Final Complete 的 Evidence:acceptance_signoff",
+          "证明 Final Complete 的 Evidence:evidence_bundle"
+        ],
+        "artifact_refs": [
+          {
+            "content_hash": "822476bf846b7ea2edf9f07cde464b765a8a2c4c862a46f1c1ab4c7f3929bf3d",
+            "kind": "HARNESS_CAPTURE"
+          }
+        ],
+        "business_metadata": {
+          "bundle_kind": "FINAL_VERIFICATION_BUNDLE",
+          "verification_source": "CONTROLLER_ARTIFACT_VERIFIER"
+        },
+        "candidate_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+        "content_hash": "822476bf846b7ea2edf9f07cde464b765a8a2c4c862a46f1c1ab4c7f3929bf3d",
+        "dependencies": [],
+        "evidence_id": "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74",
+        "execution_id": "final-bundle",
+        "observed_at": "2026-09-02T12:40:24.981109+00:00",
+        "producer": "HARNESS_RUNTIME",
+        "receipt_id": "workbuddy-adapter-bridge:final-bundle:077b6a93-1462-4a9a-bcab-a0338756dc74",
+        "session_revision": 7,
+        "source_ref": "workbuddy-adapter-bridge://final-bundle",
+        "status": "PASS",
+        "tool_or_capability": "controller_final_verification_bundle",
+        "type": "TEST_RESULT",
+        "valid_for_revision": 9,
+        "validation_status": "CURRENT",
+        "work_id": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      }
+    ],
+    "execution_context": {
+      "project": null,
+      "task": null,
+      "workspace": null
+    },
+    "facts": {
+      "_extended_facts": [
+        "user_real_goal"
+      ],
+      "acceptance_requirements": {
+        "history": [
+          {
+            "at": "2026-09-02T12:40:24.942537+00:00",
+            "event_id": "ca69dbd7-3d78-48da-ba36-17352897de95",
+            "evidence": "initial_observation",
+            "fact": "acceptance_requirements",
+            "source": "PROJECT_EVIDENCE",
+            "state": "ACTIVE",
+            "value": [
+              "缺陷修复后测试通过",
+              "Git 状态安全检查通过",
+              "需求变化回归通过",
+              "失败恢复与最终回归通过"
+            ]
+          }
+        ],
+        "provenance": "PROJECT_EVIDENCE",
+        "source_fact": "acceptance_requirements",
+        "state": "OBSERVED",
+        "value": [
+          "缺陷修复后测试通过",
+          "Git 状态安全检查通过",
+          "需求变化回归通过",
+          "失败恢复与最终回归通过"
+        ]
+      },
+      "agent_autonomy_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "approval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "assumptions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "compliance": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "data": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "deployment_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "distribution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "enterprise_policy_present": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "environments": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "existing_database": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "explicit_constraints": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_systems": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "external_tool_permission_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "goal": {
+        "canonical_mapping": "user_real_goal->goal",
+        "history": [
+          {
+            "at": "2026-09-02T12:40:24.942528+00:00",
+            "event_id": "ace11c68-7d51-49bc-a499-5cd4970d4ef8",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      "interface_types": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "interfaces": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "knowledge_source_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "license_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "migration_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "permissions": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "persistence": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "recovery_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "required_capabilities": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "retrieval_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "roles": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "rollback_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "runtime": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "security_requirements": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "tool_execution_requirement": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "unknowns": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_journeys": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "user_real_goal": {
+        "extended": true,
+        "history": [
+          {
+            "at": "2026-09-02T12:40:24.942528+00:00",
+            "event_id": "ace11c68-7d51-49bc-a499-5cd4970d4ef8",
+            "evidence": "initial_goal",
+            "fact": "user_real_goal",
+            "source": "USER_EXPLICIT",
+            "state": "ACTIVE",
+            "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+          }
+        ],
+        "provenance": "USER_EXPLICIT",
+        "source_fact": "user_real_goal",
+        "state": "DECLARED",
+        "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+      },
+      "users": {
+        "state": "UNKNOWN",
+        "value": null
+      },
+      "workflow": {
+        "state": "UNKNOWN",
+        "value": null
+      }
+    },
+    "failures": [],
+    "plan": {
+      "authority": "AI_GENERATED_HUMAN_OWNED",
+      "checks": [],
+      "not_applicable": [],
+      "planning_strategy_applied": "minimal_real_work_units",
+      "schema": [
+        "name",
+        "goal",
+        "work",
+        "output",
+        "entry_condition",
+        "done_condition",
+        "acceptance",
+        "failure_handling",
+        "evidence"
+      ],
+      "stage_count": 1,
+      "stages": [
+        {
+          "acceptance": "按已确认目标验证实际结果",
+          "assumptions": [],
+          "capabilities": [],
+          "class": "STAGE",
+          "critical_dependency": false,
+          "dependencies": [],
+          "done_condition": "验收通过",
+          "entry_condition": "上一工作项完成",
+          "evidence": [
+            "test_result"
+          ],
+          "failure_cost": null,
+          "failure_handling": "冻结证据进入恢复",
+          "goal": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+          "name": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+          "output": [],
+          "provenance": "PROJECT_FACT",
+          "risk": 0,
+          "risk_score": 0,
+          "work": [
+            "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+          ]
+        }
+      ],
+      "strategy_guidance": "minimal_real_work_units",
+      "tasks": []
+    },
+    "plan_review": {
+      "approval_source": {
+        "conversation_id": "blackbox-conv-1",
+        "harness": "workbuddy-adapter-bridge",
+        "message_id": "start",
+        "origin": "USER"
+      },
+      "approved_revision": 2,
+      "intent_record": {
+        "consequential_ambiguity": false,
+        "context_refs": [
+          "plan_revision:1",
+          "plan_scope:05a5bf45-5d6a-4259-b725-09cc3917901d"
+        ],
+        "intent": "DIRECTIVE"
+      },
+      "status": "REVIEWED_APPROVED",
+      "waiver_scope": null
+    },
+    "recovery_policy": {
+      "max_attempts_per_failure": 3,
+      "require_regression_evidence": true,
+      "strategy": "root_cause_then_revalidate"
+    },
+    "revision": 9,
+    "schema_version": "3.0",
+    "session_id": "05a5bf45-5d6a-4259-b725-09cc3917901d",
+    "status": "COMPLETED",
+    "strategy_consumption": {
+      "CAPABILITY_SELECTION": "mature_compatible_authorized_first",
+      "EXECUTION_ORDER": "dependency_and_risk_aware",
+      "INTERACTION": "concise_evidence_backed_updates",
+      "PLANNING": "minimal_real_work_units",
+      "RECOVERY": "root_cause_then_revalidate",
+      "UNDERSTANDING": "ask_only_consequential_unknowns"
+    },
+    "suspensions": [],
+    "understanding": {
+      "adaptive_strategy": {
+        "capability_preference": "mature_compatible_authorized_first",
+        "execution_order_preference": "dependency_and_risk_aware",
+        "interaction_strategy": "concise_evidence_backed_updates",
+        "planning_strategy": "minimal_real_work_units",
+        "question_strategy": "ask_only_consequential_unknowns",
+        "recovery_strategy": "root_cause_then_revalidate"
+      },
+      "asked_questions": [],
+      "blocking_unknowns": [],
+      "created_at": "2026-09-02T12:40:24.942519+00:00",
+      "discovery_actions": [],
+      "fact_events": [
+        {
+          "at": "2026-09-02T12:40:24.942528+00:00",
+          "event_id": "ace11c68-7d51-49bc-a499-5cd4970d4ef8",
+          "evidence": "initial_goal",
+          "fact": "user_real_goal",
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        },
+        {
+          "at": "2026-09-02T12:40:24.942537+00:00",
+          "event_id": "ca69dbd7-3d78-48da-ba36-17352897de95",
+          "evidence": "initial_observation",
+          "fact": "acceptance_requirements",
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "缺陷修复后测试通过",
+            "Git 状态安全检查通过",
+            "需求变化回归通过",
+            "失败恢复与最终回归通过"
+          ]
+        }
+      ],
+      "facts": {
+        "acceptance_requirements": {
+          "evidence": "initial_observation",
+          "history": [
+            {
+              "at": "2026-09-02T12:40:24.942537+00:00",
+              "event_id": "ca69dbd7-3d78-48da-ba36-17352897de95",
+              "evidence": "initial_observation",
+              "fact": "acceptance_requirements",
+              "source": "PROJECT_EVIDENCE",
+              "state": "ACTIVE",
+              "value": [
+                "缺陷修复后测试通过",
+                "Git 状态安全检查通过",
+                "需求变化回归通过",
+                "失败恢复与最终回归通过"
+              ]
+            }
+          ],
+          "source": "PROJECT_EVIDENCE",
+          "state": "ACTIVE",
+          "value": [
+            "缺陷修复后测试通过",
+            "Git 状态安全检查通过",
+            "需求变化回归通过",
+            "失败恢复与最终回归通过"
+          ]
+        },
+        "user_real_goal": {
+          "evidence": "initial_goal",
+          "history": [
+            {
+              "at": "2026-09-02T12:40:24.942528+00:00",
+              "event_id": "ace11c68-7d51-49bc-a499-5cd4970d4ef8",
+              "evidence": "initial_goal",
+              "fact": "user_real_goal",
+              "source": "USER_EXPLICIT",
+              "state": "ACTIVE",
+              "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+            }
+          ],
+          "source": "USER_EXPLICIT",
+          "state": "ACTIVE",
+          "value": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。"
+        }
+      },
+      "gate_pass": true,
+      "mode": "NEW_PROJECT",
+      "question_strategy_applied": "ask_only_consequential_unknowns",
+      "questions": [],
+      "raw_goal": "接管一个已有的多文件项目，修复一个真实缺陷，完成测试、Git 状态安全检查、一次需求变化、一次失败恢复和最终验收。",
+      "required_dimensions": [],
+      "status": "UNDERSTANDING_SUFFICIENT",
+      "sufficiency": {
+        "acceptance_clarity": true,
+        "contradiction_check": true,
+        "decision_sufficiency": true,
+        "goal_fidelity": true,
+        "permission_boundary": true,
+        "provenance_integrity": true,
+        "scope_clarity": true,
+        "unknown_coverage": true
+      },
+      "understanding_id": "187e4fbb-d927-4cc2-80b5-80dfb551bffe",
+      "updated_at": "2026-09-02T12:40:24.942569+00:00"
+    },
+    "updated_at": "2026-09-02T12:40:24.993742+00:00",
+    "verified_state": {}
+  }
+}

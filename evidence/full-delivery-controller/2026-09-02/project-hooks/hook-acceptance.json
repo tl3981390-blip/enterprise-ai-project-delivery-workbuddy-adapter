@@ -1,0 +1,21 @@
+{
+  "project": "C:\\Users\\34718\\AppData\\Local\\Temp\\wbfdc-demo\\.codebuddy",
+  "official_mechanism": "hookify plugin (installed, official) - project-level .codebuddy/hookify.*.local.md rules",
+  "rules": [
+    "hookify.evidence-protection.local.md",
+    "hookify.user-control-echo.local.md"
+  ],
+  "engine_load_verified": {
+    "prompt": [
+      "delivery-user-control-echo"
+    ],
+    "bash": [
+      "delivery-evidence-protection"
+    ]
+  },
+  "global_workbuddy_settings_sha256_after": "03cf2d15657ba35540efdb1aba6496ac36c88f6337159b4c7c4cddd0e7f3d8c6",
+  "global_settings_untouched": true,
+  "no_global_hook_registered": true,
+  "hook_activation": "requires a NEW WorkBuddy session opened on this project directory (host fires hook events); not triggerable from inside an agent session",
+  "captured_at": "2026-09-02T20:40:15+0800"
+}
