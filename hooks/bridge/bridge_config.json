@@ -1,0 +1,14 @@
+{
+  "harness": "workbuddy",
+  "core_scripts": "C:/Users/34718/.workbuddy/skills/enterprise-ai-project-delivery/共享/scripts",
+  "transport_secret": "wbfdc-host-event-bridge-secret-2026",
+  "core_identity": {
+    "skill_id": "enterprise-ai-project-delivery",
+    "version": "3.0.6",
+    "tag": "v3.0.6",
+    "commit": "0937642afa0d488b20701c87e2ee3cd2a921cd2d",
+    "asset_sha256": "2512a954e1a73e3a6070318d7018ac6424d6904164db19e560f8ba9ec0cd4d5f"
+  },
+  "state_rel_dir": ".codebuddy/bridge/state",
+  "note": "Adapter-owned config on the workbuddy-full-delivery-controller branch. Only references the formally installed Core; no Core file is modified."
+}

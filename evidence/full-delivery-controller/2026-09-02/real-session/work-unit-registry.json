@@ -1,0 +1,21 @@
+{
+  "description": "Adapter-owned mapping from REAL PostToolUse tool events to Core acceptance work units. Written by the delivery orchestrator on the Adapter branch; the bridge only records a receipt when a real host event matches a registered unit. Nothing is self-declared PASS.",
+  "units": [
+    {
+      "work_id": "__STAGE_0__",
+      "tool": "Bash",
+      "command_pattern": "git-state-report",
+      "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+      "verifier": "verdict-pass",
+      "ac_id": "REAL_HOST_EVENT_BRIDGE"
+    },
+    {
+      "work_id": "__STAGE_0__",
+      "tool": "Bash",
+      "command_pattern": "canonical-pytest",
+      "artifact": ".codebuddy/bridge/artifacts/canonical-pytest.log",
+      "verifier": "suite-pass",
+      "ac_id": "CANONICAL_EVIDENCE_LEDGER"
+    }
+  ]
+}

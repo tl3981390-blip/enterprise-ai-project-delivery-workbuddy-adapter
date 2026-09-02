@@ -1,0 +1,37 @@
+{
+  "harness": "workbuddy",
+  "session_id": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+  "captured_at": "2026-09-02T21:29:00+0800",
+  "source": "skill_tool_available_skills",
+  "skill_count": 3,
+  "skills": [
+    {
+      "identity": "git-state-change-regression",
+      "description": "Git 状态变更引发连锁回归的排查与修复：当系统引入自动 git 提交后出现依赖 git HEAD/diff 状态的判定失败时定位并修复",
+      "version": null,
+      "available": true,
+      "permission": "granted",
+      "verified_callable": true,
+      "source": "skill_tool_available_skills"
+    },
+    {
+      "identity": "owner-first-delivery-discipline",
+      "description": "专属交付纪律总纲：AI 可信交付与管控产品的漂移治理、证据可信度与交付纪律约束",
+      "version": null,
+      "available": true,
+      "permission": "granted",
+      "verified_callable": false,
+      "source": "skill_tool_available_skills"
+    },
+    {
+      "identity": "enterprise-ai-project-delivery",
+      "description": "接手并可靠交付复杂项目：动态计划、真实证据验收与交付纪律",
+      "version": "3.0.6",
+      "available": true,
+      "permission": "granted",
+      "verified_callable": true,
+      "source": "skill_tool_available_skills"
+    }
+  ],
+  "fingerprint_sha256": "875c3aac4bfdfbfcd66e91491d1b8f8a5664708f1e4f6d00c5dc6c08e48fb14b"
+}
