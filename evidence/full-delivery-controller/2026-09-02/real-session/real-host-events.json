@@ -1,8 +1,8 @@
 {
   "adapter_session": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
-  "captured_at": "2026-09-02T21:38:22.929274",
+  "captured_at": "2026-09-02T21:39:03.481855",
   "note": "REAL WorkBuddy host events only.",
-  "total_real_host_posttooluse_events": 10,
+  "total_real_host_posttooluse_events": 14,
   "events": [
     {
       "at": "2026-09-02T13:36:35.135710+00:00",
@@ -133,6 +133,62 @@
       "host_tool": "Bash",
       "call_id": "call_00_c2Tq5lYFLIZf6QgDSAUS6363",
       "generation_id": "ffa46d24ca0f4185b986d22914eadac4",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:23.045237+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_L92H95vEWyHv0Gccp8Y82581",
+      "generation_id": "da21476371e3436c9f0fc19e0580d385",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "REAL_HOST_EVENT_BRIDGE",
+        "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:30.505769+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_TyORscu4eK2zIeSddZby9613",
+      "generation_id": "45f787c0f14342898bf52524bea759cc",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "ac_id": "REAL_HOST_EVENT_BRIDGE",
+        "artifact": ".codebuddy/bridge/artifacts/git-state-report.json",
+        "decision": "receipt_recorded",
+        "work_id": "继续 enterprise-ai-project-delivery-workbuddy-adapter 分支 workbuddy-full-delivery-controller：把真实 WorkBuddy Host Event（UserPromptSubmit/PostToolUse/Stop）通过 Adapter Bridge 接入正式安装的 enterprise-ai-project-delivery v3.0.6 Core Runtime，完成真实验收并输出可验证证据。"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:39.380101+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_ciPMgbhI1OL4xuyw8wdb4451",
+      "generation_id": "439734ec698747429f40bf2620def615",
+      "model": "deepseek-v4-flash",
+      "client": "WorkBuddy",
+      "outcome": {
+        "decision": "no_registered_work_unit",
+        "tool": "Bash"
+      }
+    },
+    {
+      "at": "2026-09-02T13:38:54.040747+00:00",
+      "kind": "posttooluse",
+      "host_tool": "Bash",
+      "call_id": "call_00_ET_j6OX1Hx6Xrvpzn9HGeA74654",
+      "generation_id": "6d2a2e916c6d419086155b1b6f95fe02",
       "model": "deepseek-v4-flash",
       "client": "WorkBuddy",
       "outcome": {
