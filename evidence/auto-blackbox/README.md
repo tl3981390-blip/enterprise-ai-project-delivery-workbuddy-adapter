@@ -34,6 +34,7 @@ python tools/run_blackbox.py all
 | `state-wbfdc-ha1.json` | authority session (pause/resume/correction/cancel events, corrections, terminal cancel) |
 | `proposals.json` | Adapter proposal ledger (PROPOSED_CONTROL lifecycle) |
 | `artifacts/` | real artifacts the receipts bind to: git-state-report.json, canonical-pytest.log (46 passed), git-state-skill-report.json, available-skills-snapshot.json (source=skill_tool_available_skills), router.decision.json (decision=git-state-change-regression) |
+| `project-scaffold/` | the exact seed project the hooks ran in — `.codebuddy/settings.local.json` (official command hooks → `hooks/bridge/bridge.py`), CLAUDE.md (governance rules the session model follows), the three verifier scripts, `.gitignore`, work-unit registry. Regenerated deterministically by `tools/blackbox_project.py` (the disposable temp project was removed after the run; its real git HEAD `b5d45a9b572a` is recorded inside `artifacts/git-state-report.json`) |
 | `scope-audit.jsonl` | real ScopeControl open/close cleanup audit |
 
 ## Assertions (all PASS, 23/23)

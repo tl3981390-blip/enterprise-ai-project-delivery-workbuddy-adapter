@@ -1,0 +1,5 @@
+.codebuddy/bridge/state/delivery/
+.codebuddy/bridge/state/audit/
+.codebuddy/bridge/state/prompt-store.json
+.codebuddy/bridge/state/proposals.json
+.codebuddy/bridge/artifacts/

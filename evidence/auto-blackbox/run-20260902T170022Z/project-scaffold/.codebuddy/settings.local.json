@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:/Users/34718/.workbuddy/binaries/python/versions/3.13.12/python.exe\" -B \"C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\hooks\\bridge\\bridge.py\" userpromptsubmit",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:/Users/34718/.workbuddy/binaries/python/versions/3.13.12/python.exe\" -B \"C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\hooks\\bridge\\bridge.py\" posttooluse",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"C:/Users/34718/.workbuddy/binaries/python/versions/3.13.12/python.exe\" -B \"C:\\Users\\34718\\WorkBuddy\\2026-09-02-19-07-11\\enterprise-ai-project-delivery-workbuddy-adapter\\hooks\\bridge\\bridge.py\" stop",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
