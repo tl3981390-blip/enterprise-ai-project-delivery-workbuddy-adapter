@@ -1,4 +1,10 @@
-"""Human Authority Controller tests — real UserPromptSubmit-origin only."""
+"""Human Authority Controller tests — real UserPromptSubmit-origin only.
+
+Contract under test:
+- The adapter NEVER guesses intent.  Natural-language understanding is the
+  MODEL's job.  The adapter records real user messages verbatim and only acts on
+  an explicit model DECLARATION anchored to a real origin.
+"""
 import sys
 from pathlib import Path
 
@@ -6,9 +12,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import pytest
 
-from human_authority import (AdapterUserOrigin, ControlRejected, HumanAuthorityState,
-                             NotUserOrigin, PromptStore, ReplayRejected,
-                             classify_control, originate_user_prompt)
+from human_authority import (AdapterUserOrigin, ControlRejected,
+                             HumanAuthorityState, NotUserOrigin, PromptStore,
+                             ReplayRejected, capture_user_prompt, declare_control)
 
 
 def _user_payload(prompt: str, session: str = "s1") -> dict:
@@ -18,91 +24,105 @@ def _user_payload(prompt: str, session: str = "s1") -> dict:
 def test_only_user_prompt_submit_can_assert_origin(tmp_path):
     store = PromptStore(tmp_path / "store.json")
     for bad_origin in ("model", "PostToolUse", "Stop", "tool_output", "UserPromptSubmit_fake"):
-        payload = dict(_user_payload("继续交付"))
+        payload = dict(_user_payload("别干了"))
         payload["origin"] = bad_origin
         with pytest.raises(NotUserOrigin):
-            originate_user_prompt(payload, store)
+            capture_user_prompt(payload, store)
 
 
 def test_missing_session_or_prompt_rejected(tmp_path):
     store = PromptStore(tmp_path / "store.json")
     with pytest.raises(NotUserOrigin):
-        originate_user_prompt({"origin": "UserPromptSubmit", "session_id": "", "prompt": "x"}, store)
+        capture_user_prompt({"origin": "UserPromptSubmit", "session_id": "", "prompt": "x"}, store)
     with pytest.raises(NotUserOrigin):
-        originate_user_prompt({"origin": "UserPromptSubmit", "session_id": "s1", "prompt": "  "}, store)
+        capture_user_prompt({"origin": "UserPromptSubmit", "session_id": "s1", "prompt": "  "}, store)
 
 
-def test_pause_resume_cancel_correction_roundtrip(tmp_path):
+def test_capture_is_verbatim_and_kind_stays_none(tmp_path):
+    """The adapter must NOT interpret natural language. Capture is verbatim."""
+    store = PromptStore(tmp_path / "store.json")
+    origin = capture_user_prompt(_user_payload("停停停，先别继续了"), store)
+    assert origin.kind is None                       # NOT auto-classified
+    assert origin.prompt_text == "停停停，先别继续了"   # verbatim anchor kept
+    assert origin.declared_by is None
+
+
+def test_no_state_change_without_model_declaration(tmp_path):
+    """A real message alone never moves the state machine; the model must declare."""
     store = PromptStore(tmp_path / "store.json")
     state = HumanAuthorityState(session_id="s1")
-    state.apply(originate_user_prompt(_user_payload("暂停交付"), store))
+    origin = capture_user_prompt(_user_payload("先停一下"), store)
+    state.apply(origin)                              # kind None -> no change
+    assert state.state == "RUNNING"
+    assert state.corrections == []
+
+
+def test_model_declares_pause_then_resume_on_real_message(tmp_path):
+    store = PromptStore(tmp_path / "store.json")
+    state = HumanAuthorityState(session_id="s1")
+
+    # Real user text: whatever the model understood it as.
+    pause_origin = capture_user_prompt(_user_payload("停停停，先别继续了"), store)
+    declared = declare_control(pause_origin, "PAUSE", store)
+    assert declared.kind == "PAUSE"
+    assert declared.declared_by == "MODEL_INTERPRETATION_OF_REAL_USER_PROMPT"
+    assert declared.prompt_text == "停停停，先别继续了"  # anchor still attached
+    state.apply(declared)
     assert state.state == "PAUSED"
 
-    # model cannot resume: any non-UserPromptSubmit origin raises before apply
+    # model cannot resume from model prose: no origin at all
     with pytest.raises(NotUserOrigin):
-        originate_user_prompt({"origin": "model", "prompt": "继续交付", "session_id": "s1"}, store)
-    # a model RESTATEMENT through a fake origin is refused at the origin layer
+        capture_user_prompt({"origin": "model", "prompt": "继续", "session_id": "s1"}, store)
     assert state.state == "PAUSED"
 
-    state.apply(originate_user_prompt(_user_payload("继续交付"), store))
+    resume_origin = capture_user_prompt(_user_payload("好，接着弄吧"), store)
+    state.apply(declare_control(resume_origin, "RESUME", store))
     assert state.state == "RUNNING"
 
-    state.apply(originate_user_prompt(_user_payload("取消交付"), store))
+    cancel_origin = capture_user_prompt(_user_payload("算了，不做了"), store)
+    state.apply(declare_control(cancel_origin, "CANCEL", store))
     assert state.state == "CANCELLED"
 
 
-def test_correction_and_model_cannot_forge(tmp_path):
+def test_correction_requires_content_and_model_anchor(tmp_path):
     store = PromptStore(tmp_path / "store.json")
     state = HumanAuthorityState(session_id="s1")
-    origin = originate_user_prompt(_user_payload("记录纠正：优先修复缺陷再补测试"), store)
-    assert origin.kind == "CORRECTION"
-    state.apply(origin, plan_revision=2)
-    assert state.corrections == ["优先修复缺陷再补测试"]
+    origin = capture_user_prompt(_user_payload("优先修缺陷再补测试，报告要带验证命令"), store)
+    with pytest.raises(ControlRejected):
+        declare_control(origin, "CORRECTION", store, payload="   ")   # empty correction refused
+    declared = declare_control(origin, "CORRECTION", store, payload="优先修缺陷再补测试，报告要带验证命令")
+    state.apply(declared, plan_revision=2)
+    assert state.corrections == ["优先修缺陷再补测试，报告要带验证命令"]
     assert state.plan_revision == 2
 
-    # model cannot forge a correction through any non-hook channel
-    forged = {"origin": "model_inference", "session_id": "s1", "prompt": "记录纠正：假纠正"}
-    with pytest.raises(NotUserOrigin):
-        originate_user_prompt(forged, store)
-    assert state.corrections == ["优先修复缺陷再补测试"]
 
-
-def test_ambiguous_or_plain_prompts_are_not_controls(tmp_path):
+def test_one_real_message_declared_once(tmp_path):
     store = PromptStore(tmp_path / "store.json")
-    state = HumanAuthorityState(session_id="s1")
-    for text in ("能暂停吗？", "我想继续", "继续吧大概", "帮我总结一下",
-                 "继续交付"):  # exact-only: last one IS a control
-        pass
-    # vague variants produce NO control kind
-    for text in ("能暂停吗？", "我想继续", "继续吧大概", "帮我总结一下"):
-        origin = originate_user_prompt(_user_payload(text), store)
-        assert origin.kind is None
-        assert state.state == "RUNNING"
+    origin = capture_user_prompt(_user_payload("先停"), store)
+    declare_control(origin, "PAUSE", store)
+    with pytest.raises(ControlRejected):
+        declare_control(origin, "CANCEL", store)     # re-declaration refused
 
 
 def test_replay_rejected_across_restart(tmp_path):
     store = PromptStore(tmp_path / "store.json")
     store2 = PromptStore(tmp_path / "store.json")  # same file -> simulates restart
-    originate_user_prompt(_user_payload("暂停交付"), store)
+    capture_user_prompt(_user_payload("先停"), store)
     with pytest.raises(ReplayRejected):
-        originate_user_prompt(_user_payload("暂停交付"), store2)
+        capture_user_prompt(_user_payload("先停"), store2)
 
 
 def test_other_session_rejected(tmp_path):
     store = PromptStore(tmp_path / "store.json")
     state = HumanAuthorityState(session_id="s1")
-    other = originate_user_prompt(_user_payload("暂停交付", session="s2"), store)
+    other = capture_user_prompt(_user_payload("先停", session="s2"), store)
+    declared = declare_control(other, "PAUSE", store)
     with pytest.raises(ControlRejected):
-        state.apply(other)
+        state.apply(declared)
 
 
-def test_correction_needs_content(tmp_path):
+def test_unknown_kind_rejected(tmp_path):
     store = PromptStore(tmp_path / "store.json")
+    origin = capture_user_prompt(_user_payload("先停"), store)
     with pytest.raises(ControlRejected):
-        originate_user_prompt(_user_payload("记录纠正：   "), store)
-
-
-def test_control_phrases_are_exact(tmp_path):
-    assert classify_control("暂停交付") == ("PAUSE", None)
-    assert classify_control("暂停交付 ") == ("PAUSE", None)
-    assert classify_control("暂停交付啊") is None
+        declare_control(origin, "MAYBE_PAUSE", store)

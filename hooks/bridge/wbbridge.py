@@ -13,7 +13,7 @@ Identity mapping (documented, auditable)
   therefore reused as the Adapter ``conversation_id`` (one host session == one
   conversation).  Every event records this mapping in the audit log.
 - UserPromptSubmit ``event_id`` is the model-unforgeable ``adapter_message_id``
-  produced by ``human_authority.originate_user_prompt`` from the REAL payload
+  produced by ``human_authority.capture_user_prompt`` (verbatim) from the REAL payload, then declared by the model via ``declare_control``
   (session_id + seq + prompt hash).  Replays and other sessions are rejected.
 - PostToolUse ``event_id`` is the host ``generation_id``/``call_id`` (unique per run).
 - Stop ``event_id`` is a session-scoped ``stop-<n>`` id.

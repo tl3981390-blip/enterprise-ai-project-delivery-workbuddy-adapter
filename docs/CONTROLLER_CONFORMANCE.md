@@ -9,7 +9,7 @@ The adapter may report full `CONTROLLER_CONNECTED` only when WorkBuddy itself su
 
 ## What this branch implements (real code)
 
-- **User origin (item 1)**: `human_authority.originate_user_prompt` derives a persistent
+- **User origin (item 1)**: `human_authority.capture_user_prompt` records the message verbatim (no intent guessing); the model then declares a control via `declare_control`; the adapter_message_id is derived from the real payload
   `adapter_message_id` from a REAL `UserPromptSubmit` hook payload
   (`am-<sha256(session_id|seq|prompt_hash)>-<seq>`). Model text, tool output, Stop and
   PostToolUse can never assert user origin. If the host cannot reliably deliver

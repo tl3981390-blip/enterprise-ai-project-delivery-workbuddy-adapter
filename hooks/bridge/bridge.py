@@ -6,10 +6,18 @@ Invoked by the WorkBuddy host through project-scoped command hooks declared in
 host event JSON on stdin and maps it into the formally installed Core runtime.
 
 Commands (argv[1]):
-  userpromptsubmit   -- REAL UserPromptSubmit -> Human Authority control (if any)
+  userpromptsubmit   -- REAL UserPromptSubmit -> capture verbatim ONLY (no intent guessing)
+  declare-control    -- MODEL declares a control (PAUSE/RESUME/CANCEL/CORRECTION) on a
+                        previously captured real message; the Core applies it
   posttooluse        -- REAL PostToolUse -> canonical evidence receipt
   stop               -- REAL Stop -> Core completion gate
   bootstrap          -- create the delivery session from the registered real goal
+
+Division of labour: the bridge never interprets natural language.  Intent
+recognition is the MODEL's job in the conversation; the bridge governs the model
+by letting it declare controls ONLY on user messages the host actually captured
+verbatim, and by keeping the declaration, rationale and original text in the
+audit for human verification/correction.
 """
 from __future__ import annotations
 
@@ -63,65 +71,110 @@ def _git_checkpoint(session_id: str) -> dict:
 
 
 def cmd_userpromptsubmit() -> dict:
+    """Capture one REAL UserPromptSubmit verbatim.  Never interprets it.
+
+    Intent recognition is the MODEL's job (in the conversation), so this hook
+    does NOT guess a control kind and does NOT move the state machine.  It only
+    records the real user message as an immutable origin.  When the model judges
+    that the user is pausing/resuming/cancelling/correcting, it calls
+    ``bridge.py declare-control`` pointing at this captured origin; the bridge
+    re-checks that the message really was delivered by the host before it lets
+    the Core apply anything.
+    """
     payload = bridge.read_stdin_payload()
     event_name = payload.get("hook_event_name", "")
     prompt = str(payload.get("prompt") or "").strip()
     sid = bridge.host_session_id(payload)
-    # -- only REAL host UserPromptSubmit payloads are accepted -----------------
     if event_name != "UserPromptSubmit":
         bridge.append_audit(payload, "userpromptsubmit", {"decision": "not_user_prompt_submit"})
         return {"continue": True}
 
-    # Resolve the delivery session for this host session.
-    state_path = _state_file(payload)
-    has_session = state_path.is_file()
-    if not has_session:
-        bridge.append_audit(payload, "userpromptsubmit", {
-            "decision": "no_delivery_session",
-            "prompt_preview": prompt[:80],
-            "hint": "delivery must be started by an adapter bootstrap from the real goal"})
-        return {"continue": True}
-
-    state = json.loads(state_path.read_text(encoding="utf-8"))
-    revision = state.get("contract_revision", 1)
-
-    # -- classify explicit user controls (exact phrases only) -----------------
     sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
-    from human_authority import (classify_control, canonical_prompt_hash,  # noqa: PLC0415
-                                 PromptStore, ReplayRejected, NotUserOrigin, ControlRejected)
+    from human_authority import PromptStore, capture_user_prompt, NotUserOrigin  # noqa: PLC0415
     store = PromptStore(bridge.bridge_state_dir(payload) / "prompt-store.json")
-
     origin_payload = {"origin": "UserPromptSubmit", "session_id": sid, "prompt": prompt}
     try:
-        seq, is_new = store.next(sid, canonical_prompt_hash(prompt))
-    except Exception as exc:  # noqa: BLE001
-        bridge.append_audit(payload, "userpromptsubmit", {"decision": "store_error",
+        origin = capture_user_prompt(origin_payload, store)
+    except NotUserOrigin as exc:
+        bridge.append_audit(payload, "userpromptsubmit", {"decision": "not_user_origin",
                                                           "error": str(exc)})
         return {"continue": True}
-    if not is_new:
-        bridge.append_audit(payload, "userpromptsubmit",
-                            {"decision": "replay_rejected", "prompt_hash": canonical_prompt_hash(prompt)[:16]})
+    except Exception as exc:  # noqa: BLE001
+        bridge.append_audit(payload, "userpromptsubmit", {
+            "decision": "capture_rejected", "error": f"{type(exc).__name__}: {str(exc)[:160]}"})
         return {"continue": True}
 
+    bridge.append_audit(payload, "userpromptsubmit", {
+        "decision": "captured_verbatim",
+        "adapter_message_id": origin.adapter_message_id,
+        "kind": None,  # model interprets intent, never the hook
+        "prompt_text": origin.prompt_text})
+    return {"continue": True}
+
+
+def cmd_declare_control() -> dict:
+    """Model-side declaration of a control on a REAL captured user message.
+
+    stdin payload (same event shape the hook delivered):
+        {"session_id": ..., "prompt": "<verbatim user text the model is
+        interpreting>", "kind": "PAUSE|RESUME|CANCEL|CORRECTION",
+         "payload": "<correction body, if kind=CORRECTION>",
+         "rationale": "<short model note>", "hook_event_name": "UserPromptSubmit"}
+
+    The bridge looks the message up in the prompt-store (it must have been
+    captured verbatim from a REAL UserPromptSubmit), requires it to be
+    undeclared, then asks the Core to apply the control.  A declaration on text
+    the host never delivered, or a second declaration of the same message, is
+    refused.  The model's rationale is audited; nothing is ever fabricated.
+    """
+    payload = bridge.read_stdin_payload()
+    sid = bridge.host_session_id(payload)
+    prompt = str(payload.get("prompt") or "").strip()
+    kind = str(payload.get("kind") or "").strip().upper()
+    ctrl_payload = payload.get("payload")
+    rationale = str(payload.get("rationale") or "").strip()
+    state_path = _state_file(payload)
+    if not state_path.is_file():
+        bridge.append_audit(payload, "declare", {"decision": "no_delivery_session"})
+        return {"continue": True}
+
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+    from human_authority import (PromptStore, AdapterUserOrigin,  # noqa: PLC0415
+                                 canonical_prompt_hash, declare_control, ControlRejected)
+    store = PromptStore(bridge.bridge_state_dir(payload) / "prompt-store.json")
+    p_hash = canonical_prompt_hash(prompt)
+    record = store.record(sid, p_hash)
+    if record is None:
+        bridge.append_audit(payload, "declare", {
+            "decision": "no_matching_captured_message",
+            "hint": "declaration must reference a REAL UserPromptSubmit captured verbatim",
+            "prompt_hash": p_hash[:16]})
+        return {"continue": True}
+
+    # Rebuild the origin from the stored record (verbatim text must match).
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    revision = state.get("contract_revision", 1)
+    mid = ("am-" + _sha256_bytes(f"{sid}|{record['seq']}|{p_hash}".encode("utf-8"))[:32]
+           + f"-{record['seq']}")
+    origin = AdapterUserOrigin(adapter_message_id=mid, session_id=sid,
+                               seq=record["seq"], prompt_hash=p_hash,
+                               prompt_text=record["text"], kind=None,
+                               payload=None, declared_by=None, created_at="")
     try:
-        kind_and_payload = classify_control(prompt)
+        declared = declare_control(origin, kind, store, payload=ctrl_payload)
     except ControlRejected as exc:
-        bridge.append_audit(payload, "userpromptsubmit",
-                            {"decision": "control_rejected", "reason": str(exc)})
-        return {"continue": True}
-    if kind_and_payload is None:
-        bridge.append_audit(payload, "userpromptsubmit", {"decision": "ordinary_prompt"})
+        bridge.append_audit(payload, "declare",
+                            {"decision": "declaration_rejected", "error": str(exc)})
         return {"continue": True}
 
-    kind, ctrl_payload = kind_and_payload
-    event_id = f"am-{sid[:8]}-{seq}-{kind.lower()}"
+    event_id = declared.adapter_message_id
     controller = _controller(payload)
     try:
         if kind == "PAUSE":
             controller.apply_user_pause(
                 _signed_event(payload, "USER_PAUSE", event_id),
                 expected_contract_revision=revision,
-                reason="user:暂停交付",
+                reason="model interprets user message as pause" + (f": {rationale}" if rationale else ""),
                 checkpoint_identity=_git_checkpoint(sid),
                 evidence_ids=_recent_pass_evidence(state))
         elif kind == "RESUME":
@@ -143,28 +196,28 @@ def cmd_userpromptsubmit() -> dict:
             controller.apply_user_correction(
                 _signed_event(payload, "USER_CORRECTION", event_id),
                 expected_contract_revision=revision,
-                description=ctrl_payload or "记录纠正",
-                violated_requirements=[ctrl_payload or "user correction"],
+                description=declared.payload or "记录纠正",
+                violated_requirements=[declared.payload or "user correction"],
                 root_cause_class="USER_REPORTED",
                 related_checks=["user-stated requirement"])
     except Exception as exc:  # noqa: BLE001
-        # A user control that Core rejected (e.g. stale state) must stay
-        # retryable: roll back the prompt-store seq so the same real user
-        # message can be re-delivered after state recovery.  This never
-        # fabricates authority; it only makes a genuine failed control retriable.
-        try:
-            store.forget(sid, canonical_prompt_hash(prompt))
-        except Exception:  # noqa: BLE001
-            pass
-        bridge.append_audit(payload, "userpromptsubmit",
+        store.forget(sid, p_hash)
+        bridge.append_audit(payload, "declare",
                             {"decision": "core_rejected", "kind": kind,
                              "retryable": True,
                              "error": f"{type(exc).__name__}: {str(exc)[:200]}"})
         return {"continue": True}
 
-    bridge.append_audit(payload, "userpromptsubmit", {"decision": "core_applied",
-                                                      "kind": kind, "event_id": event_id})
+    bridge.append_audit(payload, "declare", {
+        "decision": "core_applied", "kind": kind, "event_id": event_id,
+        "declared_by": "MODEL_INTERPRETATION_OF_REAL_USER_PROMPT",
+        "prompt_text": prompt, "rationale": rationale})
     return {"continue": True}
+
+
+def _sha256_bytes(blob: bytes) -> str:
+    import hashlib  # noqa: PLC0415
+    return hashlib.sha256(blob).hexdigest()
 
 
 def cmd_posttooluse() -> dict:
@@ -317,6 +370,7 @@ def cmd_bootstrap() -> dict:
 
 DISPATCH = {
     "userpromptsubmit": cmd_userpromptsubmit,
+    "declare-control": cmd_declare_control,
     "posttooluse": cmd_posttooluse,
     "stop": cmd_stop,
     "bootstrap": cmd_bootstrap,
