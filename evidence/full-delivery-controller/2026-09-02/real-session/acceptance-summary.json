@@ -1,0 +1,120 @@
+{
+  "title": "真实 Host-Event → Adapter → Core v3.0.6 验收摘要",
+  "adapter_session": "b91743e8-0db0-4a93-b6a4-efa03d1fcf8e",
+  "delivery_session_id": "bbe8f055-0263-44fd-92b6-fc740fde27b1",
+  "core": "enterprise-ai-project-delivery v3.0.6 (commit 0937642afa0d488b20701c87e2ee3cd2a921cd2d, asset sha 2512a954...)",
+  "global_settings_sha256_unchanged": "03cf2d15657ba35540efdb1aba6496ac36c88f6337159b4c7c4cddd0e7f3d8c6",
+  "hook_mechanism": "project-scoped .codebuddy/settings.local.json command hooks (host-native; hookify plugin NOT enabled and its engine cannot run a python bridge)",
+  "canonical_evidence_ledger": [
+    {
+      "evidence_id": "workbuddy:ptu-call_00_ET_I8POj0Wyuy02RjGJGLQT4117:4692ed1c-ccde-47f6-ba65-456bf714d989",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_ET_I8POj0Wyuy02RjGJGLQT4117",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:37:02.453817+00:00"
+    },
+    {
+      "evidence_id": "workbuddy:ptu-call_00_hdTFXj3jh2QZyJqzGRpl4173:63ba15ef-d54e-494a-802f-531e67df6d9a",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_hdTFXj3jh2QZyJqzGRpl4173",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:37:20.633610+00:00"
+    },
+    {
+      "evidence_id": "workbuddy:ptu-call_00_ET_Ov8gDf87l3QlhdZ9DZ4X9717:082bdd73-3d86-4516-986c-2fc8eb763406",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入 Canonical Evidence Ledger"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_ET_Ov8gDf87l3QlhdZ9DZ4X9717",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:37:34.405544+00:00"
+    },
+    {
+      "evidence_id": "workbuddy:ptu-call_00_ET_wZXr8oQUmvo9Z1mYr41r3589:1956f20b-6e07-4a26-85cf-a5115688a90c",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_ET_wZXr8oQUmvo9Z1mYr41r3589",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:38:03.750058+00:00"
+    },
+    {
+      "evidence_id": "workbuddy:ptu-call_00_L92H95vEWyHv0Gccp8Y82581:9c848d8a-f949-47f5-93cd-75bfabe53439",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_L92H95vEWyHv0Gccp8Y82581",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:38:23.042462+00:00"
+    },
+    {
+      "evidence_id": "workbuddy:ptu-call_00_ET_TyORscu4eK2zIeSddZby9613:47f4f1e0-bddb-490e-ad7a-b6699505247a",
+      "status": "PASS",
+      "acceptance_items": [
+        "业务验收:真实宿主事件 UserPromptSubmit/PostToolUse/Stop 触发 Adapter Bridge 并进入正式 Core Runtime"
+      ],
+      "source_ref": "workbuddy://ptu-call_00_ET_TyORscu4eK2zIeSddZby9613",
+      "tool": "artifact_verifier",
+      "observed_at": "2026-09-02T13:38:30.502922+00:00"
+    }
+  ],
+  "session_events": [
+    {
+      "event_type": "UserPromptSubmit",
+      "event_id": "bootstrap-goal-1",
+      "status": null,
+      "timestamp": "2026-09-02T13:36:50.161756+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_ET_I8POj0Wyuy02RjGJGLQT4117",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:37:02.453817+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_hdTFXj3jh2QZyJqzGRpl4173",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:37:20.633610+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_ET_Ov8gDf87l3QlhdZ9DZ4X9717",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:37:34.405544+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_ET_wZXr8oQUmvo9Z1mYr41r3589",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:38:03.750058+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_L92H95vEWyHv0Gccp8Y82581",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:38:23.042462+00:00"
+    },
+    {
+      "event_type": "ArtifactVerified",
+      "event_id": "ptu-call_00_ET_TyORscu4eK2zIeSddZby9613",
+      "status": "PASS",
+      "timestamp": "2026-09-02T13:38:30.502922+00:00"
+    }
+  ],
+  "open_blockers": [],
+  "honest_not_yet_pass": [
+    "HUMAN_AUTHORITY controls (need REAL user messages)",
+    "Stop gate deny/allow (need REAL Stop at agent turn end)",
+    "Session persistence (need second new WorkBuddy session)"
+  ]
+}
