@@ -1,5 +1,17 @@
 # Automatic REAL Hook black-box acceptance — run evidence
 
+> **Current status override (2026-09-03):** This document's detailed 23/23
+> account is historical and does **not** prove automatic Harness Skill selection
+> or natural-language Authority automation. Its old capability snapshot was
+> model-transcribed, not Bridge-attested from a Host receipt. The current
+> acceptance rule requires a PostToolUse payload containing the current-session
+> identity/description list plus receipt provenance. The real natural-goal run
+> `run-20260903T012223Z` found that WorkBuddy does not provide that list; Bridge
+> fails closed with `host_receipt_has_no_available_skills`. Therefore automatic
+> selection is `PENDING_EXTERNAL_VALIDATION`, not PASS. Use
+> `tools/verify_evidence.py <new-run-dir>`; it no longer accepts a default
+> historical run.
+
 Run directory: `evidence/auto-blackbox/run-20260902T170022Z/` (this folder is the
 canonical machine evidence set for the automatic black-box acceptance of the
 WorkBuddy full-delivery-controller bridge).
