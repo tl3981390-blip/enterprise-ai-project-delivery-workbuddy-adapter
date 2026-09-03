@@ -46,7 +46,11 @@ The adapter is designed for the formal Core release below:
 | Commit | `0937642afa0d488b20701c87e2ee3cd2a921cd2d` |
 | Asset SHA-256 | `2512a954e1a73e3a6070318d7018ac6424d6904164db19e560f8ba9ec0cd4d5f` |
 
-Run `python src/probe_workbuddy.py --workbuddy-home <path>` before attempting any installation or Hook registration. Only `CONTROLLER_CONNECTED` permits a full-control installation flow.
+Run `python src/probe_workbuddy.py --workbuddy-home <path>` before a new-laptop or
+customer demonstration.  Its results are deliberately split: formal Core
+installation, a fresh-session project-hook check, and automatic Harness-Skill
+selection are three separate claims.  Do not present the last two as PASS
+unless the probe and the fresh session both produce the required Host evidence.
 
 ## Development status
 
