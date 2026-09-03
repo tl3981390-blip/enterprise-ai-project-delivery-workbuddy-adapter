@@ -50,21 +50,22 @@ Run `python src/probe_workbuddy.py --workbuddy-home <path>` before attempting an
 
 ## Development status
 
-Adapter repository, not a released product.  As of the 2026-09-02 automatic
-black-box acceptance (`evidence/auto-blackbox/run-20260902T170022Z`), the real
-host wiring is verified end-to-end on real WorkBuddy CLI sessions with official
-project-scoped command hooks (see below).  The formal Core is never modified.
+Adapter repository, not a released product. Real WorkBuddy CLI sessions verify
+project-scoped UserPromptSubmit/PostToolUse/Stop bridge firing and Core Evidence
+receipt recording. **Automatic Harness Skill selection is not yet verified on
+this Host**: its discovery receipt does not contain the current-session skill
+identity/description list. The Adapter fails closed rather than accepting a
+model-transcribed list. The formal Core is never modified.
 
 ## Branch: `workbuddy-full-delivery-controller` (this branch)
 
 Real, code-level implementation of the full delivery wiring:
 
 - **Harness Capability Router** (`src/capability_router.py` + `src/harness_skill_snapshot.py`) —
-  candidates come ONLY from the current session's Skill-tool/available_skills snapshot;
-  illegal sources (disk scans, mock registries, hardcoded names) are rejected by code.
-  Eligibility chain: available -> identity complete -> really-verified callable ->
-  permission -> task text overlap. Decision artifact per Work Unit; no eligible match
-  returns `NO_ELIGIBLE_HARNESS_SKILL`.
+  candidates come ONLY from a Bridge-written, PostToolUse-attested current-session
+  skill list; model JSON, disk scans, mock registries and hardcoded names are rejected.
+  Selection may precede first invocation, but that invocation remains mandatory before
+  callable status is trusted. No eligible match returns `NO_ELIGIBLE_HARNESS_SKILL`.
 - **Canonical Evidence** (`src/harness_receipts.py`) — HARNESS_EXECUTION receipts only from
   PostToolUse-shaped real tool results; model-built PASS dicts, empty outputs and
   event-level replays are rejected; completion gate reads the ledger only.
@@ -85,14 +86,11 @@ Real, code-level implementation of the full delivery wiring:
 
 Real acceptance evidence:
 - `evidence/full-delivery-controller/2026-09-02/` — earlier real desktop-session runs.
-- `evidence/auto-blackbox/run-20260902T170022Z/` — automatic REAL black-box run
-  (real CLI sessions, real hooks, real Core v3.0.6 ledger), 23/23 assertions PASS:
-  bootstrap, receipts, skill auto-select + real invocation, two-stage Human
-  Authority suite, Stop gate deny→allow, second-session isolation/replay/persistence,
-  scope cleanup.  See `evidence/auto-blackbox/README.md`.
+- Earlier automatic-run records remain historical evidence of Hook firing and Core
+  receipt behavior, but do **not** prove automatic Skill selection because their
+  snapshots lacked Bridge-attested Host provenance. New evidence is accepted only
+  through `tools/verify_evidence.py <run-dir>`.
 
-Status of the four product gates: `AUTOMATIC_HARNESS_SKILL_SELECTION`,
-`CANONICAL_EVIDENCE_INTEGRATION`, `WORKBUDDY_HUMAN_AUTHORITY_CONTROLLER`,
-`FINAL_PRODUCT_TARGET_ON_WORKBUDDY` — real-machine automated evidence in
-`evidence/auto-blackbox/`; live-desktop portions remain covered by the real-session
-evidence under `evidence/full-delivery-controller/2026-09-02/real-session/`.
+Status: `CANONICAL_EVIDENCE_INTEGRATION` has real-machine evidence.
+`AUTOMATIC_HARNESS_SKILL_SELECTION` and the complete final-product claim remain
+`PENDING_EXTERNAL_VALIDATION` until WorkBuddy supplies the Host-attested list.

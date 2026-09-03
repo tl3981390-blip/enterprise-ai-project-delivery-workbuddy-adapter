@@ -6,8 +6,11 @@ run directory (state-*.json, audit-*.jsonl, proposals.json, artifacts/,
 scope-audit.jsonl, results.json).  It never re-runs the CLI, never trusts the
 driver's stored assertion strings: it recomputes from the data.
 
-usage: python tools/verify_evidence.py [run-dir]
-default: evidence/auto-blackbox/run-20260902T170022Z
+usage: python tools/verify_evidence.py <run-dir>
+
+The verifier intentionally has no default historical run.  A run produced before
+the Host supplied a Bridge-attested capability list cannot prove automatic Skill
+selection under the current contract.
 """
 from __future__ import annotations
 
@@ -16,7 +19,6 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-DEFAULT_RUN = REPO / "evidence" / "auto-blackbox" / "run-20260902T170022Z"
 
 M, H, I = "wbfdc-m1", "wbfdc-ha1", "wbfdc-iso2"
 
@@ -77,32 +79,37 @@ def m_stop(run: Path) -> tuple[bool, str]:
         f"stop_decisions={sorted(set(stops))}"
 
 
-@check("Skill chain: snapshot legal source + router decision + skill artifact PASS")
+@check("Skill chain: Bridge-attested snapshot + matching Router decision")
 def skill(run: Path) -> tuple[bool, str]:
     art = run / "artifacts"
     snap = load(art / "available-skills-snapshot.json")
     router = load(art / "router.decision.json")
-    skill_report = load(art / "git-state-skill-report.json")
-    ok = (snap.get("source") == "skill_tool_available_skills" and
-          router.get("decision") == "git-state-change-regression" and
-          skill_report.get("verdict") == "PASS" and
-          skill_report.get("skill") == "git-state-change-regression")
-    return ok, f"source={snap.get('source')} decision={router.get('decision')} verdict={skill_report.get('verdict')}"
+    provenance = snap.get("provenance") or {}
+    decision = str(router.get("decision") or "")
+    identities = {str(item.get("identity")) for item in snap.get("skills", [])}
+    ok = (snap.get("source") == "harness_available_skills" and
+          provenance.get("hook_event_name") == "PostToolUse" and
+          bool(provenance.get("tool_use_id")) and bool(provenance.get("output_sha256")) and
+          router.get("snapshot_fingerprint_sha256") == snap.get("fingerprint_sha256") and
+          decision in identities)
+    return ok, f"source={snap.get('source')} decision={decision} provenance={bool(provenance)}"
 
 
-@check("Skill chain: snapshot reflects a real session verified_callable entry")
+@check("Skill chain: Router-selected skill was really invoked in the same session")
 def skill_verified(run: Path) -> tuple[bool, str]:
     snap = load(run / "artifacts" / "available-skills-snapshot.json")
-    git_skill = next((s for s in snap.get("skills", [])
-                      if s.get("identity") == "git-state-change-regression"), None)
-    ok = bool(git_skill and git_skill.get("available") is True and
-              git_skill.get("verified_callable") is True and git_skill.get("permission") == "granted")
-    return ok, f"entry={json.dumps(git_skill, ensure_ascii=False)[:120] if git_skill else None}"
+    decision = load(run / "artifacts" / "router.decision.json").get("decision")
+    selected = next((s for s in snap.get("skills", []) if s.get("identity") == decision), None)
+    ok = bool(selected and selected.get("available") is True and
+              selected.get("verified_callable") is True and selected.get("permission") == "granted")
+    return ok, f"entry={json.dumps(selected, ensure_ascii=False)[:120] if selected else None}"
 
 
-@check("Skill chain: transcript contains a real Skill-tool invocation")
+@check("Skill chain: transcript contains a real invocation of Router decision")
 def skill_invoked(run: Path) -> tuple[bool, str]:
     tr_dir = run / "transcripts"
+    router = load(run / "artifacts" / "router.decision.json")
+    decision = str(router.get("decision") or "")
     hit = False
     for f in sorted(tr_dir.glob("wbfdc-m1--*.json")):
         tr = load(f).get("transcript") or []
@@ -114,12 +121,12 @@ def skill_invoked(run: Path) -> tuple[bool, str]:
                     args = json.loads(msg.get("arguments") or "{}")
                 except ValueError:
                     args = {}
-                if "git-state-change-regression" in json.dumps(args, ensure_ascii=False):
+                if decision and decision in json.dumps(args, ensure_ascii=False):
                     hit = True
                     break
         if hit:
             break
-    return hit, "Skill(git-state-change-regression) function_call found in transcripts"
+    return hit, f"Skill({decision}) function_call found in transcripts"
 
 
 @check("H: terminal CANCELLED with all four Core authority operations applied")
@@ -215,17 +222,22 @@ def global_sha(run: Path) -> tuple[bool, str]:
     return ok, f"sha={str(res.get('global_settings_sha_after'))[:16]}..."
 
 
-@check("results.json: overall_pass True, 23/23 stored assertions pass, no failures")
+@check("results.json: all executed assertions pass and no external validation is pending")
 def results(run: Path) -> tuple[bool, str]:
     res = load(run / "results.json")
     checks = {k: v for k, v in res.items() if k.startswith("assert::")}
-    ok = (res.get("overall_pass") is True and len(checks) == 23 and
-          all(v.get("pass") for v in checks.values()) and not res.get("failed_assertions"))
-    return ok, f"assertions={len(checks)} all_pass={all(v.get('pass') for v in checks.values())}"
+    ok = (res.get("overall_pass") is True and bool(checks) and
+          all(v.get("pass") for v in checks.values()) and not res.get("failed_assertions") and
+          not res.get("pending_external_validation"))
+    return ok, (f"assertions={len(checks)} all_pass={all(v.get('pass') for v in checks.values())} "
+                f"pending={res.get('pending_external_validation', [])}")
 
 
 def main(argv: list[str]) -> int:
-    run = Path(argv[0]) if argv else DEFAULT_RUN
+    if not argv:
+        print("run dir is required; historical pre-provenance runs are not accepted")
+        return 2
+    run = Path(argv[0])
     if not run.is_dir():
         print("run dir not found:", run)
         return 2

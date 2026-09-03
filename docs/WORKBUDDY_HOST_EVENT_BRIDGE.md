@@ -38,19 +38,13 @@
   receipts recorded in the delivery session's Canonical Evidence Ledger:
   - `workbuddy:ptu-call_00_fkLPW…` (REAL_HOST_EVENT_BRIDGE) — PASS
   - `workbuddy:ptu-call_00_ET_9j1o…` (CANONICAL_EVIDENCE_LEDGER) — PASS
-- Capability selection ran against the current session's real available_skills
-  snapshot and selected `git-state-change-regression` for the git-state work unit
-  (files: harness-skill-snapshot.verified.json, router.decision.real-git-wu.json).
+- Historical capability-selection artifacts are retained as historical records,
+  not proof: they lacked Bridge-attested Host list provenance.
 
 ## Honest status
 
-Real host events are the only PASS source.  The 2026-09-02 **automatic**
-black-box run (`evidence/auto-blackbox/run-20260902T170022Z`, 23/23 assertions)
-drove real WorkBuddy CLI sessions through these project hooks and verified:
-PostToolUse → bridge → formal Core v3.0.6 Canonical Evidence Ledger receipts;
-Human-Authority pause/resume/correction/cancel over a governed two-stage
-Proposal/confirmation channel (ambiguity, stale/replay/cross-session and forged
-declarations all refused); Stop gate deny (missing evidence) then allow (after
-the final-verification bundle); second-session isolation/persistence/replay;
-scope cleanup.  Global WorkBuddy settings SHA unchanged before/after.  See
-`evidence/auto-blackbox/README.md`.
+Real host events are the only PASS source. Earlier automatic black-box records
+verified Hook firing and Core receipts, but cannot verify automatic Skill
+selection under the current provenance rule. The current Host returns no skill
+list in the discovery receipt, so that product gate is
+`PENDING_EXTERNAL_VALIDATION`.

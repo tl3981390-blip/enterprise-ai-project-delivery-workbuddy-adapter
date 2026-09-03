@@ -6,8 +6,9 @@ Rules enforced here (mirror of the WorkBuddy full-delivery contract):
    exposes through its Skill tool / available_skills list. Local workspace scans,
    drive scans, ``.workbuddy/skills`` disk walks, hand-written mock registries,
    fixed skill names and "I guess this harness has …" guesses are NOT legal sources.
-2. A snapshot must therefore declare its ``source``; anything that is not a
-   harness-provided list is rejected.
+2. A snapshot must therefore declare its ``source`` and a Bridge-written
+   Host-tool provenance record; anything that is not a harness-provided list is
+   rejected.  Model-authored JSON is not provenance.
 3. A candidate only counts as ``verified_callable`` after a REAL Skill-tool
    invocation succeeded in this session. Listing alone never implies verifiability.
 4. Version is recorded only if the Harness actually provides it; otherwise the field
@@ -58,6 +59,7 @@ class HarnessSnapshot:
     session_id: str
     captured_at: str
     source: str
+    provenance: dict[str, str]
     skills: tuple[SkillCandidate, ...] = field(default_factory=tuple)
 
     def as_json(self) -> dict[str, Any]:
@@ -66,6 +68,7 @@ class HarnessSnapshot:
             "session_id": self.session_id,
             "captured_at": self.captured_at,
             "source": self.source,
+            "provenance": self.provenance,
             "skill_count": len(self.skills),
             "skills": [s.to_row() for s in self.skills],
         }
@@ -106,6 +109,14 @@ def load_snapshot(path: str | Path) -> HarnessSnapshot:
     session_id = str(data.get("session_id") or "").strip()
     harness = str(data.get("harness") or "workbuddy").strip()
     captured_at = str(data.get("captured_at") or "").strip()
+    provenance = data.get("provenance")
+    if not isinstance(provenance, dict):
+        raise SnapshotRejected("snapshot missing Bridge-written host provenance")
+    required_provenance = ("hook_event_name", "tool_name", "tool_use_id", "output_sha256")
+    if any(not str(provenance.get(key) or "").strip() for key in required_provenance):
+        raise SnapshotRejected("snapshot provenance is incomplete")
+    if provenance.get("hook_event_name") != "PostToolUse":
+        raise SnapshotRejected("snapshot provenance is not a PostToolUse receipt")
     raw_skills = data.get("skills")
     if not isinstance(raw_skills, list) or not raw_skills:
         raise SnapshotRejected("snapshot has no skills")
@@ -113,7 +124,9 @@ def load_snapshot(path: str | Path) -> HarnessSnapshot:
     if len({s.identity for s in skills}) != len(skills):
         raise SnapshotRejected("duplicate skill identity in snapshot")
     return HarnessSnapshot(harness=harness, session_id=session_id,
-                           captured_at=captured_at, source=source, skills=skills)
+                           captured_at=captured_at, source=source,
+                           provenance={key: str(provenance[key]) for key in required_provenance},
+                           skills=skills)
 
 
 def fingerprint(snapshot: HarnessSnapshot) -> str:

@@ -6,9 +6,10 @@ Design rules (WorkBuddy full-delivery-controller contract):
   discovers skills by itself and never consults local directories or mock registries.
 - No fixed task name maps to a skill. Matching is description/text overlap of the
   real Work Unit with the real candidate identity+description exposed by the Harness.
-- A candidate is EXCLUDED (with a machine reason) when it is: not available /
-  not callable, permission denied or unknown-denied, identity incomplete (missing
-  name or description), unverified, or task-mismatched (no lexical overlap).
+- A candidate is EXCLUDED (with a machine reason) when it is: not available,
+  permission denied, identity incomplete (missing name or description), or
+  task-mismatched (no lexical overlap). An unverified current-session candidate
+  may be selected pending a mandatory real Harness invocation.
 - Among remaining candidates the Router picks the minimal-sufficient best match
   (deterministic: highest overlap count, then earlier snapshot order).
 - If nothing overlaps, the Router answers NO_ELIGIBLE_HARNESS_SKILL instead of
@@ -67,7 +68,9 @@ class RouterDecision:
             "reason": self.reason,
             "ranked": [
                 {"identity": c.identity, "version": c.version,
-                 "verified_callable": c.verified_callable, "overlap": score}
+                 "verified_callable": c.verified_callable,
+                 "verification_required": not c.verified_callable,
+                 "overlap": score}
                 for c, score in self.ranked
             ],
             "exclusions": [{"identity": e.identity, "reason": e.reason}
@@ -80,10 +83,6 @@ def _eligibility(c: SkillCandidate) -> Exclusion | None:
         return Exclusion(c.identity, "not_available_in_current_session")
     if not c.identity or not c.description:
         return Exclusion(c.identity, "identity_incomplete")
-    # A candidate that the session has not really loaded/verified is excluded before
-    # any permission claim is considered (verifiability precedes permission).
-    if not c.verified_callable:
-        return Exclusion(c.identity, "not_verified_callable_in_this_session")
     if c.permission == "denied":
         return Exclusion(c.identity, "permission_denied")
     if c.permission == "unknown":

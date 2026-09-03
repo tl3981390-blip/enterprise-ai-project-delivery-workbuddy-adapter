@@ -21,6 +21,7 @@ audit for human verification/correction.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -33,6 +34,57 @@ from pathlib import Path
 import wbbridge as bridge
 
 CONFIG = bridge.load_config()
+
+
+def _capture_host_skill_list(payload: dict) -> tuple[bool, str]:
+    """Write a candidate snapshot only when the Host *receipt* carries the list.
+
+    WorkBuddy's current ``Skill({"skill": "skills"})`` receipt says only that
+    the built-in command ran; it does not contain the list rendered in the model
+    context.  Treating model prose or a model-written JSON file as that list was
+    the original false-positive route.  This function deliberately accepts no
+    such fallback.  A future Host version can supply ``available_skills`` in its
+    PostToolUse payload and will then be supported without trusting the model.
+    """
+    tool_input = payload.get("tool_input") or {}
+    target = str(tool_input.get("command") or tool_input.get("skill") or "").strip()
+    if target not in {"/skills", "skills"}:
+        return False, "not_skill_discovery_call"
+    response = payload.get("tool_response")
+    raw_skills = response.get("available_skills") if isinstance(response, dict) else None
+    if not isinstance(raw_skills, list) or not raw_skills:
+        return False, "host_receipt_has_no_available_skills"
+    if not all(isinstance(item, dict) for item in raw_skills):
+        return False, "host_receipt_skill_list_is_malformed"
+
+    repo_src = Path(__file__).resolve().parents[2] / "src"
+    if str(repo_src) not in sys.path:
+        sys.path.insert(0, str(repo_src))
+    from harness_skill_snapshot import HarnessSnapshot, parse_skill_entry, write_snapshot  # noqa: PLC0415
+
+    output_blob = json.dumps(response, ensure_ascii=False, sort_keys=True)
+    source = "harness_available_skills"
+    try:
+        skills = tuple(parse_skill_entry(item, source) for item in raw_skills)
+    except Exception as exc:  # noqa: BLE001
+        return False, f"host_receipt_skill_list_rejected:{type(exc).__name__}"
+    if len({item.identity for item in skills}) != len(skills):
+        return False, "host_receipt_skill_list_has_duplicate_identity"
+    snapshot = HarnessSnapshot(
+        harness="workbuddy", session_id=bridge.host_session_id(payload),
+        captured_at=datetime.now(timezone.utc).isoformat(), source=source,
+        provenance={
+            "hook_event_name": "PostToolUse",
+            "tool_name": str(payload.get("tool_name") or ""),
+            "tool_use_id": str(payload.get("tool_use_id") or payload.get("call_id") or ""),
+            "output_sha256": hashlib.sha256(output_blob.encode("utf-8")).hexdigest(),
+        },
+        skills=skills,
+    )
+    out = bridge.bridge_state_dir(payload).parent / "artifacts" / "available-skills-snapshot.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    write_snapshot(snapshot, out)
+    return True, str(out)
 
 
 def _signed_event(payload: dict, event_type: str, event_id: str) -> dict:
@@ -525,6 +577,13 @@ def cmd_posttooluse() -> dict:
     tool_name = str(payload.get("tool_name") or "")
     tool_input = payload.get("tool_input") or {}
     call_id = str(payload.get("tool_use_id") or payload.get("call_id") or "ptu")
+    captured, capture_detail = _capture_host_skill_list(payload)
+    if captured:
+        bridge.append_audit(payload, "capability_discovery",
+                            {"decision": "host_skill_snapshot_recorded", "path": capture_detail})
+    elif capture_detail != "not_skill_discovery_call":
+        bridge.append_audit(payload, "capability_discovery",
+                            {"decision": "fail_closed", "reason": capture_detail})
     # find matching work unit by tool + artifact command pattern
     matched = None
     for entry in registry.get("units", []):

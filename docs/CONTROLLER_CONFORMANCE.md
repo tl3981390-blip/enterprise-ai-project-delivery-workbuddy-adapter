@@ -24,10 +24,10 @@ The adapter may report full `CONTROLLER_CONNECTED` only when WorkBuddy itself su
 
 ## Current status
 
-`CONTROLLER_CONNECTED` for the project-scoped real run: real WorkBuddy CLI
-sessions fed live UserPromptSubmit/PostToolUse/Stop payloads through the
-implemented bridge (see `evidence/auto-blackbox/run-20260902T170022Z`,
-23/23 assertions PASS; canonical suite 46 passed).  `hooks/hooks.json` remains
+Project-scoped Host-event wiring is real: WorkBuddy CLI sessions fed live
+UserPromptSubmit/PostToolUse/Stop payloads through the bridge. The complete
+`CONTROLLER_CONNECTED` claim is **not** currently available because automatic
+Skill selection lacks a Host-attested available-skills receipt. `hooks/hooks.json` remains
 inert; real activation is project-scoped via
 `<project>/.codebuddy/settings.local.json`.  Nothing is registered globally and
 WorkBuddy global settings are unmodified (SHA verified in the run evidence).

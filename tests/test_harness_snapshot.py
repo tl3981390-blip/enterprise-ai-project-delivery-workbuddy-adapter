@@ -38,6 +38,24 @@ def test_disk_scan_source_rejected(tmp_path):
         load_snapshot(p)
 
 
+def test_model_written_snapshot_without_host_receipt_provenance_is_rejected(tmp_path):
+    data = json.loads(FIX.read_text(encoding="utf-8"))
+    data.pop("provenance")
+    p = tmp_path / "model-authored.json"
+    p.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    with pytest.raises(SnapshotRejected, match="provenance"):
+        load_snapshot(p)
+
+
+def test_non_posttooluse_provenance_is_rejected(tmp_path):
+    data = json.loads(FIX.read_text(encoding="utf-8"))
+    data["provenance"]["hook_event_name"] = "UserPromptSubmit"
+    p = tmp_path / "wrong-origin.json"
+    p.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    with pytest.raises(SnapshotRejected, match="PostToolUse"):
+        load_snapshot(p)
+
+
 def test_entry_without_description_rejected():
     with pytest.raises(SnapshotRejected):
         parse_skill_entry({"identity": "x", "description": "  "}, "skill_tool_available_skills")

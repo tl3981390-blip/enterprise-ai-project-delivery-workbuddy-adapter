@@ -61,7 +61,7 @@ CONTRACT = [
      "required_evidence": "controller artifact verifier",
      "verification_method": "file", "status": "OPEN", "source_revision": 1},
     {"ac_id": "HARNESS_SKILL_SELECTION",
-     "description": "Router 从当前会话真实 available_skills 快照自动选中并真实执行 git-state-change-regression",
+     "description": "Router 只能基于 PostToolUse 回执中由宿主实际提供的当前会话技能清单自动选择并执行能力",
      "required_evidence": "controller artifact verifier",
      "verification_method": "file", "status": "OPEN", "source_revision": 1},
 ]
@@ -79,10 +79,6 @@ def work_unit_registry() -> dict:
              "command_pattern": r"run-canonical-pytest\.sh",
              "artifact": ".codebuddy/bridge/artifacts/canonical-pytest.log",
              "verifier": "suite-pass", "ac_id": "CANONICAL_EVIDENCE_LEDGER"},
-            {"work_id": "__STAGE_0__", "tool": "Bash",
-             "command_pattern": r"run-skill-git-report\.sh",
-             "artifact": ".codebuddy/bridge/artifacts/git-state-skill-report.json",
-             "verifier": "verdict-pass", "ac_id": "HARNESS_SKILL_SELECTION"},
         ],
     }
 
@@ -91,6 +87,10 @@ CLAUDE_MD = textwrap.dedent("""\
     # 交付治理规则（本项目的强制约束）
 
     本项目受全交付控制器（Full Delivery Controller）管控。以下是规则。
+
+    用户只要说“接手并完成项目”即构成当前范围内的执行授权。读取项目现状后，必须自行
+    连续完成合法工作、选择能力、执行验证和形成 Evidence；不得把内部工作拆成“请用户
+    再发一条命令”的要求，也不得在未完成时停在“等待下一步指令”。
 
     ## 1. 口语意图识别是模型的职责
     用户不会说标准指令。识别某句话是不是交付控制意图（暂停/继续/取消/纠正），
@@ -123,12 +123,19 @@ CLAUDE_MD = textwrap.dedent("""\
     ## 5. 验证命令（真实工件，供 PostToolUse 证据用）
     - `bash run-git-state-report.sh`     → git 状态报告（verdict）
     - `bash run-canonical-pytest.sh`     → 控制器全量回归日志
-    - `bash run-skill-git-report.sh`     → 按已加载 skill 流程产出 skill git 报告
     执行它们会产出真实工件并（经注册表）写入正式 Core Evidence。
 
     ## 6. 不要伪造
     不要手写证据 JSON、不要跳过验证步骤声称通过、不要自己 declare 未捕获的消息。
     一切以真实执行与 bridge 的审计输出为准。
+
+    ## 7. 用户不选 Skill，控制器按工作需要组合能力
+    当工作单元需要 Harness 成熟能力时，使用宿主正式的当前会话技能发现入口。Bridge 只在
+    **真实 PostToolUse 回执本身**包含完整身份与描述列表时，才会自动生成候选快照并允许 Router
+    选择；你不得手写快照、不得从系统提示抄写列表、不得扫描磁盘、不得猜测或安装能力。
+    若项目的验收合同要求该能力选择链，必须先实际调用宿主的技能发现入口；不能因为预期
+    可能缺失就跳过发现。随后如果 Bridge 没有生成候选快照，才如实报告宿主未提供可核验清单。
+    如果发现入口的回执没有携带技能清单，必须如实报告该宿主接线条件未满足，不能伪称已自动选择。
     """)
 
 
@@ -175,33 +182,6 @@ RUN_CANONICAL_PYTEST = textwrap.dedent("""\
     """).replace("__ADAPTER__", _win_posix(ADAPTER_REPO)).replace("__PY__", _win_posix(PYTHON))
 
 
-RUN_SKILL_GIT_REPORT = textwrap.dedent("""\
-    #!/usr/bin/env bash
-    # Real git-state report produced while FOLLOWING the git-state-change-regression
-    # skill flow (the model must genuinely load that skill first, per CLAUDE.md).
-    set -u
-    PROJ="$(cd "$(dirname "$0")" && pwd)"
-    cd "$PROJ" || exit 1
-    REL=".codebuddy/bridge/artifacts"
-    mkdir -p "$REL"
-    HEAD="$(git rev-parse --verify HEAD 2>/dev/null | tr -d '\\r\\n' || true)"
-    test -n "$HEAD" || HEAD="unknown"
-    DIRTY="$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')"
-    test "$HEAD" != "unknown" && VERDICT="PASS" || VERDICT="FAIL"
-    "__PY__" - "$REL/git-state-skill-report.json" "$HEAD" "$DIRTY" "$VERDICT" <<'PY'
-    import json, sys, time
-    out, head, dirty, verdict = sys.argv[1:5]
-    json.dump({"verdict": verdict, "git_head": head, "dirty_files": int(dirty),
-               "skill": "git-state-change-regression",
-               "produced_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())},
-              open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-    print("git-state-skill-report written verdict=" + verdict)
-    PY
-    echo "exit=$?"
-    ls -l "$REL/git-state-skill-report.json"
-    """).replace("__PY__", _win_posix(PYTHON))
-
-
 def git(cwd: Path, *args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["git", "-C", str(cwd), *args],
                           capture_output=True, text=True, encoding="utf-8")
@@ -216,12 +196,18 @@ def build(project: Path = DEFAULT_PROJECT, force: bool = True) -> Path:
     (project / "tools").mkdir(parents=True, exist_ok=True)
     (project / ".codebuddy" / "settings.local.json").write_text(
         json.dumps(settings_local_json(), ensure_ascii=False, indent=2), encoding="utf-8")
-    (project / "CLAUDE.md").write_text(CLAUDE_MD, encoding="utf-8")
+    (project / "CLAUDE.md").write_text(
+        CLAUDE_MD.replace("__PY__", _win_posix(PYTHON)).replace("__ADAPTER__", _win_posix(ADAPTER_REPO)),
+        encoding="utf-8")
     (state_dir / "work-unit-registry.json").write_text(
         json.dumps(work_unit_registry(), ensure_ascii=False, indent=2), encoding="utf-8")
     (project / "run-git-state-report.sh").write_text(RUN_GIT_STATE, encoding="utf-8")
     (project / "run-canonical-pytest.sh").write_text(RUN_CANONICAL_PYTEST, encoding="utf-8")
-    (project / "run-skill-git-report.sh").write_text(RUN_SKILL_GIT_REPORT, encoding="utf-8")
+    (project / "README.md").write_text(
+        "# 部门采购交付包\n\n"
+        "本目录是待交付的部门采购项目。交付前必须完成现有验证并保持 Git 工作区无意外改动。\n\n"
+        "成功标准：项目约束被满足、验证有真实证据、没有未经确认的范围扩张。\n",
+        encoding="utf-8")
     (project / "tools" / "note.txt").write_text(
         "Isolated full-delivery-controller acceptance project (real hooks).\n", encoding="utf-8")
     (project / ".gitignore").write_text(".codebuddy/bridge/state/delivery/\n"

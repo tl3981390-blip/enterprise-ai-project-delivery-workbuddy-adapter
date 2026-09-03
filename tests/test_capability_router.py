@@ -22,13 +22,18 @@ def _snapshot_with_git_verified():
     return load_snapshot(p)
 
 
-def test_git_wu_before_verification_is_no_eligible():
-    """Unverified candidates are excluded; the only verified skill does not match Git work."""
-    baseline = load_snapshot(FIX)
-    decision = route(baseline, "执行一次 Git 状态安全检查，确认改动范围与未提交变更")
-    assert decision.decision == "NO_ELIGIBLE_HARNESS_SKILL"
-    reasons = {e.identity: e.reason for e in decision.exclusions}
-    assert reasons["git-state-change-regression"] == "not_verified_callable_in_this_session"
+def test_git_wu_before_verification_selects_pending_real_invocation(tmp_path):
+    """Selection precedes invocation; the selected candidate remains explicitly unverified."""
+    data = json.loads(FIX.read_text(encoding="utf-8"))
+    for entry in data["skills"]:
+        if entry["identity"] == "git-state-change-regression":
+            entry["permission"] = "granted"  # Host listed it as callable.
+            entry["verified_callable"] = False
+    pending_path = tmp_path / "snapshot.git-pending.json"
+    pending_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    decision = route(load_snapshot(pending_path), "执行一次 Git 状态安全检查，确认改动范围与未提交变更")
+    assert decision.decision == "git-state-change-regression"
+    assert decision.ranked[0][0].verified_callable is False
 
 
 def test_git_wu_after_real_verification_selects_git_skill():
@@ -68,8 +73,8 @@ def test_exclusion_matrix_records_machine_reasons():
             "permission_denied",
             "permission_unknown",
             "identity_incomplete",
-            "not_verified_callable_in_this_session",
             "task_mismatch_no_text_overlap",
         }
-    # all unverified non-git candidates must be excluded with a machine reason
-    assert len(decision.exclusions) >= 5
+    # An unverified candidate is not silently trusted; it remains marked pending
+    # verification in the Router decision until the real Skill invocation returns.
+    assert any(not candidate.verified_callable for candidate, _ in decision.ranked) is False

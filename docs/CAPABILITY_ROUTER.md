@@ -2,10 +2,11 @@
 
 ## The only legal candidate source
 
-The Router consumes a **Harness Skill Snapshot** that must declare
-`source = "skill_tool_available_skills"` (or `harness_available_skills`). That snapshot is
-the current WorkBuddy/Harness session's own Skill-tool / available_skills surface —
-transcribed as raw machine data, never invented.
+The Router consumes a **Harness Skill Snapshot** with
+`source = "harness_available_skills"` and Bridge-written PostToolUse provenance
+(`hook_event_name`, `tool_name`, `tool_use_id`, `output_sha256`). The list must
+be carried by the Host receipt itself; model-transcribed context is not machine
+evidence and is rejected.
 
 Anything else is rejected by code (`harness_skill_snapshot.SnapshotRejected`):
 
@@ -21,9 +22,8 @@ For each real candidate the Router applies, in order:
 
 1. `not_available_in_current_session`
 2. `identity_incomplete` (missing name or description)
-3. `not_verified_callable_in_this_session` — verified only via a REAL Skill-tool load/invocation record
-4. `permission_denied` / `permission_unknown`
-5. `task_mismatch_no_text_overlap` — lexical overlap between the real Work Unit text and the
+3. `permission_denied` / `permission_unknown`
+4. `task_mismatch_no_text_overlap` — lexical overlap between the real Work Unit text and the
    candidate identity+description as exposed by the Harness (CJK bigrams + ascii words;
    generic function words are stripped from the query). No skill name is hardcoded anywhere.
 
@@ -40,13 +40,9 @@ Selection is a *decision artifact only*. Invocation is a separate, real WorkBudd
 (`Skill` tool load + execution) whose results become HARNESS_EXECUTION receipts via
 `harness_receipts.receipt_from_posttooluse`.
 
-## Real end-to-end run (evidence/2026-09-02)
+## Current validation boundary
 
-- `harness-skill-snapshot.real.json` — current-session snapshot; only
-  `enterprise-ai-project-delivery` and `git-state-change-regression` carry
-  `verified_callable: true` because both were REALLY loaded via the Skill tool this session.
-- `router.decision.wu-git.json` — for the Work Unit "对当前改动执行 Git 状态安全检查…",
-  the Router returned `decision = git-state-change-regression` (real code run).
-- The selected skill was really loaded and its protocol executed in the isolated demo
-  (`git-state-report.json`): pre/post porcelain, head diff limited to the intended file,
-  zero cache pollution, full pytest green, working tree clean.
+Earlier snapshots are historical only and do not satisfy the provenance rule. In
+the currently tested WorkBuddy CLI, the discovery receipt reports merely that
+`/skills` ran; it does not carry a list. The correct status is
+`PENDING_EXTERNAL_VALIDATION`, not an automatic-selection PASS.
