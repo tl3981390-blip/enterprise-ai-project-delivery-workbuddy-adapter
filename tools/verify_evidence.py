@@ -8,9 +8,9 @@ driver's stored assertion strings: it recomputes from the data.
 
 usage: python tools/verify_evidence.py <run-dir>
 
-The verifier intentionally has no default historical run.  A run produced before
-the Host supplied a Bridge-attested capability list cannot prove automatic Skill
-selection under the current contract.
+The verifier intentionally has no default historical run.  This WorkBuddy
+demonstration contract excludes automatic selection of existing Host Skills:
+the Host does not expose a trustworthy current-session list to project Hooks.
 """
 from __future__ import annotations
 
@@ -61,14 +61,14 @@ def m_complete(run: Path) -> tuple[bool, str]:
     return ok, f"completion={st.get('completion_status')} gate={st.get('runtime',{}).get('completion_gate',{}).get('pass')}"
 
 
-@check("M: >=3 contract receipts PASS + final bundle PASS in Core ledger")
+@check("M: both contract receipts PASS + final bundle PASS in Core ledger")
 def m_ledger(run: Path) -> tuple[bool, str]:
     st = load(run / f"state-{M}.json")
     ev = [e for e in st.get("runtime", {}).get("evidence_ledger", []) if e.get("status") == "PASS"]
     binds = st.get("acceptance_bindings", {})
     final_bound = [k for k in binds if "证明 Final Complete" in k]
     labels = [k for k in binds if "证明 Final Complete" not in k]
-    ok = len(ev) >= 4 and len(labels) >= 3 and len(final_bound) == 3
+    ok = len(ev) >= 3 and len(labels) == 2 and len(final_bound) >= 2
     return ok, f"PASS_evidence={len(ev)} contract_labels={len(labels)} final_labels={len(final_bound)}"
 
 
@@ -79,54 +79,17 @@ def m_stop(run: Path) -> tuple[bool, str]:
         f"stop_decisions={sorted(set(stops))}"
 
 
-@check("Skill chain: Bridge-attested snapshot + matching Router decision")
-def skill(run: Path) -> tuple[bool, str]:
-    art = run / "artifacts"
-    snap = load(art / "available-skills-snapshot.json")
-    router = load(art / "router.decision.json")
-    provenance = snap.get("provenance") or {}
-    decision = str(router.get("decision") or "")
-    identities = {str(item.get("identity")) for item in snap.get("skills", [])}
-    ok = (snap.get("source") == "harness_available_skills" and
-          provenance.get("hook_event_name") == "PostToolUse" and
-          bool(provenance.get("tool_use_id")) and bool(provenance.get("output_sha256")) and
-          router.get("snapshot_fingerprint_sha256") == snap.get("fingerprint_sha256") and
-          decision in identities)
-    return ok, f"source={snap.get('source')} decision={decision} provenance={bool(provenance)}"
-
-
-@check("Skill chain: Router-selected skill was really invoked in the same session")
-def skill_verified(run: Path) -> tuple[bool, str]:
-    snap = load(run / "artifacts" / "available-skills-snapshot.json")
-    decision = load(run / "artifacts" / "router.decision.json").get("decision")
-    selected = next((s for s in snap.get("skills", []) if s.get("identity") == decision), None)
-    ok = bool(selected and selected.get("available") is True and
-              selected.get("verified_callable") is True and selected.get("permission") == "granted")
-    return ok, f"entry={json.dumps(selected, ensure_ascii=False)[:120] if selected else None}"
-
-
-@check("Skill chain: transcript contains a real invocation of Router decision")
-def skill_invoked(run: Path) -> tuple[bool, str]:
-    tr_dir = run / "transcripts"
-    router = load(run / "artifacts" / "router.decision.json")
-    decision = str(router.get("decision") or "")
-    hit = False
-    for f in sorted(tr_dir.glob("wbfdc-m1--*.json")):
-        tr = load(f).get("transcript") or []
-        for msg in tr:
-            if not isinstance(msg, dict):
-                continue
-            if msg.get("type") == "function_call" and msg.get("name") == "Skill":
-                try:
-                    args = json.loads(msg.get("arguments") or "{}")
-                except ValueError:
-                    args = {}
-                if decision and decision in json.dumps(args, ensure_ascii=False):
-                    hit = True
-                    break
-        if hit:
-            break
-    return hit, f"Skill({decision}) function_call found in transcripts"
+@check("M: unavailable Host-Skill selection is omitted, not fabricated")
+def skill_not_required(run: Path) -> tuple[bool, str]:
+    st = load(run / f"state-{M}.json")
+    labels = st.get("acceptance_bindings", {})
+    artifacts = run / "artifacts"
+    snapshot = artifacts / "available-skills-snapshot.json"
+    router = artifacts / "router.decision.json"
+    ok = ("HARNESS_SKILL_SELECTION" not in labels and
+          not snapshot.exists() and not router.exists())
+    return ok, (f"selection_contract={'HARNESS_SKILL_SELECTION' in labels} "
+                f"snapshot={snapshot.exists()} router={router.exists()}")
 
 
 @check("H: terminal CANCELLED with all four Core authority operations applied")

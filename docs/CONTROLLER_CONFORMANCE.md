@@ -26,8 +26,11 @@ The adapter may report full `CONTROLLER_CONNECTED` only when WorkBuddy itself su
 
 Project-scoped Host-event wiring is real: WorkBuddy CLI sessions fed live
 UserPromptSubmit/PostToolUse/Stop payloads through the bridge. The complete
-`CONTROLLER_CONNECTED` claim is **not** currently available because automatic
-Skill selection lacks a Host-attested available-skills receipt. `hooks/hooks.json` remains
-inert; real activation is project-scoped via
+`CONTROLLER_CONNECTED` claim is **not** currently available: WorkBuddy neither
+supplies a Host-attested available-Skill receipt nor invokes the model-side
+`declare-control` channel needed to demonstrate Human Authority transitions.
+Automatic Skill selection is therefore `NOT_INCLUDED_BY_DESIGN`; Human Authority
+integration is `PENDING_EXTERNAL_VALIDATION`. `hooks/hooks.json` remains inert;
+real activation is project-scoped via
 `<project>/.codebuddy/settings.local.json`.  Nothing is registered globally and
 WorkBuddy global settings are unmodified (SHA verified in the run evidence).

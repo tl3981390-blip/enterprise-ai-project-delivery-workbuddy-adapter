@@ -23,7 +23,7 @@ def test_preflight_separates_core_install_from_live_host_claims(tmp_path):
     result = probe(tmp_path)
     assert result["formal_core_installation"]["status"] == "PASS"
     assert result["project_scoped_controller"]["status"] == "PENDING_EXTERNAL_VALIDATION"
-    assert result["automatic_harness_skill_selection"]["status"] == "PENDING_EXTERNAL_VALIDATION"
+    assert result["automatic_harness_skill_selection"]["status"] == "NOT_INCLUDED_BY_DESIGN"
     assert result["enterprise_demo_scope"]["automatic_skill_selection_demo"].startswith("not eligible")
 
 

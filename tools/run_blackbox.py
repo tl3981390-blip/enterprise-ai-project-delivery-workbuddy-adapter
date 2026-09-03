@@ -307,12 +307,27 @@ def phase_m(project: Path, runner: TurnRunner, run_dir: Path) -> None:
         stop_audits = [a for a in audits if a.get("kind") == "stop"]
         boot = [a for a in audits if a.get("kind") == "bootstrap"]
         last_stop = stop_audits[-1].get("outcome", {}) if stop_audits else {}
-        ok = (bool(st.get("delivery_session_id")) and boot and
-              st.get("completion_status") == "NOT_COMPLETE" and
-              last_stop.get("decision") == "gate_blocks_completion")
-        return {"pass": ok, "summary": "bootstrap + Stop gate deny #1 (no evidence)",
+        passes = [e for e in st.get("runtime", {}).get("evidence_ledger", [])
+                  if e.get("status") == "PASS"]
+        completion = st.get("completion_status")
+        gate_decision = last_stop.get("decision")
+        # A real Host Model can finish all work in its first turn.  The test
+        # must therefore verify the invariant, rather than inventing a timing
+        # requirement: incomplete delivery is blocked; completed delivery is
+        # allowed only when the current ledger already contains real PASS
+        # evidence and the Core completion gate passed.
+        blocked_safely = completion == "NOT_COMPLETE" and gate_decision == "gate_blocks_completion"
+        allowed_with_evidence = (
+            completion == "VERIFIED_DELIVERY_COMPLETE"
+            and gate_decision == "gate_allows_completion"
+            and len(passes) >= 2
+            and st.get("runtime", {}).get("completion_gate", {}).get("pass") is True
+        )
+        ok = bool(st.get("delivery_session_id")) and bool(boot) and (blocked_safely or allowed_with_evidence)
+        return {"pass": ok, "summary": "bootstrap + Evidence-aware Stop gate",
                 "completion": st.get("completion_status"),
                 "runtime_status": st.get("runtime", {}).get("status"),
+                "pass_evidence": len(passes),
                 "last_stop": last_stop}
 
     def a_receipts(result) -> dict:
@@ -327,25 +342,21 @@ def phase_m(project: Path, runner: TurnRunner, run_dir: Path) -> None:
                 "bound_labels": [l[:40] for l in labels],
                 "gate_pass": st.get("runtime", {}).get("completion_gate", {}).get("pass")}
 
-    def a_skill(result) -> dict:
+    def a_delivery_boundary(result) -> dict:
         art = bridge_state(project).parent / "artifacts"
         snap = art / "available-skills-snapshot.json"
         router = art / "router.decision.json"
-        discovery = [a.get("outcome", {}) for a in audit_lines(project, SESSION_M)
-                     if a.get("kind") == "capability_discovery"]
-        host_list_missing = any(a.get("reason") == "host_receipt_has_no_available_skills"
-                                for a in discovery)
-        # A model-written snapshot must never make this test pass.  This is a
-        # conformance result for the current Host API, not a claimed automatic
-        # selection result; true selection requires a host-attested snapshot,
-        # a Router decision and a matching real Skill invocation.
-        selected = snap.is_file() and router.is_file()
-        return {"pass": host_list_missing and not selected,
-                "summary": "current host discovery receipt fails closed; automatic selection remains unproven",
-                "host_list_missing": host_list_missing,
+        st = runtime_state(project, SESSION_M)
+        labels = st.get("acceptance_bindings", {})
+        # WorkBuddy does not expose its current-session Skill list to the Hook.
+        # The correct delivery behavior is to omit that unavailable capability
+        # from this project's acceptance contract, never to manufacture one.
+        no_selection_contract = "HARNESS_SKILL_SELECTION" not in labels
+        return {"pass": no_selection_contract and not snap.is_file() and not router.is_file(),
+                "summary": "delivery continues without fabricated unavailable Host-Skill selection",
+                "selection_contract_omitted": no_selection_contract,
                 "model_snapshot_absent": not snap.is_file(),
-                "router_absent": not router.is_file(),
-                "status": "PENDING_EXTERNAL_VALIDATION"}
+                "router_absent": not router.is_file()}
 
     goal = "请接手当前项目，把它可靠地完成并交付给我。"
     runner.run(SESSION_M, "m1-goal", goal, env_extra=env, continue_session=False,
@@ -355,8 +366,9 @@ def phase_m(project: Path, runner: TurnRunner, run_dir: Path) -> None:
     runner.run(SESSION_M, "m2-receipts", receipts, env_extra=env,
                assert_fn=a_receipts)
 
-    skill = "请继续推进当前项目，主动处理仍未完成的项目约束；只有证据充分时才结束。"
-    runner.run(SESSION_M, "m3-skill", skill, env_extra=env, assert_fn=a_skill)
+    delivery = "请继续推进当前项目，主动处理仍未完成的项目约束；只有证据充分时才结束。"
+    runner.run(SESSION_M, "m3-delivery-boundary", delivery, env_extra=env,
+               assert_fn=a_delivery_boundary)
 
 
 # =====================================================================

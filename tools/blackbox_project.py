@@ -60,10 +60,6 @@ CONTRACT = [
      "description": "PostToolUse receipt 经 register_harness_execution_receipt->record_evidence 写入正式 Core Canonical Evidence Ledger",
      "required_evidence": "controller artifact verifier",
      "verification_method": "file", "status": "OPEN", "source_revision": 1},
-    {"ac_id": "HARNESS_SKILL_SELECTION",
-     "description": "Router 只能基于 PostToolUse 回执中由宿主实际提供的当前会话技能清单自动选择并执行能力",
-     "required_evidence": "controller artifact verifier",
-     "verification_method": "file", "status": "OPEN", "source_revision": 1},
 ]
 
 
@@ -129,13 +125,10 @@ CLAUDE_MD = textwrap.dedent("""\
     不要手写证据 JSON、不要跳过验证步骤声称通过、不要自己 declare 未捕获的消息。
     一切以真实执行与 bridge 的审计输出为准。
 
-    ## 7. 用户不选 Skill，控制器按工作需要组合能力
-    当工作单元需要 Harness 成熟能力时，使用宿主正式的当前会话技能发现入口。Bridge 只在
-    **真实 PostToolUse 回执本身**包含完整身份与描述列表时，才会自动生成候选快照并允许 Router
-    选择；你不得手写快照、不得从系统提示抄写列表、不得扫描磁盘、不得猜测或安装能力。
-    若项目的验收合同要求该能力选择链，必须先实际调用宿主的技能发现入口；不能因为预期
-    可能缺失就跳过发现。随后如果 Bridge 没有生成候选快照，才如实报告宿主未提供可核验清单。
-    如果发现入口的回执没有携带技能清单，必须如实报告该宿主接线条件未满足，不能伪称已自动选择。
+    ## 7. 本 Host 不强制额外 Skill 选择
+    当前 WorkBuddy 没有向 Hook 提供可核验的当前会话 Skill 清单，因此本项目的交付合同
+    不要求也不允许伪造自动能力选择。不要手写候选清单、不要扫描本机 Skill 目录、不要从
+    模型上下文抄写 Skill 名称。继续使用本次项目已有的合法工具完成交付与验证。
     """)
 
 

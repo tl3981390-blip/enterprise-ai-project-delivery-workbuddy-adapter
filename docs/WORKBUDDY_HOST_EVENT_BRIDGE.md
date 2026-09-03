@@ -47,4 +47,5 @@ Real host events are the only PASS source. Earlier automatic black-box records
 verified Hook firing and Core receipts, but cannot verify automatic Skill
 selection under the current provenance rule. The current Host returns no skill
 list in the discovery receipt, so that product gate is
-`PENDING_EXTERNAL_VALIDATION`.
+`NOT_INCLUDED_BY_DESIGN` for this WorkBuddy demonstration integration.  It is
+not a blocker for the Core delivery-control demonstration.

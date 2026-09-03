@@ -81,10 +81,11 @@ def probe(home: Path) -> dict:
             "reason": "a fresh WorkBuddy session must actually fire the project-scoped hooks",
         },
         "automatic_harness_skill_selection": {
-            "status": "PENDING_EXTERNAL_VALIDATION",
+            "status": "NOT_INCLUDED_BY_DESIGN",
             "reason": (
                 "the documented /skills panel is UI-only and current PostToolUse "
-                "receipts do not expose the current-session Skill identity/description list"
+                "receipts do not expose the current-session Skill identity/description list; "
+                "this WorkBuddy delivery demonstration does not claim automatic selection"
             ),
             "forbidden_fallbacks": ["model-transcribed list", "local directory scan", "hardcoded candidate"],
         },

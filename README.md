@@ -56,14 +56,18 @@ unless the probe and the fresh session both produce the required Host evidence.
 
 Adapter repository, not a released product. Real WorkBuddy CLI sessions verify
 project-scoped UserPromptSubmit/PostToolUse/Stop bridge firing and Core Evidence
-receipt recording. **Automatic Harness Skill selection is not yet verified on
-this Host**: its discovery receipt does not contain the current-session skill
-identity/description list. The Adapter fails closed rather than accepting a
-model-transcribed list. The formal Core is never modified.
+receipt recording. This repository is deliberately limited to a **delivery
+evidence demonstration**: WorkBuddy does not expose a trustworthy current-session
+Skill list to project Hooks, so automatic selection of other WorkBuddy Skills is
+`NOT_INCLUDED_BY_DESIGN`. It also does not give the Adapter a Host-enforced model
+invocation channel for the separate `declare-control` operation, so full Human
+Authority Controller demonstrations remain `PENDING_EXTERNAL_VALIDATION`. The
+Adapter fails closed; it does not emulate either missing Host facility. The formal
+Core is never modified.
 
 ## Branch: `workbuddy-full-delivery-controller` (this branch)
 
-Real, code-level implementation of the full delivery wiring:
+Real, code-level implementation of delivery wiring candidates:
 
 - **Harness Capability Router** (`src/capability_router.py` + `src/harness_skill_snapshot.py`) —
   candidates come ONLY from a Bridge-written, PostToolUse-attested current-session
@@ -95,9 +99,15 @@ Real acceptance evidence:
   snapshots lacked Bridge-attested Host provenance. New evidence is accepted only
   through `tools/verify_evidence.py <run-dir>`.
 
-Status: `CANONICAL_EVIDENCE_INTEGRATION` has real-machine evidence.
-`AUTOMATIC_HARNESS_SKILL_SELECTION` and the complete final-product claim remain
-`PENDING_EXTERNAL_VALIDATION` until WorkBuddy supplies the Host-attested list.
+Status: `CANONICAL_EVIDENCE_INTEGRATION` has real-machine evidence. Human Authority
+Controller code is covered by deterministic tests, but is not a demonstrated
+WorkBuddy Host integration because this Host has not invoked its declaration
+channel in a real conversation.
+Automatic selection among existing WorkBuddy Skills is **not included in this
+WorkBuddy demonstration integration**.  The Host exposes `/skills` only as a
+UI/model interaction and does not supply a trustworthy current-session list to
+project Hooks.  The adapter therefore never fabricates a list or blocks ordinary
+Delivery Core demonstrations on that unavailable Host feature.
 
 ## Enterprise demonstration
 
@@ -105,4 +115,4 @@ Use [Enterprise Demonstration and Value Contract](docs/ENTERPRISE_DEMO_AND_VALUE
 for the customer-facing value proposition, the evidence boundary, and the
 preflight-led demonstration sequence.  It distinguishes the real delivery
 controls already demonstrated from automatic use of existing WorkBuddy Skills,
-which remains pending on the current Host build.
+which is deliberately excluded on the current Host build.

@@ -76,7 +76,8 @@ desktop UI and its documented Hook, plugin, and HTTP interfaces do not return
 that current-session list to a project Controller.  A receipt merely saying
 `/skills` ran is rejected.  Model-transcribed lists, filesystem scans, and
 hard-coded Skills are also rejected.  Therefore this capability is
-`PENDING_EXTERNAL_VALIDATION` on the currently tested WorkBuddy build.
+`NOT_INCLUDED_BY_DESIGN` for the currently tested WorkBuddy demonstration
+integration.
 
 Do not demonstrate automatic selection as PASS until the preflight/live receipt
 contains the Host-attested list and the Router decision plus actual invocation
