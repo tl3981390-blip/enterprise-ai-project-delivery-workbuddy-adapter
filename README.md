@@ -98,3 +98,11 @@ Real acceptance evidence:
 Status: `CANONICAL_EVIDENCE_INTEGRATION` has real-machine evidence.
 `AUTOMATIC_HARNESS_SKILL_SELECTION` and the complete final-product claim remain
 `PENDING_EXTERNAL_VALIDATION` until WorkBuddy supplies the Host-attested list.
+
+## Enterprise demonstration
+
+Use [Enterprise Demonstration and Value Contract](docs/ENTERPRISE_DEMO_AND_VALUE.md)
+for the customer-facing value proposition, the evidence boundary, and the
+preflight-led demonstration sequence.  It distinguishes the real delivery
+controls already demonstrated from automatic use of existing WorkBuddy Skills,
+which remains pending on the current Host build.
